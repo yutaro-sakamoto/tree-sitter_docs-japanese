@@ -1,8 +1,3 @@
----
-title: Implementation
-permalink: implementation
----
-
 # Implementation
 
 Tree-sitter consists of two components: a C library (`libtree-sitter`), and a command-line tool (the `tree-sitter` CLI).

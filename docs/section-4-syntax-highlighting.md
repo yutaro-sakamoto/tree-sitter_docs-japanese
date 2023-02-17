@@ -1,8 +1,3 @@
----
-title: Syntax Highlighting
-permalink: syntax-highlighting
----
-
 # Syntax Highlighting
 
 Syntax highlighting is a very common feature in applications that deal with code. Tree-sitter has built-in support for syntax highlighting, via the [`tree-sitter-highlight`](https://github.com/tree-sitter/tree-sitter/tree/master/highlight) library, which is currently used on GitHub.com for highlighting code written in several languages. You can also perform syntax highlighting at the command line using the `tree-sitter highlight` command.

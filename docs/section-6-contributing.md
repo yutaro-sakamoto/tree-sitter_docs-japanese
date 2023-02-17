@@ -1,8 +1,3 @@
----
-title: Contributing
-permalink: contributing
----
-
 # Contributing
 
 ## Code of Conduct
