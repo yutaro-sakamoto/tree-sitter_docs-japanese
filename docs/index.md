@@ -1,6 +1,7 @@
 # 概要
 
-Tree-sitterはパーサ生成ツールであり、インクリメンタルな構文解析ライブラリです。ソースファイルに対して具象構文木を構築し、ソースファイルの編集に伴って構文木を効率的に更新することができます。Tree-sitterの目指すところは、以下の通りです。
+Tree-sitterはパーサ生成ツールであり、インクリメンタル解析をサポートする構文解析ライブラリである。
+ソースファイルに対して具象構文木を構築し、ソースファイルの編集に伴って構文木を効率的に更新することができる。Tree-sitterの目指すところは、以下の通り。
 
 * **汎用**: あらゆるプログラミング言語の解析に対応する。
 * **高速**: テキストエディタでキーストロークごとに解析できる。
@@ -9,7 +10,7 @@ Tree-sitterはパーサ生成ツールであり、インクリメンタルな構
 
 ### バインディング
 
-現在、以下の言語からTree-sitterを利用するためのバインディングが用意されています。
+現在、以下の言語からTree-sitterを利用するためのバインディングが用意されている。
 
 * [Go](https://github.com/smacker/go-tree-sitter)
 * [Haskell](https://github.com/tree-sitter/haskell-tree-sitter)
@@ -143,7 +144,7 @@ Tree-sitterはパーサ生成ツールであり、インクリメンタルな構
 * [YANG](https://github.com/Hubro/tree-sitter-yang)
 * [Zig](https://github.com/maxxnino/tree-sitter-zig)
 
-※上記のリストに含まれる[COBOL](https://github.com/yutaro-sakamoto/tree-sitter-cobol)は[本文書の翻訳者](https://github.com/yutaro-sakamoto)が独自に追加したものです。
+※上記のリストに含まれる[COBOL](https://github.com/yutaro-sakamoto/tree-sitter-cobol)は[本文書の翻訳者](https://github.com/yutaro-sakamoto)が独自に追加したものである。
 
 ### Tree-sitterに関する講演
 
@@ -153,7 +154,7 @@ Tree-sitterはパーサ生成ツールであり、インクリメンタルな構
 
 ### 基礎研究
 
-Tree-sitterの設計は、以下の研究論文から大きな影響を受けています。
+Tree-sitterの設計は、以下の研究論文から大きな影響を受けている。
 
 - [Practical Algorithms for Incremental Software Development Environments](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1997/CSD-97-946.pdf)
 - [Context Aware Scanning for Parsing Extensible Languages](https://www-users.cse.umn.edu/~evw/pubs/vanwyk07gpce/vanwyk07gpce.pdf)

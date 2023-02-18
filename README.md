@@ -1,6 +1,6 @@
 # 概要
 
-tree-sitterの[公式ドキュメント](https://tree-sitter.github.io/tree-sitter/)の非公式日本語訳を掲載します。
+tree-sitterの[公式ドキュメント](https://tree-sitter.github.io/tree-sitter/)の非公式日本語訳を掲載する。
 
 * [トップページ](./docs/index.md)
 * [パーサを使う](./docs/section-2-using-parsers.md)
