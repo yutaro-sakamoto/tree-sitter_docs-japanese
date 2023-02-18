@@ -1,15 +1,15 @@
-# Introduction
+# 概要
 
-Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. Tree-sitter aims to be:
+Tree-sitterはパーサ生成ツールであり、インクリメンタルな構文解析ライブラリです。ソースファイルに対して具象構文木を構築し、ソースファイルの編集に伴って構文木を効率的に更新することができます。Tree-sitterの目指すところは、以下の通りです。
 
-* **General** enough to parse any programming language
-* **Fast** enough to parse on every keystroke in a text editor
-* **Robust** enough to provide useful results even in the presence of syntax errors
-* **Dependency-free** so that the runtime library (which is written in pure [C](https://github.com/tree-sitter/tree-sitter/tree/master/lib)) can be embedded in any application
+* **汎用**: あらゆるプログラミング言語の解析に対応する。
+* **高速**: テキストエディタでキーストロークごとに解析できる。
+* **頑健**: 入力に構文スエラーがあっても有用な結果を提供できる。
+* **依存性の低さ**: ランタイムライブラリがC言語で書かれており、あらゆるアプリケーションに組み込むことができる。
 
-### Language Bindings
+### バインディング
 
-There are currently bindings that allow Tree-sitter to be used from the following languages:
+現在、以下の言語からTree-sitterを利用するためのバインディングが用意されています。
 
 * [Go](https://github.com/smacker/go-tree-sitter)
 * [Haskell](https://github.com/tree-sitter/haskell-tree-sitter)
@@ -26,7 +26,7 @@ There are currently bindings that allow Tree-sitter to be used from the followin
 * [Kotlin](https://github.com/oxisto/kotlintree)
 * [Java](https://github.com/serenadeai/java-tree-sitter)
 
-### Parsers
+### パーサ
 
 * [Ada](https://github.com/briot/tree-sitter-ada)
 * [Agda](https://github.com/tree-sitter/tree-sitter-agda)
@@ -40,6 +40,7 @@ There are currently bindings that allow Tree-sitter to be used from the followin
 * [Clojure](https://github.com/sogaiu/tree-sitter-clojure)
 * [CMake](https://github.com/uyha/tree-sitter-cmake)
 * [Comment](https://github.com/stsewd/tree-sitter-comment)
+* [COBOL](https://github.com/yutaro-sakamoto/tree-sitter-cobol)
 * [Common Lisp](https://github.com/theHamsta/tree-sitter-commonlisp)
 * [CSS](https://github.com/tree-sitter/tree-sitter-css)
 * [CUDA](https://github.com/theHamsta/tree-sitter-cuda)
@@ -142,15 +143,17 @@ There are currently bindings that allow Tree-sitter to be used from the followin
 * [YANG](https://github.com/Hubro/tree-sitter-yang)
 * [Zig](https://github.com/maxxnino/tree-sitter-zig)
 
-### Talks on Tree-sitter
+※上記のリストに含まれる[COBOL](https://github.com/yutaro-sakamoto/tree-sitter-cobol)は[本文書の翻訳者](https://github.com/yutaro-sakamoto)が独自に追加したものです。
+
+### Tree-sitterに関する講演
 
 * [Strange Loop 2018](https://www.thestrangeloop.com/2018/tree-sitter---a-new-parsing-system-for-programming-tools.html)
 * [FOSDEM 2018](https://www.youtube.com/watch?v=0CGzC_iss-8)
 * [GitHub Universe 2017](https://www.youtube.com/watch?v=a1rC79DHpmY)
 
-### Underlying Research
+### 基礎研究
 
-The design of Tree-sitter was greatly influenced by the following research papers:
+Tree-sitterの設計は、以下の研究論文から大きな影響を受けています。
 
 - [Practical Algorithms for Incremental Software Development Environments](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1997/CSD-97-946.pdf)
 - [Context Aware Scanning for Parsing Extensible Languages](https://www-users.cse.umn.edu/~evw/pubs/vanwyk07gpce/vanwyk07gpce.pdf)
