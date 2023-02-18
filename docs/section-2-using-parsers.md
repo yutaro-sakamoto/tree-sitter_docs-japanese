@@ -1,3 +1,5 @@
+[前のページ(トップページ)](./index.md) <---- [目次](../README.md) ----> [次のページ(パーサを作る)](./section-3-creating-parsers.md)
+
 # パーサを使う
 
 Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは，[node-tree-sitter](https://github.com/tree-sitter/node-tree-sitter)や[tree-sitter rust crate](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust)のようなバインディングライブラリを介して Tree-sitter を利用することができ，これらには独自のドキュメントが存在する。
@@ -879,3 +881,5 @@ Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリ
   }
 }
 ```
+
+[前のページ(トップページ)](./index.md) <---- [目次](../README.md) ----> [次のページ(パーサを作る)](./section-3-creating-parsers.md)

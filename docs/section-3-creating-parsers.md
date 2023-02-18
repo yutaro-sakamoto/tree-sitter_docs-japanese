@@ -1,3 +1,5 @@
+[前のページ(パーサを使う)](./section-2-using-parsers.md) <---- [目次](../README.md) ----> [次のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md)
+
 # Creating parsers
 
 Developing Tree-sitter grammars can have a difficult learning curve, but once you get the hang of it, it can be fun and even zen-like. This document will help get you to get started and to develop a useful mental model.
@@ -787,3 +789,5 @@ Be very careful when emitting zero-width tokens from your external scanner, and 
 [tree-sitter-javascript]: https://github.com/tree-sitter/tree-sitter-javascript
 [yacc-prec]: https://docs.oracle.com/cd/E19504-01/802-5880/6i9k05dh3/index.html
 [yacc]: https://en.wikipedia.org/wiki/Yacc
+
+[前のページ(パーサを使う)](./section-2-using-parsers.md) <---- [目次](../README.md) ----> [次のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md)

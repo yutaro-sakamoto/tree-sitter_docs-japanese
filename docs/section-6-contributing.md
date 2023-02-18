@@ -1,3 +1,5 @@
+[前のページ(Tree-sitterの実装)](./section-5-implementation.md) <---- [目次](../README.md) ----> [次のページ(Playground)](./section-7-playground.md)
+
 # Contributing
 
 ## Code of Conduct
@@ -138,3 +140,5 @@ Publishing a new release of the CLI requires these steps:
    cd cli/npm
    npm publish
    ```
+
+[前のページ(Tree-sitterの実装)](./section-5-implementation.md) <---- [目次](../README.md) ----> [次のページ(Playground)](./section-7-playground.md)

@@ -1,3 +1,5 @@
+[前のページ(パーサを作る)](./section-3-creating-parsers.md) <---- [目次](../README.md) ----> [次のページ(Tree-sitterの実装)](./section-5-implementation.md)
+
 # Syntax Highlighting
 
 Syntax highlighting is a very common feature in applications that deal with code. Tree-sitter has built-in support for syntax highlighting, via the [`tree-sitter-highlight`](https://github.com/tree-sitter/tree-sitter/tree/master/highlight) library, which is currently used on GitHub.com for highlighting code written in several languages. You can also perform syntax highlighting at the command line using the `tree-sitter highlight` command.
@@ -432,3 +434,5 @@ From the Sublime text docs:
 > **Caret**: ^ this will test the following selector against the scope on the most recent non-test line. It will test it at the same column the ^ is in. Consecutive ^s will test each column against the selector.
 >
 > **Arrow**: <- this will test the following selector against the scope on the most recent non-test line. It will test it at the same column as the comment character is in.
+
+[前のページ(パーサを作る)](./section-3-creating-parsers.md) <---- [目次](../README.md) ----> [次のページ(Tree-sitterの実装)](./section-5-implementation.md)
