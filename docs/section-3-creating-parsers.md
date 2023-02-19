@@ -1,19 +1,20 @@
 [前のページ(パーサを使う)](./section-2-using-parsers.md) <---- [目次](../README.md) ----> [次のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md)
 
-# Creating parsers
+# パーサを作る
 
-Developing Tree-sitter grammars can have a difficult learning curve, but once you get the hang of it, it can be fun and even zen-like. This document will help get you to get started and to develop a useful mental model.
+Tree-sitterによるパーサの開発は学習が難しいですが、一度コツをつかめば楽しく、禅のような感覚さえ覚えることができる。
+このドキュメントは、開発を始め方を示し、開発を進める上での考え方を身につける一助となるだろう。
 
-## Getting Started
+## はじめに
 
-### Dependencies
+### 依存するソフトウェア
 
-In order to develop a Tree-sitter parser, there are two dependencies that you need to install:
+Tree-sitterパーサの開発をするｔめには、いくつかのソフトウェアをインストールする必要がある。
 
-* **Node.js** - Tree-sitter grammars are written in JavaScript, and Tree-sitter uses [Node.js][node.js] to interpret JavaScript files. It requires the `node` command to be in one of the directories in your [`PATH`][path-env]. You'll need Node.js version 6.0 or greater.
-* **A C Compiler** - Tree-sitter creates parsers that are written in C. In order to run and test these parsers with the `tree-sitter parse` or `tree-sitter test` commands, you must have a C/C++ compiler installed. Tree-sitter will try to look for these compilers in the standard places for each platform.
+* **Node.js** - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として[Node.js][node.js]を利用する。したがって、`node`コマンドの存在するディレクトリを環境変数`PATH`に追加する必要がある。また、Node.jsのバージョンは6.0以上である必要がある。
+* **Cコンパイラ** - Tree-sitterはC言語で記述されたパーサを生成する。パーサの実行とテストを行う`tree-sitter parse`と`tree-sitter test`コマンドを使うにはC/C++コンパイラがインストールされている必要がある。Tree-sitterは各プラットフォーム規定する標準的なディレクトリからC/C++コンパイラを検索して利用する。
 
-### Installation
+### インストール
 
 To create a Tree-sitter parser, you need to use [the `tree-sitter` CLI][tree-sitter-cli]. You can install the CLI in a few different ways:
 
