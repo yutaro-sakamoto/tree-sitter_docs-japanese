@@ -29,7 +29,7 @@ POSIXシステム上でライブラリをビルドするには、Tree-sitterデ�
 
 Tree-sitterを使用する際には、言語・パーサ・構文木・構文ノードに対応する4種類のオブジェクトを利用する。C言語APIでは、これらを`TSLanguage`・`TSParser`・`TSTree`・`TSNode`として定義する。
 
-- `TSLanguage`は、解析対象のプログラミング言語をどのようにパースするかを定義するオブジェクトである。各`TSLanguage`のコードは、Tree-sitterによって生成される。多くの言語は、[Tree-sitterのGitHub Organization](https://github.com/tree-sitter)の個別のGitリポジトリから利用可能である。新しい言語のパーサを作成するには[次のページ](./docs/section-3-creating-parsers.md)を参照せよ。
+- `TSLanguage`は、解析対象のプログラミング言語をどのようにパースするかを定義するオブジェクトである。各`TSLanguage`のコードは、Tree-sitterによって生成される。多くの言語は、[Tree-sitterのGitHub Organization](https://github.com/tree-sitter)の個別のGitリポジトリから利用可能である。新しい言語のパーサを作成するには[次のページ](./section-3-creating-parsers.md)を参照せよ。
 - `TSParser`は、`TSLanguage`を割り当てられ、あるソースコードに基づいてTSTreeを生成するために使用できるステートフルなオブジェクトである。
 - `TSTree`は、ソースコード全体の構文木を表す。この構文木は、ソースコードの構造を示す`TSNode`インスタンスを含む。またソースコードが変更時に、`TSTree`を編集することで新しい`TSTree`を生成することができる。
 - `TSNode`は、構文木に含まれるある1つのノードを表す。`TSNode`はソースコード内における開始位置・終了位置や親ノード・兄弟ノード・子ノードなどの他のノードとの関係に関する情報を保持する。
@@ -152,7 +152,7 @@ typedef struct {
 
 ### 構文ノード
 
-Tree-sitterは、構文木を検査するために[DOM](https://en.wikipedia.org/wiki/Document_Object_Model)に類似したインターフェイスを提供する。構文ノードの型は、そのノードがどの文法規則を表しているかを示す文字列である。
+Tree-sitterは、構文木を検査するために[DOM](https://ja.wikipedia.org/wiki/Document_Object_Model)に類似したインターフェイスを提供する。構文ノードの型は、そのノードがどの文法規則を表しているかを示す文字列である。
 
 ```c
 const char *ts_node_type(TSNode);
@@ -205,8 +205,8 @@ bool ts_node_is_null(TSNode);
 
 ### 名前付きノードと匿名ノード
 
-Tree-sitterは[具象構文木](https://en.wikipedia.org/wiki/Parse_tree)を生成する。具象構文木はコンマやカッコを含めたソースコードの全トークンの情報を保持する。[シンタックスハイライト](https://en.wikipedia.org/wiki/Syntax_highlighting)のように全トークンを処理する場合は、この機能は重要である。
-しかし、使用用途によっては[抽象構文木](https://en.wikipedia.org/wiki/Abstract_syntax_tree)を利用するほうが解析が簡単である。抽象構文木とは具象構文木から重要度の低い情報を削除した木構造のデータである。
+Tree-sitterは[具象構文木](https://ja.wikipedia.org/wiki/%E6%A7%8B%E6%96%87%E6%9C%A8)を生成する。具象構文木はコンマやカッコを含めたソースコードの全トークンの情報を保持する。[シンタックスハイライト](https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88)のように全トークンを処理する場合は、この機能は重要である。
+しかし、使用用途によっては[抽象構文木](https://ja.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E6%A7%8B%E6%96%87%E6%9C%A8)を利用するほうが解析が簡単である。抽象構文木とは具象構文木から重要度の低い情報を削除した木構造のデータである。
 Tree-sitterの構文木は、_名前付きノード_ と _匿名ノード_ の2つのノードを使うことで両方の使用方法をサポートする。
 
 下記のような文法定義を考える。
@@ -447,7 +447,7 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 
 ### クエリの文法
 
-クエリは1つ以上のパターンから構成され、各パターンは構文木における特定のノードの集合にマッチする[S式](https://en.wikipedia.org/wiki/S-expression)である。
+クエリは1つ以上のパターンから構成され、各パターンは構文木における特定のノードの集合にマッチする[S式](https://ja.wikipedia.org/wiki/S%E5%BC%8F)である。
 与えられたノードにマッチする式は、ノードの型と、オプションでそのノードの子にマッチする一連のS式を含む2つの括弧で構成される。
 たとえば、このパターンは、子ノードが両方とも`number_literal`ノードである`binary_expression`ノードにマッチする。
 
@@ -525,7 +525,7 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 
 #### 量化演算子
 
-後置修飾子`+`および`*`繰り返し演算子は、[正規表現](https://en.wikipedia.org/wiki/Regular_expression#Basic_concepts)における`+`および`*`演算子と同様に機能する。
+後置修飾子`+`および`*`繰り返し演算子は、[正規表現](https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E6%A6%82%E5%BF%B5)における`+`および`*`演算子と同様に機能する。
 演算子はパターンの1回以上の繰り返しにマッチし、*演算子は0回以上の繰り返しにマッチする。
 
 例えば、下記のパターンは、1つ以上のコメントの並びにマッチする。
@@ -837,9 +837,9 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 
 #### スーパータイプ・ノード
 
-Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。`grammar.js`では、これらのルールは[隠しルール](./creating-parsers#hiding-rules)として記述され、その定義は各メンバーが1つのシンボルである単純な[選択](./creating-parsers#the-grammar-dsl)である場合が多い。
+Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。`grammar.js`では、これらのルールは[隠しルール](./section-3-creating-parsers#hiding-rules)として記述され、その定義は各メンバーが1つのシンボルである単純な[選択](./section-3-creating-parsers#the-grammar-dsl)である場合が多い。
 
-通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されません。しかし、文法の[スーパータイプのリスト](./creating-parsers#the-grammar-dsl)に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。
+通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されません。しかし、文法の[スーパータイプのリスト](./section-3-creating-parsers#the-grammar-dsl)に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。
 
 - `"subtypes"` - この 'supertype' ノードがラップできるノードの型を指定するオブジェクトの配列。
 
