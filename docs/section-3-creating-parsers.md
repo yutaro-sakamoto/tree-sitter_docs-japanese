@@ -16,31 +16,31 @@ Tree-sitterパーサの開発をするｔめには、いくつかのソフトウ
 
 ### インストール
 
-To create a Tree-sitter parser, you need to use [the `tree-sitter` CLI][tree-sitter-cli]. You can install the CLI in a few different ways:
+Tree-sitterパーサを生成するには、[the `tree-sitter` CLI](https://github.com/tree-sitter/tree-sitter/tree/master/cli)が必要であり、複数の方法でインストールできる。
 
-* Build the `tree-sitter-cli` [Rust crate][crate] from source using [`cargo`][cargo], the Rust package manager. This works on any platform. See [the contributing docs](/docs/section-5-contributing.md#developing-tree-sitter) for more information.
-* Install the `tree-sitter-cli` [Node.js module][node-module] using [`npm`][npm], the Node package manager. This approach is fast, but is only works on certain platforms, because it relies on pre-built binaries.
-* Download a binary for your platform from [the latest GitHub release][releases], and put it into a directory on your `PATH`.
+* `tree-sitter-cli` [Rustクレート](https://crates.io/crates/tree-sitter-cli)  をRustパッケージマネージャである[`cargo`](https://doc.rust-lang.org/cargo/getting-started/installation.html)を使ってソースコードからビルドする。これは任意のプラットフォームで有効なインストール方法である。詳細は[コントリビュート](./section-6-contributing.md)を参照すること。
+`tree-sitter-cli`[Node.jsモジュール](https://www.npmjs.com/package/tree-sitter-cli)をNodeパッケージマネージャの[`npm`](https://docs.npmjs.com/)を使ってインストールする。この方法は手軽だが、pre-builtバイナリを使うため限られたプラットフォームでのみ利用可能な方法である。
+* 使用するプラットフォーム向けのバイナリを[最新のGitHubリリースページ](https://github.com/tree-sitter/tree-sitter/releases)からダウンロードし、そのバイナリを格納したディレクトリのパスを環境変数`PATH`に追加する。
 
-### Project Setup
+### プロジェクトの新規作成
 
-The preferred convention is to name the parser repository "tree-sitter-" followed by the name of the language.
+パーサのリポジトリ名は「tree-sitter-」後に言語名を付けたものが好ましい。
 
 ```sh
 mkdir tree-sitter-${YOUR_LANGUAGE_NAME}
 cd tree-sitter-${YOUR_LANGUAGE_NAME}
 ```
 
-You can use the `npm` command line tool to create a `package.json` file that describes your project, and allows your parser to be used from Node.js.
+`npm` コマンドを使って、プロジェクトに関する情報を格納する`package.json`を作成し、Node.jsから開発したパーサを利用できるようする。
 
 ```sh
-# This will prompt you for input
+# 下記のコマンドでは、対話モードでプロジェクトに関する情報を入力する。
 npm init
 
-# This installs a small module that lets your parser be used from Node
+# 下記のコマンドにより、Nodeから開発したパーサを利用可能にするためのモジュールをインストールする。
 npm install --save nan
 
-# This installs the Tree-sitter CLI itself
+# 下記のコマンドにより、Tree-sitter CLIをインストールする。
 npm install --save-dev tree-sitter-cli
 ```
 
