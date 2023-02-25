@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install textlint and rules
-      run: make instal-lint
+      run: make install-lint
 
     - name: run textlint
       run: make lint
