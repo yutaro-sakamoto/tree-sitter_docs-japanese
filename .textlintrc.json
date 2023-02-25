@@ -37,6 +37,11 @@
       "rulePaths": [
         "./rules.yml"
       ]
-    }
+    },
+    "@textlint-ja/textlint-rule-no-dropping-i": true,
+    "@textlint-ja/textlint-rule-no-insert-re": true,
+    "@textlint-ja/textlint-rule-no-insert-dropping-sa": true,
+    "textlint-rule-ja-no-successive-word": true,
+    "textlint-rule-no-duplicated-bunmatsu-hyougen": true
   }
 }

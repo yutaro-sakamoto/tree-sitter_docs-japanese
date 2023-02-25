@@ -31,4 +31,11 @@ install-lint:
 	@textlint-ja/textlint-rule-no-filler \
 	textlint-filter-rule-comments \
 	textlint-rule-preset-ja-technical-writing \
-	textlint-rule-prh
+	textlint-rule-prh \
+	textlint-rule-preset-japanese \
+	textlint-rule-no-nfd \
+	@textlint-ja/textlint-rule-no-dropping-i \
+	@textlint-ja/textlint-rule-no-insert-re \
+	@textlint-ja/textlint-rule-no-insert-dropping-sa \
+	textlint-rule-ja-no-successive-word \
+	textlint-rule-no-duplicated-bunmatsu-hyougen

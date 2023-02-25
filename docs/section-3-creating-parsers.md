@@ -11,7 +11,7 @@ Tree-sitterによるパーサの開発は学習が難しいものの、一度コ
 
 Tree-sitterパーサを開発するためには、いくつかのソフトウェアをインストールする必要がある。
 
-* **Node.js** - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として[Node.js](https://nodejs.org/ja/)を利用する。したがって、`node`コマンドの存在するディレクトリを環境変数`PATH`に追加する必要がある。また、Node.jsのバージョンは6.0以上である必要がある。
+* **Node.js** - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として[Node.js](https://nodejs.org/ja/)を利用する。したがって、`node`コマンドの存在するディレクトリを環境変数`PATH`に追加する必要がある。また、Node.jsのバージョンが6.0以上であることも必要である。
 * **Cコンパイラ** - Tree-sitterはC言語で記述されたパーサを生成する。パーサの実行とテストを行う`tree-sitter parse`と`tree-sitter test`コマンドを使うにはC/C++コンパイラがインストールされている必要がある。Tree-sitterは各プラットフォーム規定する標準的なディレクトリからC/C++コンパイラを検索して利用する。
 
 ### インストール
