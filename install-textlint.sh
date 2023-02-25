@@ -15,8 +15,6 @@ textlint-rule-no-dropping-the-ra \
 textlint-rule-no-doubled-conjunctive-particle-ga \
 textlint-rule-no-doubled-conjunction \
 textlint-rule-ja-no-mixed-period \
-textlint-rule-ja-hiragana-keishikimeishi \
-textlint-rule-ja-hiragana-fukushi \
 textlint-rule-ja-hiragana-hojodoushi \
 textlint-rule-ja-unnatural-alphabet \
 @textlint-ja/textlint-rule-no-insert-dropping-sa \

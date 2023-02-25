@@ -2,7 +2,7 @@
 
 # パーサを使う
 
-Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは，[node-tree-sitter](https://github.com/tree-sitter/node-tree-sitter)や[tree-sitter rust crate](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust)のようなバインディングライブラリを介して Tree-sitter を利用することができ，これらには独自のドキュメントが存在する。
+Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは、[node-tree-sitter](https://github.com/tree-sitter/node-tree-sitter)や[tree-sitter rust crate](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust)のようなバインディングライブラリを介してTree-sitterを利用でき、これらには独自のドキュメントが存在する。
 
 この文書では、使用している言語に関係なく関連する、Tree-sitterの使用方法に関する一般的な概念について説明する。また、C言語APIを直接使用している場合や、異なる言語への新しいバインディングを構築している場合に役立つ、C言語固有の詳細についても説明する。
 
@@ -31,7 +31,7 @@ Tree-sitterを使用する際には、言語・パーサ・構文木・構文ノ
 
 - `TSLanguage`は、解析対象のプログラミング言語をどのようにパースするかを定義するオブジェクトである。各`TSLanguage`のコードは、Tree-sitterによって生成される。多くの言語は、[Tree-sitterのGitHub Organization](https://github.com/tree-sitter)の個別のGitリポジトリから利用可能である。新しい言語のパーサを作成するには[次のページ](./section-3-creating-parsers.md)を参照せよ。
 - `TSParser`は、`TSLanguage`を割り当てられ、あるソースコードに基づいてTSTreeを生成するために使用できるステートフルなオブジェクトである。
-- `TSTree`は、ソースコード全体の構文木を表す。この構文木は、ソースコードの構造を示す`TSNode`インスタンスを含む。またソースコードが変更時に、`TSTree`を編集することで新しい`TSTree`を生成することができる。
+- `TSTree`は、ソースコード全体の構文木を表す。この構文木は、ソースコードの構造を示す`TSNode`インスタンスを含む。またソースコードが変更時に、`TSTree`を編集することで新しい`TSTree`を生成できる。
 - `TSNode`は、構文木に含まれるある1つのノードを表す。`TSNode`はソースコード内における開始位置・終了位置や親ノード・兄弟ノード・子ノードなどの他のノードとの関係に関する情報を保持する。
 
 
@@ -125,7 +125,7 @@ TSTree *ts_parser_parse_string(
 );
 ```
 
-[piece table](https://en.wikipedia.org/wiki/Piece_table)や[rope](<https://en.wikipedia.org/wiki/Rope_(data_structure)>)等の独自のデータ構造に格納されたデータの構文解析を行いたい場合は、`ts_parser_parse`関数を使用する。
+[piece table](https://en.wikipedia.org/wiki/Piece_table)や[rope](<https://en.wikipedia.org/wiki/Rope_(data_structure)>)等の独自のデータ構造に格納されたデータを構文解析したい場合は、`ts_parser_parse`関数を使用する。
 
 ```c
 TSTree *ts_parser_parse(
@@ -135,7 +135,7 @@ TSTree *ts_parser_parse(
 );
 ```
 
-`TSInput`構造体を使うことで、与えられたバイトオフセットと行/列の位置でテキストのチャンクを読み取るための独自の関数を指定することができる。この関数は、UTF8 または UTF16 でエンコードされたテキストを返す。このインタフェースにより、独自のデータ構造に格納されたテキストを効率的に解析することができる。
+`TSInput`構造体を使うことで、与えられたバイトオフセットと行/列の位置でテキストのチャンクを読み取るための独自の関数を指定できる。この関数は、UTF8またはUTF16でエンコードされたテキストを返す。このインタフェースにより、独自のデータ構造に格納されたテキストを効率的に解析できる。
 
 ```c
 typedef struct {
@@ -152,7 +152,7 @@ typedef struct {
 
 ### 構文ノード
 
-Tree-sitterは、構文木を検査するために[DOM](https://ja.wikipedia.org/wiki/Document_Object_Model)に類似したインターフェイスを提供する。構文ノードの型は、そのノードがどの文法規則を表しているかを示す文字列である。
+Tree-sitterは構文木を検査するために、[DOM](https://ja.wikipedia.org/wiki/Document_Object_Model)に類似したインタフェースを提供する。構文ノードの型は、そのノードがどの文法規則を表しているかを示す文字列である。
 
 ```c
 const char *ts_node_type(TSNode);
@@ -197,7 +197,7 @@ TSNode ts_node_parent(TSNode);
 ```
 
 これらの関数はnullノードを返す場合がある。例えば、`ts_node_next_sibling`関数がnullノードを返した場合、次の兄弟ノードが存在しないことを示す。
-与えられたノードがnullノードかを検査することができる。
+与えられたノードがnullノードかを検査できる。
 
 ```c
 bool ts_node_is_null(TSNode);
@@ -206,7 +206,7 @@ bool ts_node_is_null(TSNode);
 ### 名前付きノードと匿名ノード
 
 Tree-sitterは[具象構文木](https://ja.wikipedia.org/wiki/%E6%A7%8B%E6%96%87%E6%9C%A8)を生成する。具象構文木はコンマやカッコを含めたソースコードの全トークンの情報を保持する。[シンタックスハイライト](https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88)のように全トークンを処理する場合は、この機能は重要である。
-しかし、使用用途によっては[抽象構文木](https://ja.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E6%A7%8B%E6%96%87%E6%9C%A8)を利用するほうが解析が簡単である。抽象構文木とは具象構文木から重要度の低い情報を削除した木構造のデータである。
+しかし、使用用途によっては[抽象構文木](https://ja.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E6%A7%8B%E6%96%87%E6%9C%A8)を利用するほうが、解析が簡単である。抽象構文木とは具象構文木から重要度の低い情報を削除した木構造のデータである。
 Tree-sitterの構文木は、_名前付きノード_ と _匿名ノード_ の2つのノードを使うことで両方の使用方法をサポートする。
 
 下記のような文法定義を考える。
@@ -215,11 +215,11 @@ Tree-sitterの構文木は、_名前付きノード_ と _匿名ノード_ の2�
 if_statement: ($) => seq("if", "(", $._expression, ")", $._statement);
 ```
 
-この言語における`if_statement`が表す構文木は、条件式・(条件式がtrueのときに実行すべき)文・`if`・`(`・`)`の5つの子ノードを持つ。
-条件式(`$._expression`)と文(`$._statement`)は、文法定義の中で明示的に名前を与えられているため _名前付きノード_ である。
-一方で、`if`・`(`・`)`は文法定義上は単なる文字列のため、名前付きノードではない( _匿名ノード_ である)。
+この言語における`if_statement`が表す構文木は、条件式・（条件式がtrueのときに実行すべき）文・`if`・`(`・`)`の5つの子ノードを持つ。
+条件式（`$._expression`）と文（`$._statement`）は、文法定義の中で明示的に名前を与えられているため _名前付きノード_ である。
+一方で`if`・`(`・`)`は、文法定義上は単なる文字列のため、名前付きノードではない（_匿名ノード_ である）。
 
-与えられたノードが名前付きノードであるかを検査することができる。
+与えられたノードが名前付きノードであるかを検査できる。
 
 ```c
 bool ts_node_is_named(TSNode);
@@ -237,8 +237,9 @@ TSNode ts_node_prev_named_sibling(TSNode);
 これらの関数を使用することで、構文木は抽象構文木のように扱うことができる。
 
 ### ノードのフィールド名
-
+<!-- textlint-disable -->
 構文木の解析を容易にするために、多くの文法定義では一意な _フィールド名_ を一部の子ノードに付与する。
+<!-- textlint-enable -->
 フィールドが存在する場合、フィールド名を介して子ノードにアクセスできる。
 
 ```c
@@ -249,7 +250,7 @@ TSNode ts_node_child_by_field_name(
 );
 ```
 
-フィールドは数値のIDも持っており、文字列の比較を繰り返したくない場合に利用することができる。文字列と ID の変換は `TSLanguage` を使用して行うことができる。
+フィールドは数値のIDも持っており、文字列の比較を繰り返したくない場合に利用できる。文字列とIDの変換には `TSLanguage` を使用できる。
 
 ```c
 uint32_t ts_language_field_count(const TSLanguage *);
@@ -257,7 +258,7 @@ const char *ts_language_field_name_for_id(const TSLanguage *, TSFieldId);
 TSFieldId ts_language_field_id_for_name(const TSLanguage *, const char *, uint32_t);
 ```
 
-フィールドIDはフィールド名の代わりに使用することができる。
+フィールドIDはフィールド名の代わりに使用できる。
 
 ```c
 TSNode ts_node_child_by_field_id(TSNode, TSFieldId);
@@ -293,8 +294,9 @@ void ts_node_edit(TSNode *, const TSInputEdit *);
 この`ts_node_edit`関数は、構文木を編集する前に`TSNode`インスタンスを取得しておき、構文木を編集した後もその特定のノードインスタンスを使用したい場合にのみ必要である。多くの場合、編集したツリーからノードを再取得したいだけのため、`ts_node_edit`関数は必要ない。
 
 ### 複数の言語を含む言語の構文解析
-
+<!-- textlint-disable -->
 1つのファイルに複数の言語が記載される場合がある。
+<!-- textlint-enable -->
 例えば[EJS](http://ejs.co)や[ERB](https://ruby-doc.org/stdlib-2.5.1/libdoc/erb/rdoc/ERB.html)といったテンプレート言語では、JavascriptやRubyのような別の言語を混ぜて書くことでHTMLを生成する。
 
 Tree-sitterは、ファイルの特定の範囲にあるテキストを基に構文木を作成することで、このような種類のドキュメントを扱う。
@@ -324,7 +326,8 @@ void ts_parser_set_included_ranges(
 </ul>
 ```
 
-概念的には、範囲が重複する3つの構文木（ERB構文木、Ruby構文木、HTML構文木）で表すことができる。これらの構文木を次のようなコードで生成することができる。
+概念的には、範囲が重複する3つの構文木（ERB構文木、Ruby構文木、HTML構文木）で表すことができる。
+これらの構文木は次のようなコードによって生成できる。
 
 ```c
 #include <string.h>
@@ -405,14 +408,14 @@ Tree-sitterは構文木のコピーを非常に軽量に実装することで、
 TSTree *ts_tree_copy(const TSTree *);
 ```
 
-内部的には、構文木をコピーすると、原子参照カウント(原文: atomic reference count)が増加するだけである。概念的には、異なるスレッドで元の構文木を使用しながら、新しいスレッドで自由に問い合わせ、編集、解析、削除できる新しい構文木を提供するものである。
+内部的には、構文木をコピーすると、原子参照カウント（原文：atomic reference count）が増加するだけである。概念的には、異なるスレッドで元の構文木を使用しながら、新しいスレッドで自由に問い合わせ、編集、解析、削除できる新しい構文木を提供するものである。
 個々の`TSTree`インスタンスはスレッドセーフではないので、複数のスレッドで同時に使用したい場合は、構文木をコピーする必要があることに注意すること。
 
 ## 構文木に対するその他の操作
 
 ### カーソルを使った構文木の走査
 
-[上記](#retrieving-nodes)の`TSNode` APIを使用して構文木のすべてのノードにアクセスすることができるが、多数のノードにアクセスする必要がある場合、カーソルを使用する方法が最も効率的である。
+[上記](#retrieving-nodes)の`TSNode` APIを使用して構文木のすべてのノードにアクセスできるが、多数のノードにアクセスする必要がある場合、カーソルを使用する方法が最も効率的である。
 カーソルは、最大限の効率で構文木を走査することを可能にするステートフルなオブジェクトである。
 
 任意のノードからカーソルの初期化を行える。
@@ -431,7 +434,7 @@ bool ts_tree_cursor_goto_parent(TSTreeCursor *);
 
 これらの関数はカーソルの移動が成功した場合に`true`を返し、移動先のノードが存在しない場合は`false`を返す。
 
-カーソルの現在のノードと、現在のノードに関連するフィールド名を常に取得することができる。
+カーソルの現在のノードと、現在のノードに関連するフィールド名を常に取得できる。
 
 ```c
 TSNode ts_tree_cursor_current_node(const TSTreeCursor *);
@@ -476,7 +479,7 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 
 #### フィールド条件の反転
 
-指定したフィールドを *持たない* ようなパターン構成することもできる。
+指定したフィールドを *持たない* ようなパターンを構成できる。
 これを実現するには、フィールド名の直前に`!`を付与すれば良い。
 例えば、下記のパターンは型パラメータを含まないクラス宣言にマッチする。
 
@@ -502,8 +505,8 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 
 パターンにマッチするノードを見つけたら、そのノード野中の特定のノードに対して処理を行う場合がある。
 パターンマッチングを行う際、パターン内の特定のノードを処理したい場合がある。
-キャプチャーを使うと、パターン内の特定のノードに名前を割り当てることができ、後でその名前でノードを参照することができる。
-キャプチャーの名前は、参照するノードの後に書かれ、`@`文字で始まる。
+キャプチャを使うと、パターン内の特定のノードに名前を割り当てることができ、後でその名前でノードを参照できる。
+キャプチャの名前は、参照するノードの後に書かれ、`@`文字で始まる。
 
 たとえば、下記のパターンは識別子への関数の割り当てにマッチし、関数名`the-function-name`という名前を識別子に割り当てる。
 
@@ -576,7 +579,7 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 #### 選言
 
 `[]`により選言を記述できる。
-これは正規表現における _文字クラス_ に類似する。(`[abc]`はa,b,cのいずれかにマッチする)
+これは正規表現における _文字クラス_ に類似する。（`[abc]`はa,b,cのいずれかにマッチする）
 
 例えばこのパターンは、変数またはオブジェクトのプロパティのいずれかの呼び出すにマッチする。
 変数にマッチする場合は、`@function`としてキャプチャし、プロパティの場合は`@method`としてキャプチャする。
@@ -653,7 +656,7 @@ Tree-sitterは、これらのパターンを表現し、マッチングを検索
 
 #### 述語
 
-パターン内の任意の場所に _述語_ S式を追加することによって、パターンに関連する任意のメタデータや条件を指定することができる。
+パターン内の任意の場所に _述語_ S式を追加することによって、パターンに関連する任意のメタデータや条件を指定できる。
 述語S式は`#述語名`で始まるS式である。`#述語名`の後、任意の数の `@` を接頭辞に持つキャプチャ名や文字列を含むことができる。
 
 例えば、下記のパターンは[`SCREAMING_SNAKE_CASE`](https://en.wikipedia.org/?title=SCREAMING_SNAKE_CASE&redirect=no)の識別子にマッチする。
@@ -717,7 +720,7 @@ TSQueryCursor *ts_query_cursor_new(void);
 void ts_query_cursor_exec(TSQueryCursor *, const TSQuery *, TSNode);
 ```
 
-そのマッチを繰り返し処理することができる。
+そのマッチを繰り返し処理できる。
 
 ```c
 typedef struct {
@@ -738,11 +741,13 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 この関数はマッチが存在しない場合は`false`を返す。そうでない場合は、どのパターンにマッチし、どのノードがキャプチャされたかという情報を `match` に格納する。
 
 ## 静的なノードの型
+<!-- textlint-disable -->
+静的型付けを行う言語では、構文木が個々の構文ノードに関する特定の型情報を提供することが有益な場合がある。
+<!-- textlint-enable -->
+Tree-sitterでは、この情報を `node-types.json` という生成されたファイルを通して利用できるようにする。この _ノード型ファイル_ は、文法中のすべての可能な構文ノードに関する構造化されたデータを提供する。
 
-静的型付けを行う言語では、構文木が個々の構文ノードに関する特定の型情報を提供することが有益な場合がある。Tree-sitterでは、この情報を `node-types.json` という生成されたファイルを通して利用できるようにする。この _ノード型ファイル_ は、文法中のすべての可能な構文ノードに関する構造化されたデータを提供する。
-
-このデータを使って、静的型付けされたプログラミング言語の型宣言を生成することができる。
-例えば、GitHubの[Semantic](https://github.com/github/semantic)はこれらのノード型ファイルを使って、可能な全ての構文ノードに対して[Haskellデータ型を生成](https://github.com/github/semantic/tree/master/semantic-ast)し、コード解析アルゴリズムがHaskell型システムによって構造的に検証されることを可能にしている。
+このデータを使って、静的型付けされたプログラミング言語の型宣言を生成できる。
+例えば、GitHubの[Semantic](https://github.com/github/semantic)はこれらのノード型ファイルを使って、可能なすべての構文ノードに対して[Haskellデータ型を生成](https://github.com/github/semantic/tree/master/semantic-ast)し、コード解析アルゴリズムがHaskell型システムによって構造的に検証されることを可能にしている。
 
 ノード型ファイルにはオブジェクトの配列が含まれており、各オブジェクトは以下の項目を使用して特定の型の構文ノードを記述する。
 
@@ -750,10 +755,12 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 
 この配列中の各オブジェクトは下記の2つのエントリを持つ。
 
-- `"type"` - どの文法規則を表すかを示す文字列. これは[前述](#syntax-nodes)の`ts_node_type`関数に相当する.
+- `"type"` - どの文法規則を表すかを示す文字列。これは[前述](#syntax-nodes)の`ts_node_type`関数に相当する。
 - `"named"` - この種のノードが、文法中のルール名に対応するか、それとも単なる文字列リテラルに対応するかを示すブール値。詳細は[ここ](#named-vs-anonymous-nodes)を参照すること。
 
+<!-- textlint-disable -->
 例
+<!-- textlint-enable -->
 
 ```json
 {
@@ -781,9 +788,12 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 
 - `"required"` - この集合に少なくとも1つのノードが常に存在するかどうかを示す真偽値。
 - `"multiple"` - この集合に複数のノードが存在できるかどうかを示す真偽値。
-- `"types"`- この集合に含まれるノードの可能なタイプを表すオブジェクトの配列。各オブジェクトは2つのキーを持つ。その意味は前述した通りである。
+- `"types"`- この集合に含まれるノードの可能なタイプを表すオブジェクトの配列。各オブジェクトは2つのキーを持つ。
+その意味は前述した通りである。
 
+<!-- textlint-disable -->
 例
+<!-- textlint-enable -->
 
 ```json
 {
@@ -817,7 +827,9 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 }
 ```
 
+<!-- textlint-disable -->
 例
+<!-- textlint-enable -->
 
 ```json
 {
@@ -839,11 +851,14 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 
 Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。`grammar.js`では、これらのルールは[隠しルール](./section-3-creating-parsers#hiding-rules)として記述され、その定義は各メンバーが1つのシンボルである単純な[選択](./section-3-creating-parsers#the-grammar-dsl)である場合が多い。
 
-通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されません。しかし、文法の[スーパータイプのリスト](./section-3-creating-parsers#the-grammar-dsl)に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。
+通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されない。
+しかし、文法の[スーパータイプのリスト](./section-3-creating-parsers#the-grammar-dsl)に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。
 
 - `"subtypes"` - この 'supertype' ノードがラップできるノードの型を指定するオブジェクトの配列。
 
+<!-- textlint-disable -->
 例
+<!-- textlint-enable -->
 
 ```json
 {
@@ -859,9 +874,11 @@ Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリ
 }
 ```
 
-スーパータイプ・ノードは、ノードタイプ・ファイル内の他の場所でも、文法でスーパータイプ・ルールがどのように使われたかに対応する形で、他のノードタイプの子として表示される。これは、1つのスーパータイプが複数のサブタイプの代わりとなるため、ノードタイプをより短く、読みやすくすることができる。
+スーパータイプ・ノードは、ノードタイプ・ファイル内の他の場所でも、文法でスーパータイプ・ルールがどのように使われたかに対応する形で、他のノードタイプの子として表示される。これは、1つのスーパータイプが複数のサブタイプの代わりとなるため、ノードタイプをより短く、読みやすくできる。
 
+<!-- textlint-disable -->
 例
+<!-- textlint-enable -->
 
 ```json
 {
