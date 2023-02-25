@@ -26,4 +26,5 @@ textlint-rule-ja-no-orthographic-variants \
 textlint-rule-use-si-units \
 textlint-rule-ja-joyo-or-jinmeiyo-kanji \
 textlint-rule-ja-no-inappropriate-words \
-@textlint-ja/textlint-rule-no-filler
+@textlint-ja/textlint-rule-no-filler \
+textlint-filter-rule-comments 

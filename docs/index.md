@@ -1,9 +1,11 @@
-[目次](../README.md) ----> [次のページ(パーサを使う)](./section-2-using-parsers.md)
+<!-- textlint-disable -->
+[目次](../README.md) ---->> [次のページ(パーサを使う)](./section-2-using-parsers.md)
+<!-- textlint-enable -->
 
 # 概要
 
 Tree-sitterはパーサ生成ツールであり、インクリメンタル解析をサポートする構文解析ライブラリである。
-ソースファイルに対して具象構文木を構築し、ソースファイルの編集に伴って構文木を効率的に更新することができる。Tree-sitterの目指すところは、以下の通り。
+ソースファイルに対して具象構文木を構築し、ソースファイルの編集に伴って構文木を効率的に更新できる。Tree-sitterの目指すところは、以下の通り。
 
 * **汎用**: あらゆるプログラミング言語の解析に対応する。
 * **高速**: テキストエディタでキーストロークごとに解析できる。
@@ -165,5 +167,6 @@ Tree-sitterの設計は、以下の研究論文から大きな影響を受けて
 - [Error Detection and Recovery in LR Parsers](http://what-when-how.com/compiler-writing/bottom-up-parsing-compiler-writing-part-13)
 - [Error Recovery for LR Parsers](https://apps.dtic.mil/sti/pdfs/ADA043470.pdf)
 
-
+<!-- textlint-disable -->
 [目次](../README.md) ----> [次のページ(パーサを使う)](./section-2-using-parsers.md)
+<!-- textlint-enable -->
