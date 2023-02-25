@@ -27,6 +27,11 @@
     "no-mix-dearu-desumasu": true,
     "no-mixed-zenkaku-and-hankaku-alphabet": true,
     "prefer-tari-tari": true,
-    "use-si-units": true
+    "use-si-units": true,
+    "textlint-rule-preset-ja-technical-writing": {
+      "sentence-length": {
+        "max": "120"
+      }
+    }
   }
 }

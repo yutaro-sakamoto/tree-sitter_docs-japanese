@@ -2,7 +2,7 @@
 
 # パーサを使う
 
-Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは、[node-tree-sitter](https://github.com/tree-sitter/node-tree-sitter)や[tree-sitter rust crate](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust)のようなバインディングライブラリを介してTree-sitterを利用でき、これらには独自のドキュメントが存在する。
+Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは、[node-tree-sitter](https://github.com/tree-sitter/node-tree-sitter)や[tree-sitter rust crate](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust)のようなバインディングライブラリを介してTree-sitterを利用できる。また、これらには独自のドキュメントが存在する。
 
 この文書では、使用している言語に関係なく関連する、Tree-sitterの使用方法に関する一般的な概念について説明する。また、C言語APIを直接使用している場合や、異なる言語への新しいバインディングを構築している場合に役立つ、C言語固有の詳細についても説明する。
 
