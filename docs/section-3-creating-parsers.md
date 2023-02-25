@@ -44,14 +44,16 @@ npm install --save nan
 npm install --save-dev tree-sitter-cli
 ```
 
-The last command will install the CLI into the `node_modules` folder in your working directory. An executable program called `tree-sitter` will be created inside of `node_modules/.bin/`. You may want to follow the Node.js convention of adding that folder to your your `PATH` so that you can easily run this program when working in this directory.
+最後のコマンドにより、作業ディレクトリの`node_modules`ディレクトリにCLIツールをインストールする。
+実行可能ファイル`tree-sitter`が`node_modules/.bin`ディレクトリに作成される。
+Node.jsの慣習に従って、このフォルダを環境変数`PATH`に追加しておくと、このディレクトリで作業しているときに簡単にプログラムを実行できる。
 
 ```sh
 # In your shell profile script
 export PATH=$PATH:./node_modules/.bin
 ```
 
-Once you have the CLI installed, create a file called `grammar.js` with the following contents:
+CLIのインストールを完了したら、`grammar.js`に下記の内容を書き込む。
 
 ```js
 module.exports = grammar({
@@ -64,52 +66,57 @@ module.exports = grammar({
 });
 ```
 
-Then run the following command:
+その後、下記のコマンドを実行する。
 
 ```sh
 tree-sitter generate
 ```
 
-This will generate the C code required to parse this trivial language, as well as a few files that are needed to compile and load this native parser as a Node.js module.
+これは、この些細な言語を解析するのに必要なCコードと、このネイティブパーサーをNode.jsモジュールとしてコンパイルしてロードするために必要ないくつかのファイルを生成します。
 
-You can test this parser by creating a source file with the contents "hello" and parsing it:
+下記のように「hello」と書き込まれたソースファイルを用意すれば、生成したパーサをテストすることができる。
 
 ```sh
 echo 'hello' > example-file
 tree-sitter parse example-file
 ```
-Alternatively, in Windows PowerShell:
+WindowsのPowerShellを使う場合は下記のコマンドを実行する。
+
 ```pwsh
 "hello" | Out-File example-file -Encoding utf8
 tree-sitter parse example-file
 ```
 
-This should print the following:
+これにより、下記のメッセージが出力される。
 
 ```
 (source_file [0, 0] - [1, 0])
 ```
 
-You now have a working parser.
+実際に動作するパーサを作成できた。
 
 ## Tool Overview
 
-Let's go over all of the functionality of the `tree-sitter` command line tool.
+コマンドラインツール`tree-sitter`の機能を紹介する。
 
-### Command: `generate`
+### `generate`コマンド
 
-The most important command you'll use is `tree-sitter generate`. This command reads the `grammar.js` file in your current working directory and creates a file called `src/parser.c`, which implements the parser. After making changes to your grammar, just run `tree-sitter generate` again.
+最も重要なのは`tree-sitter generate`コマンドである。
+このコマンドはカレントディレクトリの`grammar.js`を読み込み、`src/parser.c`にパーサの実装を書き出す。
+文法を変更したら、`tree-sitter generate`コマンドを再度実行する必要がある。
 
-The first time you run `tree-sitter generate`, it will also generate a few other files:
+`tree-sitter generate`を最初に実行したとき、下記のファイルも生成される。
 
-* `binding.gyp` - This file tells Node.js how to compile your language.
-* `bindings/node/index.js` - This is the file that Node.js initially loads when using your language.
-* `bindings/node/binding.cc` - This file wraps your language in a JavaScript object when used in Node.js.
-* `bindings/rust/lib.rs` - This file wraps your language in a Rust crate when used in Rust.
-* `bindings/rust/build.rs` - This file wraps the building process for the Rust crate.
-* `src/tree_sitter/parser.h` - This file provides some basic C definitions that are used in your generated `parser.c` file.
+* `binding.gyp` -Node.jsが作成した言語をどのようにコンパイルするかが記述されるたファイル。
+* `bindings/node/index.js` - 作成した言語を使用する際にNode.jsが内部で読み込むファイル。
+* `bindings/node/binding.cc` - Node.jsが使用するJavaScriptオブジェクトのラッパーが記述されるたファイル。
+* `bindings/rust/lib.rs` - 作成した言語をRustから利用するためのラッパーが記述されたファイル。
+* `bindings/rust/build.rs` - Rustクレート向けのビルド処理が記述されるたファイル。
+* `src/tree_sitter/parser.h` - 生成した`parser.c`が使用するヘッダファイル。
 
-If there is an ambiguity or *local ambiguity* in your grammar, Tree-sitter will detect it during parser generation, and it will exit with a `Unresolved conflict` error message. See below for more information on these errors.
+文法に曖昧さや局所的な曖昧さ(原文: local ambiguity)がある場合、Tree-sitterはパーサの生成時にそれを検出し、
+Unresolved conflictというエラーメッセージを表示して終了する。
+これらのエラーの詳細については、以下を参照せよ。
 
 ### Command: `test`
 
