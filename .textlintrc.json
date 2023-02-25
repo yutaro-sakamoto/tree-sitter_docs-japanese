@@ -32,6 +32,11 @@
       "sentence-length": {
         "max": "120"
       }
+    },
+    "prh": {
+      "rulePaths": [
+        "./rules.yml"
+      ]
     }
   }
 }

@@ -27,7 +27,9 @@ Tree-sitterパーサを生成するには、[the `tree-sitter` CLI](https://gith
 
 ### プロジェクトの新規作成
 
+<!-- textlint-disable -->
 パーサのリポジトリ名は「tree-sitter-」後に言語名を付けたものが好ましい。
+<!-- textlint-enable -->
 
 ```sh
 mkdir tree-sitter-${YOUR_LANGUAGE_NAME}
