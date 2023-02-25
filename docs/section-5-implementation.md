@@ -1,5 +1,7 @@
 [前のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md) <---- [目次](../README.md) ----> [次のページ(コントリビュート)](./section-6-contributing.md)
 
+<!-- textlint-disable -->
+
 # Implementation
 
 Tree-sitter consists of two components: a C library (`libtree-sitter`), and a command-line tool (the `tree-sitter` CLI).
@@ -38,5 +40,6 @@ At the end of these transformations, the initial grammar is split into two gramm
 
 WIP
 
+<!-- textlint-enable -->
 
 [前のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md) <---- [目次](../README.md) ----> [次のページ(コントリビュート)](./section-6-contributing.md)

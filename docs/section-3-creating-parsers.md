@@ -2,16 +2,16 @@
 
 # パーサを作る
 
-Tree-sitterによるパーサの開発は学習が難しいですが、一度コツをつかめば楽しく、禅のような感覚さえ覚えることができる。
+Tree-sitterによるパーサの開発は学習が難しいものの、一度コツをつかめば楽しく、禅のような感覚さえ覚えることができる。
 このドキュメントは、開発を始め方を示し、開発を進める上での考え方を身につける一助となるだろう。
 
 ## はじめに
 
 ### 依存するソフトウェア
 
-Tree-sitterパーサの開発をするｔめには、いくつかのソフトウェアをインストールする必要がある。
+Tree-sitterパーサを開発するためには、いくつかのソフトウェアをインストールする必要がある。
 
-* **Node.js** - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として[Node.js][node.js]を利用する。したがって、`node`コマンドの存在するディレクトリを環境変数`PATH`に追加する必要がある。また、Node.jsのバージョンは6.0以上である必要がある。
+* **Node.js** - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として[Node.js](https://nodejs.org/ja/)を利用する。したがって、`node`コマンドの存在するディレクトリを環境変数`PATH`に追加する必要がある。また、Node.jsのバージョンは6.0以上である必要がある。
 * **Cコンパイラ** - Tree-sitterはC言語で記述されたパーサを生成する。パーサの実行とテストを行う`tree-sitter parse`と`tree-sitter test`コマンドを使うにはC/C++コンパイラがインストールされている必要がある。Tree-sitterは各プラットフォーム規定する標準的なディレクトリからC/C++コンパイラを検索して利用する。
 
 ### インストール
@@ -19,7 +19,10 @@ Tree-sitterパーサの開発をするｔめには、いくつかのソフトウ
 Tree-sitterパーサを生成するには、[the `tree-sitter` CLI](https://github.com/tree-sitter/tree-sitter/tree/master/cli)が必要であり、複数の方法でインストールできる。
 
 * `tree-sitter-cli` [Rustクレート](https://crates.io/crates/tree-sitter-cli)  をRustパッケージマネージャである[`cargo`](https://doc.rust-lang.org/cargo/getting-started/installation.html)を使ってソースコードからビルドする。これは任意のプラットフォームで有効なインストール方法である。詳細は[コントリビュート](./section-6-contributing.md)を参照すること。
-`tree-sitter-cli`[Node.jsモジュール](https://www.npmjs.com/package/tree-sitter-cli)をNodeパッケージマネージャの[`npm`](https://docs.npmjs.com/)を使ってインストールする。この方法は手軽だが、pre-builtバイナリを使うため限られたプラットフォームでのみ利用可能な方法である。
+`tree-sitter-cli`[Node.jsモジュール](https://www.npmjs.com/package/tree-sitter-cli)をNodeパッケージマネージャの[`npm`](https://docs.npmjs.com/)を使ってインストールする。
+<!-- textlint-disable -->
+この方法は手軽だが、pre-builtバイナリを使うため、限られたプラットフォームでのみ利用可能な方法である。
+<!-- textlint-enable -->
 * 使用するプラットフォーム向けのバイナリを[最新のGitHubリリースページ](https://github.com/tree-sitter/tree-sitter/releases)からダウンロードし、そのバイナリを格納したディレクトリのパスを環境変数`PATH`に追加する。
 
 ### プロジェクトの新規作成
@@ -72,9 +75,9 @@ module.exports = grammar({
 tree-sitter generate
 ```
 
-これは、この些細な言語を解析するのに必要なCコードと、このネイティブパーサーをNode.jsモジュールとしてコンパイルしてロードするために必要ないくつかのファイルを生成します。
+これは、この些細な言語を解析するのに必要なCコードと、このネイティブパーサーをNode.jsモジュールとしてコンパイルしてロードするために必要ないくつかのファイルを生成する。
 
-下記のように「hello」と書き込まれたソースファイルを用意すれば、生成したパーサをテストすることができる。
+下記のように「hello」と書き込まれたソースファイルを用意すれば、生成したパーサをテストできる。
 
 ```sh
 echo 'hello' > example-file
@@ -114,9 +117,11 @@ tree-sitter parse example-file
 * `bindings/rust/build.rs` - Rustクレート向けのビルド処理が記述されるたファイル。
 * `src/tree_sitter/parser.h` - 生成した`parser.c`が使用するヘッダファイル。
 
-文法に曖昧さや局所的な曖昧さ(原文: local ambiguity)がある場合、Tree-sitterはパーサの生成時にそれを検出し、
+文法に曖昧さや局所的な曖昧さ（原文：local ambiguity）がある場合、Tree-sitterはパーサの生成時にそれを検出し、
 Unresolved conflictというエラーメッセージを表示して終了する。
 これらのエラーの詳細については、以下を参照せよ。
+
+<!-- textlint-disable -- >
 
 ### Command: `test`
 
@@ -797,5 +802,7 @@ Be very careful when emitting zero-width tokens from your external scanner, and 
 [tree-sitter-javascript]: https://github.com/tree-sitter/tree-sitter-javascript
 [yacc-prec]: https://docs.oracle.com/cd/E19504-01/802-5880/6i9k05dh3/index.html
 [yacc]: https://en.wikipedia.org/wiki/Yacc
+
+<!-- textlint-enable -->
 
 [前のページ(パーサを使う)](./section-2-using-parsers.md) <---- [目次](../README.md) ----> [次のページ(シンタックスハイライター)](./section-4-syntax-highlighting.md)

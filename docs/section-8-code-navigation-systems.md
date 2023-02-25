@@ -1,4 +1,6 @@
+<!-- textlint-disable -->
 [前のページ(Playground)](./section-7-playground.md) <---- [目次](../README.md)
+
 
 # Code Navigation Systems
 
@@ -117,3 +119,4 @@ end
 ```
 
 [前のページ(Playground)](./section-7-playground.md) <---- [目次](../README.md)
+<!-- textlint-enable -->
