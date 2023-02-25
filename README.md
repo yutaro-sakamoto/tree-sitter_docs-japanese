@@ -1,6 +1,8 @@
+<!-- textlint-disable -->
 # Tree-sitterユーザーガイド 非公式日本語訳
 
 tree-sitterの[公式ドキュメント](https://tree-sitter.github.io/tree-sitter/)の非公式日本語訳を掲載する。
+<!-- textlint-enable -->
 
 * [トップページ](./docs/index.md)
 * [パーサを使う](./docs/section-2-using-parsers.md)
