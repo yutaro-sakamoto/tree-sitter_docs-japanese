@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install 
+    - name: Install textlint and rules
       run: sh install-textlint.sh
 
-    - name: run the linter
+    - name: run textlint
       run: npx textlint README.md docs
