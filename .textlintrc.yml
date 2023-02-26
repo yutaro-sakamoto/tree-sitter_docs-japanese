@@ -1,39 +1,39 @@
 filters:
   comments: true
 rules:
-  preset-jtf-style: true
-  "@textlint-ja/no-filler": true
-  "@textlint-ja/no-insert-dropping-sa": true
-  "@textlint-ja/no-synonyms": true
-  ja-hiragana-hojodoushi: true
-  ja-joyo-or-jinmeiyo-kanji: true
-  ja-no-abusage: true
-  ja-no-inappropriate-words: true
-  ja-no-mixed-period: true
-  ja-no-orthographic-variants: true
-  ja-no-redundant-expression: true
-  ja-no-weak-phrase: true
-  ja-simple-user-dictionary: true
-  ja-unnatural-alphabet: true
-  max-ten: true
-  no-double-negative-ja: true
-  no-doubled-conjunction: true
-  no-doubled-conjunctive-particle-ga: true
-  no-doubled-joshi: true
-  no-dropping-the-ra: true
-  no-hankaku-kana: true
-  no-mix-dearu-desumasu: true
-  no-mixed-zenkaku-and-hankaku-alphabet: true
-  prefer-tari-tari: true
-  use-si-units: true
-  textlint-rule-preset-ja-technical-writing:
+  preset-jtf-style: true                                    # JTF日本語標準スタイルガイド（翻訳用）
+  "@textlint-ja/no-filler": true                            # 「ええと」「あの」「まあ」などのフィラー（つなぎ表現）を禁止する
+  "@textlint-ja/no-insert-dropping-sa": true                # サ抜き、サ入れ表現の誤用をチェックする
+  "@textlint-ja/no-synonyms": true                          # 文章中の同義語を表記ゆれをチェックする
+  ja-hiragana-hojodoushi: true                              # 漢字よりもひらがなで表記したほうが読みやすい補助動詞を指摘する
+  ja-joyo-or-jinmeiyo-kanji: true                           # 常用漢字または人名用漢字であることをチェックする
+  ja-no-abusage: true                                       # よくある誤用をチェックする
+  ja-no-inappropriate-words: true                           # 不適切表現をチェックする
+  ja-no-mixed-period: true                                  # 文末の句点(。)の統一 OR 抜けをチェックする
+  ja-no-orthographic-variants: true                         # 表記ゆれをチェックする
+  ja-no-redundant-expression: true                          # 冗長な表現を禁止する
+  ja-no-weak-phrase: true                                   # 弱い日本語表現の利用を禁止する
+  ja-simple-user-dictionary: true                           # 漢字よりもひらがなで表記したほうが読みやすい副詞を指摘する
+  ja-unnatural-alphabet: true                               # 不自然なアルファベットを検知する
+  max-ten: true                                             # 一文に利用できる、の数を制限する
+  no-double-negative-ja: true                               # 二重否定 を検出する
+  no-doubled-conjunction: true                              # 「しかし、〜。しかし、〜」のように同じ接続詞が連続して書かれていないかをチェックする
+  no-doubled-conjunctive-particle-ga: true                  # 逆接の接続助詞「が」同一文中に複数回出現していないかどうかをチェックする
+  no-doubled-joshi: true                                    # 1つの文中に同じ助詞が連続して出てくるのをチェックする
+  no-dropping-the-ra: true                                  # ら抜き言葉を検出する
+  no-hankaku-kana: true                                     # 半角カナの利用を禁止する
+  no-mix-dearu-desumasu: true                               # 敬体(ですます調)と常体(である調)の混在をチェックする
+  no-mixed-zenkaku-and-hankaku-alphabet: true               # 全角と半角アルファベットの混在をチェックする
+  prefer-tari-tari: true                                    # 「〜たり〜たりする」をチェックする
+  use-si-units: true                                        # SI単位系に関するチェック
+  textlint-rule-preset-ja-technical-writing:                # 技術文書向けのtextlintルールプリセット。デフォルト設定は少し厳し目。
     sentence-length:
       max: '120'
-  prh:
+  prh:                                                      # 独自ルールを定義する
     rulePaths:
     - "./rules.yml"
-  "@textlint-ja/textlint-rule-no-dropping-i": true
-  "@textlint-ja/textlint-rule-no-insert-re": true
-  "@textlint-ja/textlint-rule-no-insert-dropping-sa": true
-  textlint-rule-ja-no-successive-word: true
-  textlint-rule-no-duplicated-bunmatsu-hyougen: true
+  "@textlint-ja/textlint-rule-no-dropping-i": true          # い抜き言葉を検出する
+  "@textlint-ja/textlint-rule-no-insert-re": true           # れ足す言葉を検出する
+  "@textlint-ja/textlint-rule-no-insert-dropping-sa": true  # サ抜き、サ入れ表現の誤用をチェックする
+  textlint-rule-ja-no-successive-word: true                 # 同一の単語（厳密には形態素解析した結果のToken）が間違えて連続しているのを見つける
+  textlint-rule-no-duplicated-bunmatsu-hyougen: true        # 同じ文末表現が連続しているのを見つける。実験的なルール。
