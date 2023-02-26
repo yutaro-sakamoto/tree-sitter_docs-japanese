@@ -1,6 +1,9 @@
 lint:
 	npx textlint README.md docs
 
+lint-fix:
+	npx textlint --fix README.md docs
+
 install-lint:
 	npm install --save-dev \
 	textlint \
@@ -38,4 +41,15 @@ install-lint:
 	@textlint-ja/textlint-rule-no-insert-re \
 	@textlint-ja/textlint-rule-no-insert-dropping-sa \
 	textlint-rule-ja-no-successive-word \
-	textlint-rule-no-duplicated-bunmatsu-hyougen
+	textlint-rule-no-duplicated-bunmatsu-hyougen \
+	textlint-rule-no-dead-link \
+	textlint-rule-no-empty-section \
+	textlint-rule-no-empty-element \
+	textlint-rule-date-weekday-mismatch \
+	textlint-rule-terminology \
+	@textlint-rule/textlint-rule-no-invalid-control-character \
+	@textlint-rule/textlint-rule-no-unmatched-pair \
+	textlint-rule-footnote-order \
+	textlint-rule-no-zero-width-spaces \
+	textlint-rule-doubled-spaces \
+	@textlint-rule/textlint-rule-no-duplicate-abbr

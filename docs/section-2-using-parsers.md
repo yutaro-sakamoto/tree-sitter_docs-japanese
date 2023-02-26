@@ -6,7 +6,7 @@ Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能であ�
 
 この文書では、使用している言語に関係なく関連する、Tree-sitterの使用方法に関する一般的な概念について説明する。また、C言語APIを直接使用している場合や、異なる言語への新しいバインディングを構築している場合に役立つ、C言語固有の詳細についても説明する。
 
-ここで紹介するAPI関数は、[`tree_sitter/api.h`](https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h)で宣言され、文書化されている。また、C言語APIと密接に対応する[Rust APIドキュメント](https://docs.rs/tree-sitter)を参照するとよい。
+ここで紹介するAPI関数は、[`tree_sitter/api.h`](https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h)で宣言され、文書化されている。また、C言語APIと密接に対応する[Rust APIドキュメント](https://docs.rs/tree-sitter/latest/tree_sitter/)を参照するとよい。
 
 ## はじめに
 
@@ -298,7 +298,7 @@ void ts_node_edit(TSNode *, const TSInputEdit *);
 <!-- textlint-disable -->
 1つのファイルに複数の言語が記載される場合がある。
 <!-- textlint-enable -->
-例えば[EJS](http://ejs.co)や[ERB](https://ruby-doc.org/stdlib-2.5.1/libdoc/erb/rdoc/ERB.html)といったテンプレート言語では、JavascriptやRubyのような別の言語を混ぜて書くことでHTMLを生成する。
+例えば[EJS](https://ejs.co/)や[ERB](https://ruby-doc.org/stdlib-2.5.1/libdoc/erb/rdoc/ERB.html)といったテンプレート言語では、JavascriptやRubyのような別の言語を混ぜて書くことでHTMLを生成する。
 
 Tree-sitterは、ファイルの特定の範囲にあるテキストを基に構文木を作成することで、このような種類のドキュメントを扱う。
 
@@ -751,7 +751,7 @@ bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
 Tree-sitterでは、この情報を `node-types.json` という生成されたファイルを通して利用できるようにする。この _ノード型ファイル_ は、文法中のすべての可能な構文ノードに関する構造化されたデータを提供する。
 
 このデータを使って、静的型付けされたプログラミング言語の型宣言を生成できる。
-例えば、GitHubの[Semantic](https://github.com/github/semantic)はこれらのノード型ファイルを使って、可能なすべての構文ノードに対して[Haskellデータ型を生成](https://github.com/github/semantic/tree/master/semantic-ast)し、コード解析アルゴリズムがHaskell型システムによって構造的に検証されることを可能にしている。
+例えば、GitHubの[Semantic](https://github.com/github/semantic)はこれらのノード型ファイルを使って、可能なすべての構文ノードに対して[Haskellデータ型を生成](https://github.com/github/semantic/tree/main/semantic-ast)し、コード解析アルゴリズムがHaskell型システムによって構造的に検証されることを可能にしている。
 
 ノード型ファイルにはオブジェクトの配列が含まれており、各オブジェクトは以下の項目を使用して特定の型の構文ノードを記述する。
 
@@ -853,7 +853,9 @@ Tree-sitterでは、この情報を `node-types.json` という生成された�
 
 #### スーパータイプ・ノード
 
-Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。`grammar.js`では、これらのルールは[隠しルール](./section-3-creating-parsers#hiding-rules)として記述され、その定義は各メンバーが1つのシンボルである単純な[選択](./section-3-creating-parsers#the-grammar-dsl)である場合が多い。
+Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。
+`grammar.js`では、これらのルールは[隠しルール](./section-3-creating-parsers#hiding-rules)として記述され、
+その定義は各メンバーが1つのシンボルである単純な[選択](./section-3-creating-parsers#the-grammar-dsl)である場合が多い。
 
 通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されない。
 しかし、文法の[スーパータイプのリスト](./section-3-creating-parsers#the-grammar-dsl)に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。

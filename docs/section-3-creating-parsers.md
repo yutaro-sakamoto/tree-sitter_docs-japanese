@@ -18,7 +18,7 @@ Tree-sitterパーサを開発するためには、いくつかのソフトウェ
 
 Tree-sitterパーサを生成するには、[the `tree-sitter` CLI](https://github.com/tree-sitter/tree-sitter/tree/master/cli)が必要であり、複数の方法でインストールできる。
 
-* `tree-sitter-cli` [Rustクレート](https://crates.io/crates/tree-sitter-cli)  をRustパッケージマネージャである[`cargo`](https://doc.rust-lang.org/cargo/getting-started/installation.html)を使ってソースコードからビルドする。これは任意のプラットフォームで有効なインストール方法である。詳細は[コントリビュート](./section-6-contributing.md)を参照すること。
+* `tree-sitter-cli` [Rustクレート](https://github.com/tree-sitter/tree-sitter/tree/master/cli) をRustパッケージマネージャである[`cargo`](https://doc.rust-lang.org/cargo/getting-started/installation.html)を使ってソースコードからビルドする。これは任意のプラットフォームで有効なインストール方法である。詳細は[コントリビュート](./section-6-contributing.md)を参照すること。
 `tree-sitter-cli`[Node.jsモジュール](https://www.npmjs.com/package/tree-sitter-cli)をNodeパッケージマネージャの[`npm`](https://docs.npmjs.com/)を使ってインストールする。
 <!-- textlint-disable -->
 この方法は手軽だが、pre-builtバイナリを使うため、限られたプラットフォームでのみ利用可能な方法である。
@@ -123,7 +123,7 @@ tree-sitter parse example-file
 Unresolved conflictというエラーメッセージを表示して終了する。
 これらのエラーの詳細については、以下を参照せよ。
 
-<!-- textlint-disable -- >
+<!-- textlint-disable -->
 
 ### Command: `test`
 
