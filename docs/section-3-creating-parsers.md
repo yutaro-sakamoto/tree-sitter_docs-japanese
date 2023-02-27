@@ -127,11 +127,12 @@ Unresolved conflictというエラーメッセージを表示して終了する�
 
 ### Command: `test`
 
-The `tree-sitter test` command allows you to easily test that your parser is working correctly.
+`tree-sitter test`コマンドを使ってパーサを簡単にテストできる。
 
-For each rule that you add to the grammar, you should first create a *test* that describes how the syntax trees should look when parsing that rule. These tests are written using specially-formatted text files in the `corpus/` or `test/corpus/` directories within your parser's root folder.
+新たな文法規則を追加するたびに、パースするたびに構文木がどのような形式になるかを検証するテストを作成すべきである。
+これらのテストはプロジェクトルートの`corpus/`または`test/corpus/`ディレクトリ以下のテキストファイルに専用フォーマットで記述する。
 
-For example, you might have a file called `test/corpus/statements.txt` that contains a series of entries like this:
+例えば、下記の内容が書き込まれた`test/corpus/statements.txt`ファイルを考える。
 
 ```
 ==================
