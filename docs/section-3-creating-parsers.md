@@ -154,9 +154,9 @@ func x() int {
       (return_statement (number)))))
 ```
 
-* The **name** of each test is written between two lines containing only `=` (equal sign) characters.
-* Then the **input source code** is written, followed by a line containing three or more `-` (dash) characters.
-* Then, the **expected output syntax tree** is written as an [S-expression][s-exp]. The exact placement of whitespace in the S-expression doesn't matter, but ideally the syntax tree should be legible. Note that the S-expression does not show syntax nodes like `func`, `(` and `;`, which are expressed as strings and regexes in the grammar. It only shows the *named* nodes, as described in [this section][named-vs-anonymous-nodes-section] of the page on parser usage.
+* `=`がの間に**テスト名**を書く。
+* その後にパーサの**入力**となるソースコードを書き、3つ以上の`-`を含む行を書く。
+* その後に**出力として期待される構文木**を[`S式`](https://ja.wikipedia.org/wiki/S%E5%BC%8F)で書く。S式中の空白は無視されるが、理想的には構文木は読みやすい方が良い。S式は、`func`、`(`、`;`といった、分包機そうでは文字列や正規表現で表される構文ノードを表示しないことに注意せよ。構文木は、[「パーサの使う」のこの節](./section-2-using-parsers.md#名前付きノードと匿名ノード)で説明した名前付きノード*のみを表示する。
 
   The expected output section can also *optionally* show the [*field names*][field-names-section] associated with each child node. To include field names in your tests, you write a node's field name followed by a colon, before the node itself in the S-expression:
 
