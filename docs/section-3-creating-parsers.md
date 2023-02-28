@@ -123,8 +123,6 @@ tree-sitter parse example-file
 Unresolved conflictというエラーメッセージを表示して終了する。
 これらのエラーの詳細については、以下を参照せよ。
 
-<!-- textlint-disable -->
-
 ### Command: `test`
 
 `tree-sitter test`コマンドを使ってパーサを簡単にテストできる。
@@ -157,6 +155,8 @@ func x() int {
 * `=`がの間に**テスト名**を書く。
 * その後にパーサの**入力**となるソースコードを書き、3つ以上の`-`を含む行を書く。
 * その後に**出力として期待される構文木**を[`S式`](https://ja.wikipedia.org/wiki/S%E5%BC%8F)で書く。S式中の空白は無視されるが、理想的には構文木は読みやすい方が良い。S式は、`func`、`(`、`;`といった、分包機そうでは文字列や正規表現で表される構文ノードを表示しないことに注意せよ。構文木は、[「パーサの使う」のこの節](./section-2-using-parsers.md#名前付きノードと匿名ノード)で説明した名前付きノード*のみを表示する。
+
+<!-- textlint-disable -->
 
   The expected output section can also *optionally* show the [*field names*][field-names-section] associated with each child node. To include field names in your tests, you write a node's field name followed by a colon, before the node itself in the S-expression:
 
