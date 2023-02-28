@@ -1,14 +1,25 @@
 [前のページ(パーサを作る)](./section-3-creating-parsers.md) <---- [目次](../README.md) ----> [次のページ(Tree-sitterの実装)](./section-5-implementation.md)
 
+
+# シンタックスハイライト
+
+シンタックスハイライトはコードを扱うアプリケーションで使われることが多い機能である。
+Tree-sitterはシンタックスハイライトをサポートする[`tree-sitter-highlight`](https://github.com/tree-sitter/tree-sitter/tree/master/highlight)
+ライブラリをビルトインで提供する。
+`tree-sitter-highlight`は現在、GitHub.comにおいて多くの言語のシンタックスハイライトで使用されている。
 <!-- textlint-disable -->
+コマンドラインから`tree-sitter highlight`コマンドを使うことで、シンタクスハイライト機能を実行できる。
+<!-- textlint-enable -->
 
-# Syntax Highlighting
+このページでは、CLIを使って、どのようにTree-sitterのシンタックスハイライト機能が動作するのかを解説する。
+もし`tree-sitter-highlight`ライブラリ（CまたはRustから使用可能）を利用する場合、これらの考え方は有用であるが、設定データはファイルではなくメモリ上のオブジェクトである。
 
-Syntax highlighting is a very common feature in applications that deal with code. Tree-sitter has built-in support for syntax highlighting, via the [`tree-sitter-highlight`](https://github.com/tree-sitter/tree-sitter/tree/master/highlight) library, which is currently used on GitHub.com for highlighting code written in several languages. You can also perform syntax highlighting at the command line using the `tree-sitter highlight` command.
+<!-- textlint-disable -->
+**注意 - もしテキストエディタの[Atom](https://atom.io/)のシンタックスハイライトを開発する場合は、このドキュメントでなくAtom Flight Mantualの[このページ](https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/)を参照せよ。**
+<!-- textlint-enable -->
+**Atomは現在Tree-sitterベースの別のシンタックスハイライトシステムを採用していいて、それはここで説明するよりも古いものである。**
 
-This document explains how the Tree-sitter syntax highlighting system works, using the command line interface. If you are using `tree-sitter-highlight` library (either from C or from Rust), all of these concepts are still applicable, but the configuration data is provided using in-memory objects, rather than files.
-
-**Note - If you are working on syntax highlighting in the [Atom](https://atom.io/) text editor, you should consult [the grammar-creation page](https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/) of the Atom Flight Manual, *not* this document. Atom currently uses a different syntax highlighting system that is also based on Tree-sitter, but is older than the one described here.**
+<!-- textlint-disable -->
 
 ## Overview
 
