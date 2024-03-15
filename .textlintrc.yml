@@ -22,13 +22,14 @@ rules:
   no-doubled-joshi: true                                            # 1つの文中に同じ助詞が連続して出てくるのをチェックする
   no-dropping-the-ra: true                                          # ら抜き言葉を検出する
   no-hankaku-kana: true                                             # 半角カナの利用を禁止する
-  no-mix-dearu-desumasu: true                                       # 敬体(ですます調)と常体(である調)の混在をチェックする
+  no-mix-dearu-desumasu: false                                      # 敬体(ですます調)と常体(である調)の混在をチェックする
   no-mixed-zenkaku-and-hankaku-alphabet: true                       # 全角と半角アルファベットの混在をチェックする
   prefer-tari-tari: true                                            # 「〜たり〜たりする」をチェックする
   use-si-units: true                                                # SI単位系に関するチェック
   textlint-rule-preset-ja-technical-writing:                        # 技術文書向けのtextlintルールプリセット。デフォルト設定は少し厳し目。
     sentence-length:
       max: '120'
+    no-mix-dearu-desumasu: false
   prh:                                                              # 独自ルールを定義する
     rulePaths:
     - "./rules.yml"

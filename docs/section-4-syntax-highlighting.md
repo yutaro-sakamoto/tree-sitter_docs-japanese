@@ -21,15 +21,18 @@ Tree-sitterはシンタックスハイライトをサポートする[`tree-sitte
 
 <!-- textlint-disable -->
 
-## Overview
+## 概要
 
-All of the files needed to highlight a given language are normally included in the same git repository as the Tree-sitter grammar for that language (for example, [`tree-sitter-javascript`](https://github.com/tree-sitter/tree-sitter-javascript), [`tree-sitter-ruby`](https://github.com/tree-sitter/tree-sitter-ruby)). In order to run syntax highlighting from the command-line, three types of files are needed:
+通常、与えられた言語のハイライトに必要なファイルは、その言語のTree-sitterの文法と同じgitリポジトリに含まれている。
+（例えば、[`tree-sitter-javascript`](https://github.com/tree-sitter/tree-sitter-javascript), [`tree-sitter-ruby`](https://github.com/tree-sitter/tree-sitter-ruby))
+コマンドラインからシンタックスハイライトを実行するためには、次の3つが必要である。
 
-1. Per-user configuration in `~/.config/tree-sitter/config.json`
-2. Language configuration in grammar repositories' `package.json` files.
-3. Tree queries in the grammars repositories' `queries` folders.
+1. `~/.config/tree-sitter/config.json`に記載されたユーザごとの設定。
+2. 文法リポジトリの`package.json`ファイルに記載された言語の設定。
+3. 文法リポジトリの`queries`フォルダにある3つのクエリ。
 
-For an example of the language-specific files, see the [`package.json` file](https://github.com/tree-sitter/tree-sitter-ruby/blob/master/package.json) and [`queries` directory](https://github.com/tree-sitter/tree-sitter-ruby/tree/master/queries) in the `tree-sitter-ruby` repository. The following sections describe the behavior of each file.
+言語固有のファイルの例については、`tree-sitter-ruby`リポジトリの[`package.json`ファイル](https://github.com/tree-sitter/tree-sitter-ruby/blob/master/package.json)と[`queries`ディレクトリ](https://github.com/tree-sitter/tree-sitter-ruby/tree/master/queries)を参照せよ。
+以下のセクションでは、各ファイルの動作について説明する。
 
 ## Per-user Configuration
 
