@@ -27,30 +27,33 @@ Tree-sitterはシンタックスハイライトをサポートする[`tree-sitte
 （例えば、[`tree-sitter-javascript`](https://github.com/tree-sitter/tree-sitter-javascript), [`tree-sitter-ruby`](https://github.com/tree-sitter/tree-sitter-ruby))
 コマンドラインからシンタックスハイライトを実行するためには、次の3つが必要である。
 
-1. `~/.config/tree-sitter/config.json`に記載されたユーザごとの設定。
+1. `~/.config/tree-sitter/config.json`に記載されたユーザ固有の設定。
 2. 文法リポジトリの`package.json`ファイルに記載された言語の設定。
 3. 文法リポジトリの`queries`フォルダにある3つのクエリ。
 
 言語固有のファイルの例については、`tree-sitter-ruby`リポジトリの[`package.json`ファイル](https://github.com/tree-sitter/tree-sitter-ruby/blob/master/package.json)と[`queries`ディレクトリ](https://github.com/tree-sitter/tree-sitter-ruby/tree/master/queries)を参照せよ。
 以下のセクションでは、各ファイルの動作について説明する。
 
-## Per-user Configuration
+## ユーザ固有の設定
 
-The Tree-sitter CLI automatically creates two directories in your home folder.  One holds a JSON configuration file, that lets you customize the behavior of the CLI.  The other holds any compiled language parsers that you use.
+tree-sitterのCLIは自動的にホームフォルダに2つのディレクトリを作成する。
+一方のディレクトリには、CLIの動作を規定するJSON形式の設定ファイルが格納される。
+もう一方のディレクトリには、言語ごとのコンパイル済みのパーサが格納される。
 
-These directories are created in the "normal" place for your platform:
+これらのディレクトリは、各プラットフォームの「通常の」場所に作成される。
 
-- On Linux, `~/.config/tree-sitter` and `~/.cache/tree-sitter`
-- On Mac, `~/Library/Application Support/tree-sitter` and `~/Library/Caches/tree-sitter`
-- On Windows, `C:\Users\[username]\AppData\Roaming\tree-sitter` and `C:\Users\[username]\AppData\Local\tree-sitter`
+- Linuxでは、`~/.config/tree-sitter`と`~/.cache/tree-sitter`
+- Macでは、`~/Library/Application Support/tree-sitter`と`~/Library/Caches/tree-sitter`
+- Windowsでは、`C:\Users\[ユーザ名]\AppData\Roaming\tree-sitter` と `C:\Users\[ユーザ名]\AppData\Local\tree-sitter`
 
-The CLI will work if there's no config file present, falling back on default values for each configuration option.  To create a config file that you can edit, run this command:
+CLIは設定ファイルが存在しない場合、各設定オプションのデフォルト値を使用して動作する。
+設定ファイルを作成し、編集するためには、次のコマンドを実行する。
 
 ```sh
 tree-sitter init-config
 ```
 
-(This will print out the location of the file that it creates so that you can easily find and modify it.)
+(これにより、作成されたファイルの場所が表示されるため、簡単に見つけて編集できる。)
 
 ### Paths
 
