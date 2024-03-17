@@ -55,9 +55,11 @@ tree-sitter init-config
 
 (これにより、作成されたファイルの場所が表示されるため、簡単に見つけて編集できる。)
 
-### Paths
+### パス
 
-The `tree-sitter highlight` command takes one or more file paths, and tries to automatically determine which language should be used to highlight those files. In order to do this, it needs to know *where* to look for Tree-sitter grammars on your filesystem. You can control this using the `"parser-directories"` key in your configuration file:
+`tree-sitter highlight`コマンドは1つ以上のファイルパスを取り、それらのファイルをハイライトするためにどの言語を使用するかを自動的に決定しようとする。
+これを行うためには、ファイルシステム上でTree-sitterの文法を探す場所を知る必要がある。
+これは設定ファイルの`"parser-directories"`キーを使って制御できる。
 
 ```json
 {
@@ -68,21 +70,35 @@ The `tree-sitter highlight` command takes one or more file paths, and tries to a
 }
 ```
 
-Currently, any folder within one of these *parser directories* whose name begins with `tree-sitter-` will be treated as a Tree-sitter grammar repository.
+今のところ、これらの*parser-directories*のいずれかにある、名前が`tree-sitter-`で始まるフォルダは、Tree-sitterの文法リポジトリとして扱われる。
 
-### Theme
+### テーマ
 
-The Tree-sitter highlighting system works by annotating ranges of source code with logical "highlight names" like `function.method`, `type.builtin`, `keyword`, etc. In order to decide what *color* should be used for rendering each highlight, a *theme* is needed.
+Tree-sitterのハイライトシステムは、`function.method`、`type.builtin`、`keyword`などの論理的な「ハイライト名」でソースコードの範囲を注釈付けすることで動作する。
+各ハイライトのレンダリングに使用する色を決定するためには、*theme*が必要である。
 
-In your config file, the `"theme"` value is an object whose keys are dot-separated highlight names like `function.builtin` or `keyword`, and whose values are JSON expressions that represent text styling parameters.
+```json
+{
+  "theme": {
+    "function.method": "blue",
+    "type.builtin": "green",
+    "keyword": "purple"
+  }
+}
+```
 
-#### Highlight Names
+設定ファイルにおいて、`"theme"`の値は、`function.builtin`や`keyword`のようなドットで区切られたハイライト名であり、その値はテキストのスタイリングパラメータを表すJSONの式である。
 
-A theme can contain multiple keys that share a common subsequence. Examples:
-* `variable` and `variable.parameter`
-* `function`, `function.builtin`, and `function.method`
+#### ハイライト名
 
-For a given highlight produced, styling will be determined based on the **longest matching theme key**. For example, the highlight `function.builtin.static` would match the key `function.builtin` rather than `function`.
+テーマは共通の部分文字列を持つ複数のキーを含むことができる。
+例えば、
+
+* `variable`,  `variable.parameter`
+* `function`, `function.builtin`,  `function.method`
+
+与えられたハイライトに対して、スタイリングに合致するテーマキーが複数存在する場合**最も長いテーマキー**が選択される。
+例えば、`function.builtin.static`というハイライトは、`function`よりも`function.builtin`にマッチする。
 
 #### Styling Values
 
