@@ -100,18 +100,18 @@ Tree-sitterのハイライトシステムは、`function.method`、`type.builtin
 与えられたハイライトに対して、スタイリングに合致するテーマキーが複数存在する場合**最も長いテーマキー**が選択される。
 例えば、`function.builtin.static`というハイライトは、`function`よりも`function.builtin`にマッチする。
 
-#### Styling Values
+#### スタイリング値
 
-Styling values can be any of the following:
+スタイリング値は以下のいずれかである。
 
-* Integers from 0 to 255, representing ANSI terminal color ids.
-* Strings like `"#e45649"` representing hexadecimal RGB colors.
-* Strings naming basic ANSI colors like `"red"`, `"black"`, `"purple"`, or `"cyan"`.
-* Objects with the following keys:
-  * `color` - An integer or string as described above.
-  * `underline` - A boolean indicating whether the text should be underlined.
-  * `italic` - A boolean indicating whether the text should be italicized.
-  * `bold` - A boolean indicating whether the text should be bold-face.
+* ASNIのターミナルカラーIDを表す0から255までの整数。
+* `"#e45649"`のような16進RGBカラーを表す文字列。
+* `"red"`, `"black"`, `"purple"`, `"cyan"`といったANSIカラーを表す文字列。
+* 以下のキーを持つオブジェクト。
+  * `color` - 整数または上記の文字列。
+  * `underline` - テキストを下線にするかどうかを示すブール値。
+  * `italic` - テキストを斜体にするかどうかを示すブール値。
+  * `bold` - テキストを太字にするかどうかを示すブール値。
 
 ## Language Configuration
 
