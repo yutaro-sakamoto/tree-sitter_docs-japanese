@@ -113,17 +113,19 @@ Tree-sitterのハイライトシステムは、`function.method`、`type.builtin
   * `italic` - テキストを斜体にするかどうかを示すブール値。
   * `bold` - テキストを太字にするかどうかを示すブール値。
 
-## Language Configuration
+## 言語設定
 
-The `package.json` file is used by package managers like `npm`. Within this file, the Tree-sitter CLI looks for data nested under the top-level `"tree-sitter"` key. This key is expected to contain an array of objects with the following keys:
+`package.json`ファイルは`npm`のようなパッケージマネージャによって使用される。
+このファイルでは、Tree-sitter CLIはトップレベルの`"tree-sitter"`キーの下にネストされたデータを探す。
+このキーは、以下のキーを持つオブジェクトの配列を含むことが期待される。
 
-### Basics
+### 基本
 
-These keys specify basic information about the parser:
+これらのキーはパーサに関する基本的な情報を指定する。
 
-* `scope` (required) - A string like `"source.js"` that identifies the language. Currently, we strive to match the scope names used by popular [TextMate grammars](https://macromates.com/manual/en/language_grammars) and by the [Linguist](https://github.com/github/linguist) library.
+* `scope` (必須) - `"source.js"`のような言語を識別する文字列。現在我々は人気のある[TextMate grammars](https://macromates.com/manual/en/language_grammars)や[Linguist](https://github.com/github/linguist)で使用されるスコープ名に一致するよう努めている。
 
-* `path` (optional) - A relative path from the directory containing `package.json` to another directory containing the `src/` folder, which contains the actual generated parser. The default value is `"."` (so that `src/` is in the same folder as `package.json`), and this very rarely needs to be overridden.
+* `path` (任意) - `package.json`を含むディレクトリから、実際の生成されたパーサを含む`src/`フォルダへの相対パス。デフォルト値は`"."`（つまり`src/`は`package.json`と同じフォルダにある）であり、これを上書きする必要がある場合は非常に稀である。
 
 ### Language Detection
 
