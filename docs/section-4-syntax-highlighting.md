@@ -127,17 +127,16 @@ Tree-sitterのハイライトシステムは、`function.method`、`type.builtin
 
 * `path` (任意) - `package.json`を含むディレクトリから、実際の生成されたパーサを含む`src/`フォルダへの相対パス。デフォルト値は`"."`（つまり`src/`は`package.json`と同じフォルダにある）であり、これを上書きする必要がある場合は非常に稀である。
 
-### Language Detection
+### 言語の検出
 
 These keys help to decide whether the language applies to a given file:
+これらのキーは、与えられたファイルにどの言語を適用するかを決定するのに役立つ。
 
-* `file-types` - An array of filename suffix strings. The grammar will be used for files whose names end with one of these suffixes. Note that the suffix may match an *entire* filename.
+* `file-type` - ファイル名の接尾辞の配列。文法は、これらの接尾辞のいずれかで終わるファイルに使用される。接尾辞は*ファイル名全体*に一致する可能性があることに注意。
+* `first-line-regex` - ファイルの最初の行に対してテストされる正規表現パターン。この言語がファイルに適用されるかどうかを決定するために使用される。この正規表現が指定されている場合、この正規表現は言語がいずれの文法の`file-types`にも一致しないファイルに使用される。
+* `content-regex` - 上記の2つの基準を使用してファイルに複数の文法が一致した場合に、ファイルの内容に対してテストされる正規表現パターン。この正規表現に一致する場合、この文法は`content-regex`を持たない他の文法よりも優先される。正規表現が一致しない場合、`content-regex`を持たない文法がこの文法よりも優先される。
 
-* `first-line-regex` - A regex pattern that will be tested against the first line of a file in order to determine whether this language applies to the file. If present, this regex will be used for any file whose language does not match any grammar's `file-types`.
-
-* `content-regex` - A regex pattern that will be tested against the contents of the file in order to break ties in cases where multiple grammars matched the file using the above two criteria. If the regex matches, this grammar will be preferred over another grammar with no `content-regex`. If the regex does not match, a grammar with no `content-regex` will be preferred over this one.
-
-* `injection-regex` - A regex pattern that will be tested against a *language name* in order to determine whether this language should be used for a potential *language injection* site. Language injection is described in more detail in [a later section](#language-injection).
+* `injection-regex` - この言語が潜在的な*言語インジェクション*サイトに使用されるかどうかを決定するために、*言語名*に対してテストされる正規表現パターン。言語インジェクションについては、[後のセクション](#言語インジェクション)で詳しく説明する。
 
 ### Query Paths
 
@@ -378,7 +377,7 @@ Running `tree-sitter highlight` on this ruby file would produce output like this
 <span>list</span> <span style='font-weight: bold;color: #4e4e4e;'>=</span> [<span>item</span><span style='color: #4e4e4e;'>]</span>
 </pre>
 
-### Language Injection
+### 言語インジェクション
 
 Some source files contain code written in multiple different languages. Examples include:
 * HTML files, which can contain JavaScript inside of `<script>` tags and CSS inside of `<style>` tags
