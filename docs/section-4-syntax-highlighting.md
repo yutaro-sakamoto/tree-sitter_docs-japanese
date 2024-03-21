@@ -138,19 +138,19 @@ These keys help to decide whether the language applies to a given file:
 
 * `injection-regex` - この言語が潜在的な*言語インジェクション*サイトに使用されるかどうかを決定するために、*言語名*に対してテストされる正規表現パターン。言語インジェクションについては、[後のセクション](#言語インジェクション)で詳しく説明する。
 
-### Query Paths
+### クエリパス
 
-These keys specify relative paths from the directory containing `package.json` to the files that control syntax highlighting:
+これらのキーは、`package.json`を含むディレクトリから、シンタックスハイライトを制御するファイルへの相対パスを指定する。
 
-* `highlights` - Path to a *highlight query*. Default: `queries/highlights.scm`
-* `locals` - Path to a *local variable query*. Default: `queries/locals.scm`.
-* `injections` - Path to an *injection query*. Default: `queries/injections.scm`.
+* `highlights` - *ハイライトクエリ*へのパス。デフォルト値は`queries/highlights.scm`である。
+* `locals` - *ローカル変数クエリ*へのパス。デフォルト値は`queries/locals.scm`である。
+* `injections` - *インジェクションクエリ*へのパス。デフォルト値は`queries/injections.scm`である。
 
-The behaviors of these three files are described in the next section.
+これらの3つのファイルの動作については、次のセクションで説明する。
 
-### Example
+### 例
 
-Typically, the `"tree-sitter"` array only needs to contain one object, which only needs to specify a few keys:
+一般的に、`"tree-sitter"`配列は1つのオブジェクトだけを含めば十分で、そのオブジェクトにはいくつかのキーを指定するだけでよい。
 
 ```json
 {
