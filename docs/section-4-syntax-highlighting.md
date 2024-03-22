@@ -169,21 +169,30 @@ These keys help to decide whether the language applies to a given file:
 }
 ```
 
-## Queries
+## クエリ
 
-Tree-sitter's syntax highlighting system is based on *tree queries*, which are a general system for pattern-matching on Tree-sitter's syntax trees. See [this section](./using-parsers#pattern-matching-with-queries) of the documentation for more information about tree queries.
+Tree-sitterのシンタックスハイライトの仕組みは、Tree-sitterの構文木にパターンマッチングする一般的なシステムである*tree queries*に基づいている。
+tree queriesについての詳細は[このセクション](./using-parsers#pattern-matching-with-queries)を参照せよ。
 
 Syntax highlighting is controlled by *three* different types of query files that are usually included in the `queries` folder. The default names for the query files use the `.scm` file. We chose this extension because it commonly used for files written in [Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29), a popular dialect of Lisp, and these query files use a Lisp-like syntax.
 
-Alternatively, you can think of `.scm` as an acronym for "Source Code Matching".
+シンタックスハイライトは、`queries`フォルダに格納される3種類のクエリファイルによって制御される。
+デフォルトでは、クエリファイルの名前は`.scm`ファイルを使用する。
+この拡張子を採用した理由は、クエリがLispの一般的な方言である[Scheme](https://ja.wikipedia.org/wiki/Scheme)に似た構文を使用しているためである。
 
-### Highlights
+また、`.scm`を「Source Code Matching」の略と考えることもできる。
 
-The most important query is called the highlights query. The highlights query uses *captures* to assign arbitrary *highlight names* to different nodes in the tree. Each highlight name can then be mapped to a color (as described [above](#theme)). Commonly used highlight names include `keyword`, `function`, `type`, `property`, and `string`. Names can also be dot-separated like `function.builtin`.
+### ハイライトクエリ
 
-#### Example Input
+最も重要なクエリは、ハイライトクエリである。
+ハイライトクエリは、異なるノードに任意の*ハイライト名*を割り当てるために*キャプチャ*を使用する。
+各ハイライト名には、それぞれ色が割り当てられる（[上記](#theme)参照）。
+一般的に使用されるハイライト名には、`keyword`、`function`、`type`、`property`、`string`などがある。
+ハイライト名は、`function.builtin`のようにドットで区切ることもできる。
 
-For example, consider the following Go code:
+#### 例
+
+例として、下記のGo言語のコードを考える。
 
 ```go
 func increment(a int) int {
@@ -191,7 +200,7 @@ func increment(a int) int {
 }
 ```
 
-With this syntax tree:
+構文木は下記の通りである。
 
 ```
 (source_file
