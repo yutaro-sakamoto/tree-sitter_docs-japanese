@@ -219,15 +219,16 @@ func increment(a int) int {
             right: (int_literal)))))))
 ```
 
-#### Example Query
+#### クエリの例
 
-Suppose we wanted to render this code with the following colors:
-* keywords `func` and `return` in purple
-* function `increment` in blue
-* type `int` in green
-* number `5` brown
+下記の色でこのコードをレンダリングしたいとする。
 
-We can assign each of these categories a *highlight name* using a query like this:
+* キーワード`func`と`return`は紫色
+* 関数`increment`は青色
+* 型`int`は緑色
+* 数字`5`は茶色
+
+下記のようなクエリを使用することで、それぞれのカテゴリに*ハイライト名*を割り当てることができる。
 
 ```
 ; highlights.scm
@@ -239,7 +240,7 @@ We can assign each of these categories a *highlight name* using a query like thi
 (function_declaration name: (identifier) @function)
 ```
 
-Then, in our config file, we could map each of these highlight names to a color:
+設定ファイルでは、これらのハイライト名を色にマッピングすることができる。
 
 ```json
 {
