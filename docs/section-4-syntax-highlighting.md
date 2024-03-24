@@ -253,9 +253,9 @@ func increment(a int) int {
 }
 ```
 
-#### Result
+#### 結果
 
-Running `tree-sitter highlight` on this Go file would produce output like this:
+`tree-sitter highlight`をこのGoファイルで実行すると、次のような出力が得られる。
 
 <pre class='highlight' style='border: 1px solid #aaa;'>
 <span style='color: purple;'>func</span> <span style='color: #005fd7;'>increment</span>(<span>a</span> <span style='color: green;'>int</span>) <span style='color: green;'>int</span> {
@@ -263,17 +263,21 @@ Running `tree-sitter highlight` on this Go file would produce output like this:
 }
 </pre>
 
-### Local Variables
+### ローカル変数
 
-Good syntax highlighting helps the reader to quickly distinguish between the different types of *entities* in their code. Ideally, if a given entity appears in *multiple* places, it should be colored the same in each place. The Tree-sitter syntax highlighting system can help you to achieve this by keeping track of local scopes and variables.
+優れたシンタックスハイライトは、コード内の異なる*エンティティ*を素早く区別できるようにする。
+理想的には、特定のエンティティが*複数*の場所に現れる場合、それぞれの場所で同じ色で表示されるべきである。
+Tree-sitterのシンタックスハイライトシステムは、ローカルスコープと変数を追跡することで、これを実現する。
 
 The *local variables* query is different from the highlights query in that, while the highlights query uses *arbitrary* capture names which can then be mapped to colors, the locals variable query uses a fixed set of capture names, each of which has a special meaning.
 
-The capture names are as follows:
+*ローカル変数*クエリは、*任意の*キャプチャ名を使用しそれを色にマッピングするハイライトへクリと異なり、特別な意味を持つ固定されたキャプチャ名を使用する。
 
-* `@local.scope` - indicates that a syntax node introduces a new local scope.
-* `@local.definition` - indicates that a syntax node contains the *name* of a definition within the current local scope.
-* `@local.reference` - indicates that a syntax node contains the *name* which *may* refer to an earlier definition within some enclosing scope.
+キャプチャ名は以下の通りである。
+
+* `@local.scope` - シンタックスノードが新しいローカルスコープを導入することを示す。
+* `@local.definition` - シンタックスノードが現在のローカルスコープ内の定義の*名前*を含むことを示す。
+* `@local.reference` - シンタックスノードが、いくつかの包含スコープ内の以前の定義を参照する*名前*を含むことを示す。
 
 When highlighting a file, Tree-sitter will keep track of the set of scopes that contains any given position, and the set of definitions within each scope. When processing a syntax node that is captured as a `local.reference`, Tree-sitter will try to find a definition for a name that matches the node's text. If it finds a match, Tree-sitter will ensure that the *reference* and the *definition* are colored the same.
 
