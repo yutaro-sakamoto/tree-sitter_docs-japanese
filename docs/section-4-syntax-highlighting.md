@@ -279,13 +279,16 @@ The *local variables* query is different from the highlights query in that, whil
 * `@local.definition` - シンタックスノードが現在のローカルスコープ内の定義の*名前*を含むことを示す。
 * `@local.reference` - シンタックスノードが、いくつかの包含スコープ内の以前の定義を参照する*名前*を含むことを示す。
 
-When highlighting a file, Tree-sitter will keep track of the set of scopes that contains any given position, and the set of definitions within each scope. When processing a syntax node that is captured as a `local.reference`, Tree-sitter will try to find a definition for a name that matches the node's text. If it finds a match, Tree-sitter will ensure that the *reference* and the *definition* are colored the same.
+ファイルをハイライトするとき、tree-sitterは与えられた位置を含むスコープの集合と、各スコープ内の定義の集合を追跡する。
+`local.reference`としてキャプチャされた構文ノードを処理するとき、Tree-sitterはノードのテキストに一致する名前の定義を検索する。
+一致するものが見つかった場合、Tree-sitterは*参照*と*定義*が同じ色で表示されるようにする。
 
-The information produced by this query can also be *used* by the highlights query. You can *disable* a pattern for nodes which have been identified as local variables by adding the predicate `(#is-not? local)` to the pattern. This is used in the example below:
+このクエリによって生成された情報は、ハイライトクエリによっても*使用*される。
+ローカル変数として識別されたノードに対して`(#is-not? local)`述語をパターンに追加することで、そのパターンを無効にすることができる。
 
-#### Example Input
+#### 例
 
-Consider this Ruby code:
+下記のRubyコードを考える。
 
 ```ruby
 def process_list(list)
@@ -299,7 +302,7 @@ item = 5
 list = [item]
 ```
 
-With this syntax tree:
+構文木は下記の通りである。
 
 ```
 (program
