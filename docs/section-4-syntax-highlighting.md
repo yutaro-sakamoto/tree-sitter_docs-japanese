@@ -334,18 +334,21 @@ list = [item]
       (identifier))))
 ```
 
-There are several different types of names within this method:
+メソッドの中にはいくつかの異なる種類の名前がある。
 
-* `process_list` is a method.
-* Within this method, `list` is a formal parameter
-* `context` is a local variable.
-* `current_context` is *not* a local variable, so it must be a method.
-* Within the `do` block, `item` is a formal parameter
-* Later on, `item` and `list` are both local variables (not formal parameters).
+* `process_list`はメソッドである。
+* メソッド内で`list`は形式パラメータである。
+* `context`はローカル変数である。
+* `current_context`はローカル変数ではないので、メソッドである。
+* doブロック内で、`item`は形式パラメータである。
+* さらに、`item`と`list`はどちらもローカル変数である（形式パラメータではない）。
 
-#### Example Queries
 
-Let's write some queries that let us clearly distinguish between these types of names. First, set up the highlighting query, as described in the previous section. We'll assign distinct colors to method calls, method definitions, and formal parameters:
+#### クエリの例
+
+これらの名前の種類を明確に区別できるようにするために、いくつかのクエリを示す。
+まず、前のセクションで説明したように、ハイライトクエリを設定する。
+メソッド呼び出し、メソッド定義、形式パラメータに異なる色を割り当てる。
 
 ```
 ; highlights.scm
@@ -362,7 +365,8 @@ Let's write some queries that let us clearly distinguish between these types of 
  (#is-not? local))
 ```
 
-Then, we'll set up a local variable query to keep track of the variables and scopes. Here, we're indicating that methods and blocks create local *scopes*, parameters and assignments create *definitions*, and other identifiers should be considered *references*:
+その後、変数とスコープを追跡するためのローカル変数クエリを設定する。
+ここでは、メソッドとブロックがローカル*スコープ*を作成し、パラメータと代入が*定義*を作成し、他の識別子は*参照*として扱われることを示している。
 
 ```
 ; locals.scm
