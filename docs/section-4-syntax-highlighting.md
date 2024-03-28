@@ -382,9 +382,9 @@ list = [item]
 (identifier) @local.reference
 ```
 
-#### Result
+#### 結果
 
-Running `tree-sitter highlight` on this ruby file would produce output like this:
+rubyファイルで`tree-sitter highlight`を実行すると、次のような出力が得られる。
 
 <pre class='highlight' style='border: 1px solid #aaa;'>
 <span style='color: purple;'>def</span> <span style='color: #005fd7;'>process_list</span><span style='color: #4e4e4e;'>(</span><span style='text-decoration: underline;'>list</span><span style='color: #4e4e4e;'>)</span>
@@ -400,12 +400,13 @@ Running `tree-sitter highlight` on this ruby file would produce output like this
 
 ### 言語インジェクション
 
-Some source files contain code written in multiple different languages. Examples include:
-* HTML files, which can contain JavaScript inside of `<script>` tags and CSS inside of `<style>` tags
-* [ERB](https://en.wikipedia.org/wiki/ERuby) files, which contain Ruby inside of `<% %>` tags, and HTML outside of those tags
-* PHP files, which can contain  HTML between the `<php` tags
-* JavaScript files, which contain regular expression syntax within regex literals
-* Ruby, which can contain snippets of code inside of heredoc literals, where the heredoc delimiter often indicates the language
+いくつかのソースファイルには、複数の異なる言語で書かれたコードが含まれている。例としては、
+
+* HTMLファイルは、`<script>`タグ内にJavaScript、`<style>`タグ内にCSSを含めることができる。
+* [ERB](https://en.wikipedia.org/wiki/ERuby)ファイルは、`<% %>`タグ内にRubyを含み、それ以外の部分にHTMLを含めることができる。
+* PHPファイルは、`<php`タグ内にHTMLを含めることができる。
+* JavaScriptファイルは、正規表現リテラル内に正規表現構文を含む。
+* Rubyはヒアドキュメント内にコードスニペットを含むことができ、ヒアドキュメントの区切り文字にはそのコードスニペットの言語を示す語が使われる。
 
 All of these examples can be modeled in terms of a *parent* syntax tree and one or more *injected* syntax trees, which reside *inside* of certain nodes in the parent tree. The language injection query allows you to specify these "injections" using the following captures:
 
