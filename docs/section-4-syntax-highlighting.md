@@ -410,10 +410,13 @@ rubyファイルで`tree-sitter highlight`を実行すると、次のような�
 
 All of these examples can be modeled in terms of a *parent* syntax tree and one or more *injected* syntax trees, which reside *inside* of certain nodes in the parent tree. The language injection query allows you to specify these "injections" using the following captures:
 
-* `@injection.content` - indicates that the captured node should have its contents re-parsed using another language.
-* `@injection.language` - indicates that the captured node's text may contain the *name* of a language that should be used to re-parse the `@injection.content`.
+これらの例はすべて、*親*構文木と、ノードの内部に存在する1つ以上の*インジェクション*構文木を使用してモデル化できる。
+言語インジェクションクエリを使用すると、これらの「インジェクション」を次のキャプチャを使用して指定できる。
 
-The language injection behavior can also be configured by some properties associated with patterns:
+* `@injection.content` - キャプチャされたノードの内容を別の言語を使用して再解析することを示す。
+* `@injection.language` - キャプチャされたノードのテキストが、`@injection.content`を再解析するために使用される言語の*名前*を含む可能性があることを示す。
+
+言語インジェクションの動作は、パターンに関連付けられたいくつかのプロパティによっても設定できる。
 
 * `injection.language` - can be used to hard-code the name of a specific language.
 * `injection.combined` - indicates that *all* of the matching nodes in the tree should have their content parsed as *one* nested document.
