@@ -418,13 +418,13 @@ All of these examples can be modeled in terms of a *parent* syntax tree and one 
 
 言語インジェクションの動作は、パターンに関連付けられたいくつかのプロパティによっても設定できる。
 
-* `injection.language` - can be used to hard-code the name of a specific language.
-* `injection.combined` - indicates that *all* of the matching nodes in the tree should have their content parsed as *one* nested document.
-* `injection.include-children` - indicates that the `@injection.content` node's *entire* text should be re-parsed, including the text of its child nodes. By default, child nodes' text will be *excluded* from the injected document.
+* `injection.language` - 特定の言語の名前をハードコードするために使用する。
+* `injection.combined` - 一致するノードの*すべて*の内容が*1つ*の入れ子ドキュメントとして解析されるべきであることを示す。
+* `injection.include-children` - `@injection.content`ノードの*全体*のテキストが再解析されるべきであることを示す。デフォルトでは、子ノードのテキストはインジェクトされたドキュメントから*除外*される。
 
-#### Examples
+#### 例
 
-Consider this ruby code:
+下記のRubyコードを考える。
 
 ```ruby
 system <<-BASH.strip!
@@ -432,7 +432,7 @@ system <<-BASH.strip!
 BASH
 ```
 
-With this syntax tree:
+構文木は下記の通りである。
 
 ```
 (program
@@ -446,22 +446,22 @@ With this syntax tree:
     (heredoc_end)))
 ```
 
-The following query would specify that the contents of the heredoc should be parsed using a language named "BASH" (because that is the text of the `heredoc_end` node):
+下記のクエリは、ヒアドキュメントの内容を「BASH」という名前の言語を使用して解析することを指定する。(なぜなら、これは`heredoc_end`ノードのテキストであるため)
 
 ```
 (heredoc_body
   (heredoc_end) @injection.language) @injection.content
 ```
 
-You can also force the language using the `#set!` predicate.
-For example, this will force the language to be always `ruby`.
+`#set!`述語を使用して言語を強制することもできる。
+例えば、これは常に言語を`ruby`に強制する。
 
 ```
 ((heredoc_body) @injection.content
  (#set! injection.language "ruby"))
 ```
 
-## Unit Testing
+## ユニットテスト
 
 Tree-sitter has a built-in way to verify the results of syntax highlighting. The interface is based on [Sublime Text's system](https://www.sublimetext.com/docs/3/syntax.html#testing) for testing highlighting.
 
