@@ -463,11 +463,14 @@ BASH
 
 ## ユニットテスト
 
-Tree-sitter has a built-in way to verify the results of syntax highlighting. The interface is based on [Sublime Text's system](https://www.sublimetext.com/docs/3/syntax.html#testing) for testing highlighting.
+Tree-sitterは、シンタックスハイライトの結果を検証方法がするための組み込まれている。
+このインターフェースは、[Sublime Textシンタックスハイライトのテスト](https://www.sublimetext.com/docs/3/syntax.html#testing)に基づいている。
 
-Tests are written as normal source code files that contain specially-formatted *comments* that make assertions about the surrounding syntax highlighting. These files are stored in the `test/highlight` directory in a grammar repository.
+テストは、特別なフォーマットのコメントを含む通常のソースコードファイルとして書かれる。
+このコメントは、周囲のシンタックスハイライトについてのアサーションを行う。
+これらのファイルは、文法リポジトリの`test/highlight`ディレクトリに格納される。
 
-Here is an example of a syntax highlighting test for JavaScript:
+ここにJavaScriptのシンタックスハイライトテストの例を示す。
 
 ```js
 var abc = function(d) {
@@ -488,7 +491,7 @@ var abc = function(d) {
 };
 ```
 
-From the Sublime text docs:
+以下はSublime Textのドキュメントからの引用である。
 
 > The two types of tests are:
 >
@@ -496,6 +499,9 @@ From the Sublime text docs:
 >
 > **Arrow**: <- this will test the following selector against the scope on the most recent non-test line. It will test it at the same column as the comment character is in.
 
+下記は上記のドキュメントの日本語訳である
+> **キャレット**: ^ これは、直近の非テスト行のスコープに対して、次のセレクタをテストする。 ^がある列でテストする。連続する^は、各列をセレクタに対してテストします。
+> **アロー**: <- これは、直近の非テスト行のスコープに対して、次のセレクタをテストする。コメント文字がある列でテストする。
 <!-- textlint-enable -->
 
 [前のページ(パーサを作る)](./section-3-creating-parsers.md) <---- [目次](../README.md) ----> [次のページ(Tree-sitterの実装)](./section-5-implementation.md)
