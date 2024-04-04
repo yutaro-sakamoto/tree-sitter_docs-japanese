@@ -30,9 +30,12 @@ The `tree-sitter` CLI's most important feature is the `generate` subcommand. Thi
 文法のフォーマットは[grammar-schema.json](https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/grammar-schema.json)によって規定される。
 パースは[parse_grammar.rs](https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/parse_grammar.rs)に実装される。
 
-### Grammar Rules
+### 文法ルール
 
-A Tree-sitter grammar is composed of a set of *rules* - objects that describe how syntax nodes can be composed from other syntax nodes. There are several types of rules: symbols, strings, regexes, sequences, choices, repetitions, and a few others. Internally, these are all represented using an [enum](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html) called [`Rule`](https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/rules.rs).
+tree-sitterの文法はルールの集合からなる
+。これらのルールは、構文ノードが他の構文ノードからどのように構成されるかを記述するオブジェクトである。
+ルールにはいくつかのタイプがある: シンボル、文字列、正規表現、シーケンス、選択、繰り返し、その他。
+内部ではこれらはすべて[`Rule`](https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/rules.rs)と呼ばれる[enum](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html)を使って表現される。
 
 ### Preparing a Grammar
 
