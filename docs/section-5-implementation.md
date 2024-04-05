@@ -39,9 +39,13 @@ tree-sitterの文法はルールの集合からなる
 
 ### Preparing a Grammar
 
-Once a grammar has been parsed, it must be transformed in several ways before it can be used to generate a parser. Each transformation is implemented by a separate file in the [`prepare_grammar`](https://github.com/tree-sitter/tree-sitter/tree/master/cli/src/generate/prepare_grammar) directory, and the transformations are ultimately composed together in `prepare_grammar/mod.rs`.
+一度文法が解析されると、パーサを生成するためにいくつかの方法で変換する必要がある。
+各変換は[`prepare_grammar`](https://github.com/tree-sitter/tree-sitter/tree/master/cli/src/generate/prepare_grammar)ディレクトリの中の
+個々のファイルで実装され、最終的には`prepare_grammar/mod.rs`で統合される。
 
-At the end of these transformations, the initial grammar is split into two grammars: a *syntax grammar* and a *lexical grammar*. The syntax grammar describes how the language's [*non-terminal symbols*](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols) are constructed from other grammar symbols, and the lexical grammar describes how the grammar's *terminal symbols* (strings and regexes) can be composed from individual characters.
+これらの変換の最後に、初期の文法は*構文文法*と*レキシカル文法の*2つの文法に分割される。
+構文の文法は、言語の[*非終端記号*](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols)が
+他の文法記号からどのように構成されるかを記述し、字句の文法は文法の*終端記号*（文字列と正規表現）が個々の文字からどのように構成されるかを記述する。
 
 ### Building Parse Tables
 
