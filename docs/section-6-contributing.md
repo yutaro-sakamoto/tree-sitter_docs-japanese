@@ -2,22 +2,22 @@
 
 <!-- textlint-disable -->
 
-# Contributing
+# コントリビュート
 
 ## Code of Conduct
 
-Contributors to Tree-sitter should abide by the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct).
+Tree-sitterへのコントリビュータは[Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct)を遵守してください。
 
-## Developing Tree-sitter
+## Tree-sitterの開発
 
-### Prerequisites
+### 事前条件
 
-To make changes to Tree-sitter, you should have:
+tree-sitterを変更するには、以下が必要です:
 
-1. A C compiler, for compiling the core library and the generated parsers.
-2. A [Rust toolchain](https://rustup.rs/), for compiling the Rust bindings, the highlighting library, and the CLI.
-3. Node.js and NPM, for generating parsers from `grammar.js` files.
-4. Either [Emscripten](https://emscripten.org/) or [Docker](https://www.docker.com/), for compiling the library to WASM.
+1. コアライブラリや生成されたパーサをコンパイルするためのCコンパイラ。
+2. Rustバインディングのコンパイル・ハイライトのライブラリ・CLIのコンパイルに必要な[Rustツールチェイン](https://rustup.rs/)。
+3. grammer.jsファイルからパーサを生成するために必要なNode.jsとNPM。
+4. WASMライブラリをビルドするために、[Emscripten](https://emscripten.org/)または[Docker](https://www.docker.com/)がインストールされているか。
 
 ### Building
 
