@@ -19,9 +19,9 @@ tree-sitterを変更するには、以下が必要です:
 3. grammer.jsファイルからパーサを生成するために必要なNode.jsとNPM。
 4. WASMライブラリをビルドするために、[Emscripten](https://emscripten.org/)または[Docker](https://www.docker.com/)がインストールされているか。
 
-### Building
+### ビルド
 
-Clone the repository:
+リポジトリをクローンする。
 
 ```sh
 git clone https://github.com/tree-sitter/tree-sitter
@@ -30,17 +30,21 @@ cd tree-sitter
 
 Optionally, build the WASM library. If you skip this step, then the `tree-sitter playground` command will require an internet connection. If you have emscripten installed, this will use your `emcc` compiler. Otherwise, it will use Docker:
 
+(任意)WASMライブラリをビルドする。
+もしこのステップをスキップすると、`tree-sitter playground`コマンドの実行にはインターネット接続が必要になります。
+Emscriptenがインストールされている場合、`emcc`コンパイラが使用されます。それ以外の場合、Dockerが使用されます。
+
 ```sh
 ./script/build-wasm
 ```
 
-Build the Rust libraries and the CLI:
+RustライブラリとCLIをビルドする。
 
 ```sh
 cargo build --release
 ```
 
-This will create the `tree-sitter` CLI executable in the `target/release` folder.
+これにより、`target/release`フォルダに`tree-sitter`CLI実行ファイルが作成されます。
 
 ### Testing
 
