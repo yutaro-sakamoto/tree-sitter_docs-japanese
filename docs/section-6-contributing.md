@@ -46,27 +46,27 @@ cargo build --release
 
 これにより、`target/release`フォルダに`tree-sitter`CLI実行ファイルが作成されます。
 
-### Testing
+### テスト
 
-Before you can run the tests, you need to clone some grammars that are used for testing:
+テストが実行可能になる前に、テストに使用されるいくつかの文法をクローンする必要があります。
 
 ```sh
 script/fetch-fixtures
 ```
 
-To test any changes you've made to the CLI, you can regenerate these parsers using your current CLI code:
+CLIに施した変更をテストするために、現在のCLIコードを使用してこれらのパーサを再生成します。
 
 ```sh
 script/generate-fixtures
 ```
 
-Then you can run the tests:
+その後、テストを実行できます。
 
 ```sh
 script/test
 ```
 
-Similarly, to test the WASM binding, you need to compile these parsers to WASM:
+同様に、WASMバインディングをテストするには、これらのパーサをWASMにコンパイルする必要があります。
 
 ```sh
 script/generate-fixtures-wasm
