@@ -73,23 +73,28 @@ script/generate-fixtures-wasm
 script/test-wasm
 ```
 
-### Debugging
+### デバッグ
 
 The test script has a number of useful flags. You can list them all by running `script/test -h`. Here are some of the main flags:
+テストスクリプトはいくつかの便利なフラグを持っています。
+`script/test -h`を実行することですべてのフラグの一覧を確認できます。
+以下は主なフラグの一部です。
 
-If you want to run a specific unit test, pass its name (or part of its name) as an argument:
+特定のユニットテストを実行したい場合は、その名前（またはその一部）を引数として渡します。
 
 ```sh
 script/test test_does_something
 ```
 
-You can run the tests under the debugger (either `lldb` or `gdb`) using the `-g` flag:
+-gフラグを使用してデバッガ（`lldb`または`gdb`）でテストを実行できます。
 
 ```sh
 script/test test_does_something -g
 ```
 
-Part of the Tree-sitter test suite involves parsing the _corpus_ tests for several different languages and performing randomized edits to each example in the corpus. If you just want to run the tests for a particular _language_, you can pass the `-l` flag. And if you want to run a particular _example_ from the corpus, you can pass the `-e` flag:
+Tree-sitterのテストスイートの一部は、いくつかの異なる言語のコーパステストを解析し、コーパス内の各例に対してランダムな編集を行うことです。
+特定の言語のテストのみを実行したい場合は、`-l`フラグを渡します。
+また、コーパスから特定の_例_を実行したい場合は、`-e`フラグを渡します。
 
 ```sh
 script/test -l javascript -e Arrays
