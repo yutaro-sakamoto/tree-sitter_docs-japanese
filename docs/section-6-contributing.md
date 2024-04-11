@@ -117,35 +117,40 @@ script/test -l javascript -e Arrays
 - [`tree-sitter/node-tree-sitter`](https://github.com/tree-sitter/node-tree-sitter) - npmjs.comで[`tree-sitter`](https://www.npmjs.com/package/tree-sitter)として公開されているコアライブラリ向けのNode.jsバインディング
 - [`tree-sitter/py-tree-sitter`](https://github.com/tree-sitter/py-tree-sitter) - [PyPI.org](https://pypi.org)で[`tree-sitter`](https://pypi.org/project/tree-sitter)として公開されているコアライブラリ向けのPythonバインディング
 
-## Publishing New Releases
+## 新リリースの公開
 
-Publishing a new release of the CLI requires these steps:
+CLIの新リリースを公開するには、以下の手順が必要です。
 
-1. Commit and push all outstanding changes and verify that CI passes:
+1. すべての変更をコミットしてプッシュし、CIが成功することを確認します。
 
    ```sh
    git commit -m "Fix things"
    git push
    ```
 
-2. Create a new tag:
+2. 新しいタグを作成します。
 
    ```sh
    script/version patch
    ```
 
-   This will determine the current version, increment the _patch_ version number, and update the `Cargo.toml` and `package.json` files for the Rust and Node CLI packages. It will then create a commit and a tag for the new version. For more information about the arguments that are allowed, see the documentation for the [`npm version`](https://docs.npmjs.com/cli/version) command.
+これは、現在のバージョンを決定し、_patch_バージョン番号を増やし、RustとNode CLIパッケージの`Cargo.toml`と`package.json`ファイルを更新します。
+その後、新しいバージョンのためのコミットとタグを作成します。
+使用できる引数についての詳細は、[`npm version`](https://docs.npmjs.com/cli/version)コマンドのドキュメントを参照してください。
 
-3. Push the commit and the tag:
+3. タグとコミットをプッシュします。
 
    ```sh
    git push
    git push --tags
    ```
 
-4. Wait for CI to pass. Because of the git tag, the CI jobs will publish artifacts to [a GitHub release](https://github.com/tree-sitter/tree-sitter/releases). The npm module of `tree-sitter-cli` works by downloading the appropriate binary from the corresponding GitHub release during installation. So it's best not to publish the npm package until the binaries are uploaded.
+4. CIが成功するのを待ちます。
+gitタグのため、CIジョブはアーティファクトを[GitHubリリース](https://github.com/tree-sitter/tree-sitter/releases)を公開します。
+`tree-sitter-cli`のnpmモジュールは、インストール中に対応するGitHubリリースから適切なバイナリをダウンロードすることで動作します。
+そのため、バイナリがアップロードされるまでnpmパッケージを公開しない方が良いです。
 
-5. Publish the npm package:
+5. npmパッケージを公開します。
 
    ```sh
    cd cli/npm
