@@ -11,13 +11,22 @@ Tree-sitterは、コードナビゲーションシステムの一部として、
 この機能の利用例として、GitHubの[search-based code navigation](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#precise-and-search-based-navigation)があります。
 このドキュメントは、このようなシステムとの統合方法、およびTree-sitterの文法を持つ任意の言語にこの機能を拡張する方法について説明します。
 
-## Tagging and captures
+## タグ付けとキャプチャ
 
-*Tagging* is the act of identifying the entities that can be named in a program. We use Tree-sitter queries to find those entities. Having found them, you use a syntax capture to label the entity and its name.
+タグ付けとは、プログラムで名前を付けられるエンティティを特定することです。
+Tree-sitterのクエリを使用してこれらのエンティティを見つけたら、構文キャプチャを使用してエンティティとその名前をラベル付けします。
 
-The essence of a given tag lies in two pieces of data: the _role_ of the entity that is matched (i.e. whether it is a definition or a reference) and the _kind_ of that entity, which describes how the entity is used (i.e. whether it's a class definition, function call, variable reference, and so on). Our convention is to use a syntax capture following the `@role.kind` capture name format, and another inner capture, always called `@name`, that pulls out the name of a given identifier.
+特定のタグ付けの本質は、一致したエンティティの_役割_（つまり、定義か参照か）と、そのエンティティの_種類_の2つのデータです。
+種類は、エンティティがどのように使用されるかを説明します（クラス定義、関数呼び出し、変数参照など）。
+慣習的に、`@role.kind`キャプチャ名形式に続く構文キャプチャを使用し、常に`@name`と呼ばれる別の内部キャプチャを使用して、特定の識別子の名前を取り出します。
 
-You may optionally include a capture named `@doc` to bind a docstring. For convenience purposes, the tagging system provides two built-in functions, `#select-adjacent!` and `#strip!` that are convenient for removing comment syntax from a docstring. `#strip!` takes a capture as its first argument and a regular expression as its second, expressed as a quoted string. Any text patterns matched by the regular expression will be removed from the text associated with the passed capture. `#select-adjacent!`, when passed two capture names, filters the text associated with the first capture so that only nodes adjacent to the second capture are preserved. This can be useful when writing queries that would otherwise include too much information in matched comments.
+オプションで、docstringを紐づけるに`@doc`という名前のキャプチャを含めることができます。
+便宜上、タグ付けシステムは、コメント構文をdocstringから削除するのに便利な2つの組み込み関数、
+`#select-adjacent!`と`#strip!`を提供します。
+`#strip!`は、最初の引数としてキャプチャを取り、2番目に引数として正規表現を取り、クォートされた文字列として表現します。
+正規表現に一致するテキストパターンは、渡されたキャプチャに関連付けられたテキストから削除されます。
+`#select-adjacent!`は、2つのキャプチャ名を渡すと、最初のキャプチャに関連付けられたテキストをフィルタリングし、2番目のキャプチャに隣接するノードのみを保持します。
+これは、一致したコメントに含まれる情報が多すぎる場合に便利です。
 
 ## Examples
 
