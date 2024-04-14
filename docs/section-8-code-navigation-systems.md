@@ -28,16 +28,18 @@ Tree-sitterのクエリを使用してこれらのエンティティを見つけ
 `#select-adjacent!`は、2つのキャプチャ名を渡すと、最初のキャプチャに関連付けられたテキストをフィルタリングし、2番目のキャプチャに隣接するノードのみを保持します。
 これは、一致したコメントに含まれる情報が多すぎる場合に便利です。
 
-## Examples
+## 例
 
-This [query](https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/queries/tags.scm#L4-L5) recognizes Python function definitions and captures their declared name. The `function_definition` syntax node is defined in the [Python Tree-sitter grammar](https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/grammar.js#L354).
+この[クエリ](https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/queries/tags.scm#L4-L5)は
+Pythonの関数定義を認識し、宣言された名前をキャプチャします。
+`function_definition`構文ノードは、[Python Tree-sitterの文法](https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/grammar.js#L354)で定義されています。
 
 ``` scheme
 (function_definition
   name: (identifier) @name) @definition.function
 ```
 
-A more sophisticated query can be found in the [JavaScript Tree-sitter repository](https://github.com/tree-sitter/tree-sitter-javascript/blob/fdeb68ac8d2bd5a78b943528bb68ceda3aade2eb/queries/tags.scm#L63-L70):
+より洗練されたクエリは、[JavaScript Tree-sitterリポジトリ](https://github.com/tree-sitter/tree-sitter-javascript/blob/fdeb68ac8d2bd5a78b943528bb68ceda3aade2eb/queries/tags.scm#L63-L70)にあります。
 
 ``` scheme
 (assignment_expression
@@ -50,7 +52,8 @@ A more sophisticated query can be found in the [JavaScript Tree-sitter repositor
 ) @definition.function
 ```
 
-An even more sophisticated query is in the [Ruby Tree-sitter repository](https://github.com/tree-sitter/tree-sitter-ruby/blob/1ebfdb288842dae5a9233e2509a135949023dd82/queries/tags.scm#L24-L43), which uses built-in functions to strip the Ruby comment character (`#`) from the docstrings associated with a class or singleton-class declaration, then selects only the docstrings adjacent to the node matched as `@definition.class`.
+更に洗練されたクエリは、[Ruby Tree-sitterリポジトリ](https://github.com/tree-sitter/tree-sitter-ruby/blob/1ebfdb288842dae5a9233e2509a135949023dd82/queries/tags.scm#L24-L43)にあります。
+このクエリは、Rubyのクラスまたはシングルトンクラス宣言に関連付けられたdocstringからRubyコメント文字(`#`)を削除するための組み込み関数を使用し、`@definition.class`として一致したノードに隣接するdocstringのみを選択します。
 
 ``` scheme
 (
@@ -75,9 +78,10 @@ An even more sophisticated query is in the [Ruby Tree-sitter repository](https:/
 )
 ```
 
-The below table describes a standard vocabulary for kinds and roles during the tagging process. New applications may extend (or only recognize a subset of) these capture names, but it is desirable to standardize on the names below.
+以下の表は、タグ付けプロセス中の種類と役割の標準的な語彙を説明しています。
+新しいアプリケーションは、これらのキャプチャ名を拡張（またはそのサブセットのみを認識）することができますが、以下の名前を標準化することが望ましいです。
 
-| Category                 | Tag                         |
+| カテゴリ                 | タグ                         |
 |--------------------------|-----------------------------|
 | Class definitions        | `@definition.class`         |
 | Function definitions     | `@definition.function`      |
