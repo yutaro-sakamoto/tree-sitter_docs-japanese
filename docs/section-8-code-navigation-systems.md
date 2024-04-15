@@ -123,9 +123,11 @@ end
 
 各言語のレポジトリの`queries/tags.scm`に、その言語のタグクエリが配置するのが良いでしょう。
 
-## Unit Testing
+## ユニットテスト
 
-Tags queries may be tested with `tree-sitter test`. Files under `test/tags/` are checked using the same comment system as [highlights queries](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#unit-testing). For example, the above Ruby tags can be tested with these comments:
+タグクエリは、`tree-sitter test`を使用してテストできます。
+`test/tags/`の下のファイルは、[ハイライトクエリ](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#unit-testing)と同じコメントシステムを使用してチェックされます。
+たとえば、上記のRubyタグは、次のコメントを使用してテストできます。
 
 ```ruby
 module Foo
