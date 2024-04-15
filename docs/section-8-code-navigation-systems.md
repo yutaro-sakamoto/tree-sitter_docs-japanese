@@ -92,9 +92,12 @@ Pythonの関数定義を認識し、宣言された名前をキャプチャし�
 | Class reference          | `@reference.class`          |
 | Interface implementation | `@reference.implementation` |
 
-## Command-line invocation
+## コマンドライン呼び出し
 
 You can use the `tree-sitter tags` command to test out a tags query file, passing as arguments one or more files to tag. We can run this tool from within the Tree-sitter Ruby repository, over code in a file called `test.rb`:
+
+`tree-sitter tags`コマンドを使用して、タグクエリファイルをテストし、タグ付けするファイルを1つ以上の引数として渡すことができます。
+Tree-sitter Rubyリポジトリ内から、`test.rb`というファイルに対してこのツールを実行できます。
 
 ``` ruby
 module Foo
@@ -108,7 +111,8 @@ module Foo
 end
 ```
 
-Invoking `tree-sitter tags test.rb` produces the following console output, representing matched entities' name, role, location, first line, and docstring:
+`tree-sitter tags test.rb`を呼び出すと、一致したエンティティの名前、役割、場所、最初の行、およびdocstringを示す情報が表示されます。
+下記は、コンソール出力の例です。
 
 ```
     test.rb
@@ -117,7 +121,7 @@ Invoking `tree-sitter tags test.rb` produces the following console output, repre
         baz              | method       def (2, 8) - (2, 11) `def baz`  "is adjacent, will be"
 ```
 
-It is expected that tag queries for a given language are located at `queries/tags.scm` in that language's repository.
+各言語のレポジトリの`queries/tags.scm`に、その言語のタグクエリが配置するのが良いでしょう。
 
 ## Unit Testing
 
