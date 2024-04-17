@@ -94,8 +94,6 @@ Pythonの関数定義を認識し、宣言された名前をキャプチャし�
 
 ## コマンドライン呼び出し
 
-You can use the `tree-sitter tags` command to test out a tags query file, passing as arguments one or more files to tag. We can run this tool from within the Tree-sitter Ruby repository, over code in a file called `test.rb`:
-
 `tree-sitter tags`コマンドを使用して、タグクエリファイルをテストし、タグ付けするファイルを1つ以上の引数として渡すことができます。
 Tree-sitter Rubyリポジトリ内から、`test.rb`というファイルに対してこのツールを実行できます。
 

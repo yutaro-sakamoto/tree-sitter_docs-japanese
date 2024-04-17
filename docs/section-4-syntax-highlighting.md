@@ -129,7 +129,6 @@ Tree-sitterのハイライトシステムは、`function.method`、`type.builtin
 
 ### 言語の検出
 
-These keys help to decide whether the language applies to a given file:
 これらのキーは、与えられたファイルにどの言語を適用するかを決定するのに役立つ。
 
 * `file-type` - ファイル名の接尾辞の配列。文法は、これらの接尾辞のいずれかで終わるファイルに使用される。接尾辞は*ファイル名全体*に一致する可能性があることに注意。
@@ -173,8 +172,6 @@ These keys help to decide whether the language applies to a given file:
 
 Tree-sitterのシンタックスハイライトの仕組みは、Tree-sitterの構文木にパターンマッチングする一般的なシステムである*tree queries*に基づいている。
 tree queriesについての詳細は[このセクション](./using-parsers#pattern-matching-with-queries)を参照せよ。
-
-Syntax highlighting is controlled by *three* different types of query files that are usually included in the `queries` folder. The default names for the query files use the `.scm` file. We chose this extension because it commonly used for files written in [Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29), a popular dialect of Lisp, and these query files use a Lisp-like syntax.
 
 シンタックスハイライトは、`queries`フォルダに格納される3種類のクエリファイルによって制御される。
 デフォルトでは、クエリファイルの名前は`.scm`ファイルを使用する。
@@ -268,8 +265,6 @@ func increment(a int) int {
 優れたシンタックスハイライトは、コード内の異なる*エンティティ*を素早く区別できるようにする。
 理想的には、特定のエンティティが*複数*の場所に現れる場合、それぞれの場所で同じ色で表示されるべきである。
 Tree-sitterのシンタックスハイライトシステムは、ローカルスコープと変数を追跡することで、これを実現する。
-
-The *local variables* query is different from the highlights query in that, while the highlights query uses *arbitrary* capture names which can then be mapped to colors, the locals variable query uses a fixed set of capture names, each of which has a special meaning.
 
 *ローカル変数*クエリは、*任意の*キャプチャ名を使用しそれを色にマッピングするハイライトへクリと異なり、特別な意味を持つ固定されたキャプチャ名を使用する。
 
@@ -407,8 +402,6 @@ rubyファイルで`tree-sitter highlight`を実行すると、次のような�
 * PHPファイルは、`<php`タグ内にHTMLを含めることができる。
 * JavaScriptファイルは、正規表現リテラル内に正規表現構文を含む。
 * Rubyはヒアドキュメント内にコードスニペットを含むことができ、ヒアドキュメントの区切り文字にはそのコードスニペットの言語を示す語が使われる。
-
-All of these examples can be modeled in terms of a *parent* syntax tree and one or more *injected* syntax trees, which reside *inside* of certain nodes in the parent tree. The language injection query allows you to specify these "injections" using the following captures:
 
 これらの例はすべて、*親*構文木と、ノードの内部に存在する1つ以上の*インジェクション*構文木を使用してモデル化できる。
 言語インジェクションクエリを使用すると、これらの「インジェクション」を次のキャプチャを使用して指定できる。

@@ -28,8 +28,6 @@ git clone https://github.com/tree-sitter/tree-sitter
 cd tree-sitter
 ```
 
-Optionally, build the WASM library. If you skip this step, then the `tree-sitter playground` command will require an internet connection. If you have emscripten installed, this will use your `emcc` compiler. Otherwise, it will use Docker:
-
 (任意)WASMライブラリをビルドする。
 もしこのステップをスキップすると、`tree-sitter playground`コマンドの実行にはインターネット接続が必要になります。
 Emscriptenがインストールされている場合、`emcc`コンパイラが使用されます。それ以外の場合、Dockerが使用されます。
@@ -75,7 +73,6 @@ script/test-wasm
 
 ### デバッグ
 
-The test script has a number of useful flags. You can list them all by running `script/test -h`. Here are some of the main flags:
 テストスクリプトはいくつかの便利なフラグを持っています。
 `script/test -h`を実行することですべてのフラグの一覧を確認できます。
 以下は主なフラグの一部です。

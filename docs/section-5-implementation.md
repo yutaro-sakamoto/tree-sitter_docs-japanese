@@ -14,8 +14,6 @@ CLIはビルドツールであり、一度パーサーが生成されると不�
 
 ## The CLI
 
-The `tree-sitter` CLI's most important feature is the `generate` subcommand. This subcommand reads context-free grammar from a file called `grammar.js` and outputs a parser as a C file called `parser.c`. The source files in the [`cli/src`](https://github.com/tree-sitter/tree-sitter/tree/master/cli/src) directory all play a role in producing the code in `parser.c`. This section will describe some key parts of this process.
-
 `tree-sitter` CLIの最も重要な機能は、サブコマンドの`generate`である。
 このサブコマンドは文脈自由文法を`grammar.js`というファイルから読み込み、`parser.c`というCファイルとしてパーサを出力する。
 [`cli/src`](https://github.com/tree-sitter/tree-sitter/tree/master/cli/src)ディレクトリのソースコードは、`parser.c`の生成に使用される。
