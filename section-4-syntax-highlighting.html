@@ -1,0 +1,645 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>シンタックスハイライト - My first Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">概要</a></li><li class="chapter-item expanded "><a href="section-2-using-parsers.html"><strong aria-hidden="true">1.</strong> パーサを使う</a></li><li class="chapter-item expanded "><a href="section-3-creating-parsers.html"><strong aria-hidden="true">2.</strong> パーサを作る</a></li><li class="chapter-item expanded "><a href="section-4-syntax-highlighting.html" class="active"><strong aria-hidden="true">3.</strong> シンタックスハイライト</a></li><li class="chapter-item expanded "><a href="section-5-implementation.html"><strong aria-hidden="true">4.</strong> 実装</a></li><li class="chapter-item expanded "><a href="section-6-contributing.html"><strong aria-hidden="true">5.</strong> コントリビュート</a></li><li class="chapter-item expanded "><a href="section-7-playground.html"><strong aria-hidden="true">6.</strong> Playground</a></li><li class="chapter-item expanded "><a href="section-8-code-navigation-systems.html"><strong aria-hidden="true">7.</strong> コードナビゲーションシステム</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">My first Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><a href="./section-3-creating-parsers.html">前のページ(パーサを作る)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-5-implementation.html">次のページ(Tree-sitterの実装)</a></p>
+<h1><a class="header" href="#シンタックスハイライト" id="シンタックスハイライト">シンタックスハイライト</a></h1>
+<p>シンタックスハイライトはコードを扱うアプリケーションで使われることが多い機能である。
+Tree-sitterはシンタックスハイライトをサポートする<a href="https://github.com/tree-sitter/tree-sitter/tree/master/highlight"><code>tree-sitter-highlight</code></a>
+ライブラリをビルトインで提供する。
+<code>tree-sitter-highlight</code>は現在、GitHub.comにおいて多くの言語のシンタックスハイライトで使用されている。</p>
+<!-- textlint-disable -->
+<p>コマンドラインから<code>tree-sitter highlight</code>コマンドを使うことで、シンタクスハイライト機能を実行できる。</p>
+<!-- textlint-enable -->
+<p>このページでは、CLIを使って、どのようにTree-sitterのシンタックスハイライト機能が動作するのかを解説する。
+もし<code>tree-sitter-highlight</code>ライブラリ（CまたはRustから使用可能）を利用する場合、これらの考え方は有用であるが、設定データはファイルではなくメモリ上のオブジェクトである。</p>
+<!-- textlint-disable -->
+<p><strong>注意 - もしテキストエディタの<a href="https://atom.io/">Atom</a>のシンタックスハイライトを開発する場合は、このドキュメントでなくAtom Flight Mantualの<a href="https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/">このページ</a>を参照せよ。</strong></p>
+<!-- textlint-enable -->
+<p><strong>Atomは現在Tree-sitterベースの別のシンタックスハイライトシステムを採用していいて、それはここで説明するよりも古いものである。</strong></p>
+<!-- textlint-disable -->
+<h2><a class="header" href="#概要" id="概要">概要</a></h2>
+<p>通常、与えられた言語のハイライトに必要なファイルは、その言語のTree-sitterの文法と同じgitリポジトリに含まれている。
+（例えば、<a href="https://github.com/tree-sitter/tree-sitter-javascript"><code>tree-sitter-javascript</code></a>, <a href="https://github.com/tree-sitter/tree-sitter-ruby"><code>tree-sitter-ruby</code></a>)
+コマンドラインからシンタックスハイライトを実行するためには、次の3つが必要である。</p>
+<ol>
+<li><code>~/.config/tree-sitter/config.json</code>に記載されたユーザ固有の設定。</li>
+<li>文法リポジトリの<code>package.json</code>ファイルに記載された言語の設定。</li>
+<li>文法リポジトリの<code>queries</code>フォルダにある3つのクエリ。</li>
+</ol>
+<p>言語固有のファイルの例については、<code>tree-sitter-ruby</code>リポジトリの<a href="https://github.com/tree-sitter/tree-sitter-ruby/blob/master/package.json"><code>package.json</code>ファイル</a>と<a href="https://github.com/tree-sitter/tree-sitter-ruby/tree/master/queries"><code>queries</code>ディレクトリ</a>を参照せよ。
+以下のセクションでは、各ファイルの動作について説明する。</p>
+<h2><a class="header" href="#ユーザ固有の設定" id="ユーザ固有の設定">ユーザ固有の設定</a></h2>
+<p>tree-sitterのCLIは自動的にホームフォルダに2つのディレクトリを作成する。
+一方のディレクトリには、CLIの動作を規定するJSON形式の設定ファイルが格納される。
+もう一方のディレクトリには、言語ごとのコンパイル済みのパーサが格納される。</p>
+<p>これらのディレクトリは、各プラットフォームの「通常の」場所に作成される。</p>
+<ul>
+<li>Linuxでは、<code>~/.config/tree-sitter</code>と<code>~/.cache/tree-sitter</code></li>
+<li>Macでは、<code>~/Library/Application Support/tree-sitter</code>と<code>~/Library/Caches/tree-sitter</code></li>
+<li>Windowsでは、<code>C:\Users\[ユーザ名]\AppData\Roaming\tree-sitter</code> と <code>C:\Users\[ユーザ名]\AppData\Local\tree-sitter</code></li>
+</ul>
+<p>CLIは設定ファイルが存在しない場合、各設定オプションのデフォルト値を使用して動作する。
+設定ファイルを作成し、編集するためには、次のコマンドを実行する。</p>
+<pre><code class="language-sh">tree-sitter init-config
+</code></pre>
+<p>(これにより、作成されたファイルの場所が表示されるため、簡単に見つけて編集できる。)</p>
+<h3><a class="header" href="#パス" id="パス">パス</a></h3>
+<p><code>tree-sitter highlight</code>コマンドは1つ以上のファイルパスを取り、それらのファイルをハイライトするためにどの言語を使用するかを自動的に決定しようとする。
+これを行うためには、ファイルシステム上でTree-sitterの文法を探す場所を知る必要がある。
+これは設定ファイルの<code>&quot;parser-directories&quot;</code>キーを使って制御できる。</p>
+<pre><code class="language-json">{
+  &quot;parser-directories&quot;: [
+    &quot;/Users/my-name/code&quot;,
+    &quot;/Users/my-name/other-code&quot;
+  ]
+}
+</code></pre>
+<p>今のところ、これらの<em>parser-directories</em>のいずれかにある、名前が<code>tree-sitter-</code>で始まるフォルダは、Tree-sitterの文法リポジトリとして扱われる。</p>
+<h3><a class="header" href="#テーマ" id="テーマ">テーマ</a></h3>
+<p>Tree-sitterのハイライトシステムは、<code>function.method</code>、<code>type.builtin</code>、<code>keyword</code>などの論理的な「ハイライト名」でソースコードの範囲を注釈付けすることで動作する。
+各ハイライトのレンダリングに使用する色を決定するためには、<em>theme</em>が必要である。</p>
+<pre><code class="language-json">{
+  &quot;theme&quot;: {
+    &quot;function.method&quot;: &quot;blue&quot;,
+    &quot;type.builtin&quot;: &quot;green&quot;,
+    &quot;keyword&quot;: &quot;purple&quot;
+  }
+}
+</code></pre>
+<p>設定ファイルにおいて、<code>&quot;theme&quot;</code>の値は、<code>function.builtin</code>や<code>keyword</code>のようなドットで区切られたハイライト名であり、その値はテキストのスタイリングパラメータを表すJSONの式である。</p>
+<h4><a class="header" href="#ハイライト名" id="ハイライト名">ハイライト名</a></h4>
+<p>テーマは共通の部分文字列を持つ複数のキーを含むことができる。
+例えば、</p>
+<ul>
+<li><code>variable</code>,  <code>variable.parameter</code></li>
+<li><code>function</code>, <code>function.builtin</code>,  <code>function.method</code></li>
+</ul>
+<p>与えられたハイライトに対して、スタイリングに合致するテーマキーが複数存在する場合<strong>最も長いテーマキー</strong>が選択される。
+例えば、<code>function.builtin.static</code>というハイライトは、<code>function</code>よりも<code>function.builtin</code>にマッチする。</p>
+<h4><a class="header" href="#スタイリング値" id="スタイリング値">スタイリング値</a></h4>
+<p>スタイリング値は以下のいずれかである。</p>
+<ul>
+<li>ASNIのターミナルカラーIDを表す0から255までの整数。</li>
+<li><code>&quot;#e45649&quot;</code>のような16進RGBカラーを表す文字列。</li>
+<li><code>&quot;red&quot;</code>, <code>&quot;black&quot;</code>, <code>&quot;purple&quot;</code>, <code>&quot;cyan&quot;</code>といったANSIカラーを表す文字列。</li>
+<li>以下のキーを持つオブジェクト。
+<ul>
+<li><code>color</code> - 整数または上記の文字列。</li>
+<li><code>underline</code> - テキストを下線にするかどうかを示すブール値。</li>
+<li><code>italic</code> - テキストを斜体にするかどうかを示すブール値。</li>
+<li><code>bold</code> - テキストを太字にするかどうかを示すブール値。</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#言語設定" id="言語設定">言語設定</a></h2>
+<p><code>package.json</code>ファイルは<code>npm</code>のようなパッケージマネージャによって使用される。
+このファイルでは、Tree-sitter CLIはトップレベルの<code>&quot;tree-sitter&quot;</code>キーの下にネストされたデータを探す。
+このキーは、以下のキーを持つオブジェクトの配列を含むことが期待される。</p>
+<h3><a class="header" href="#基本" id="基本">基本</a></h3>
+<p>これらのキーはパーサに関する基本的な情報を指定する。</p>
+<ul>
+<li>
+<p><code>scope</code> (必須) - <code>&quot;source.js&quot;</code>のような言語を識別する文字列。現在我々は人気のある<a href="https://macromates.com/manual/en/language_grammars">TextMate grammars</a>や<a href="https://github.com/github/linguist">Linguist</a>で使用されるスコープ名に一致するよう努めている。</p>
+</li>
+<li>
+<p><code>path</code> (任意) - <code>package.json</code>を含むディレクトリから、実際の生成されたパーサを含む<code>src/</code>フォルダへの相対パス。デフォルト値は<code>&quot;.&quot;</code>（つまり<code>src/</code>は<code>package.json</code>と同じフォルダにある）であり、これを上書きする必要がある場合は非常に稀である。</p>
+</li>
+</ul>
+<h3><a class="header" href="#言語の検出" id="言語の検出">言語の検出</a></h3>
+<p>これらのキーは、与えられたファイルにどの言語を適用するかを決定するのに役立つ。</p>
+<ul>
+<li>
+<p><code>file-type</code> - ファイル名の接尾辞の配列。文法は、これらの接尾辞のいずれかで終わるファイルに使用される。接尾辞は<em>ファイル名全体</em>に一致する可能性があることに注意。</p>
+</li>
+<li>
+<p><code>first-line-regex</code> - ファイルの最初の行に対してテストされる正規表現パターン。この言語がファイルに適用されるかどうかを決定するために使用される。この正規表現が指定されている場合、この正規表現は言語がいずれの文法の<code>file-types</code>にも一致しないファイルに使用される。</p>
+</li>
+<li>
+<p><code>content-regex</code> - 上記の2つの基準を使用してファイルに複数の文法が一致した場合に、ファイルの内容に対してテストされる正規表現パターン。この正規表現に一致する場合、この文法は<code>content-regex</code>を持たない他の文法よりも優先される。正規表現が一致しない場合、<code>content-regex</code>を持たない文法がこの文法よりも優先される。</p>
+</li>
+<li>
+<p><code>injection-regex</code> - この言語が潜在的な<em>言語インジェクション</em>サイトに使用されるかどうかを決定するために、<em>言語名</em>に対してテストされる正規表現パターン。言語インジェクションについては、<a href="#%E8%A8%80%E8%AA%9E%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">後のセクション</a>で詳しく説明する。</p>
+</li>
+</ul>
+<h3><a class="header" href="#クエリパス" id="クエリパス">クエリパス</a></h3>
+<p>これらのキーは、<code>package.json</code>を含むディレクトリから、シンタックスハイライトを制御するファイルへの相対パスを指定する。</p>
+<ul>
+<li><code>highlights</code> - <em>ハイライトクエリ</em>へのパス。デフォルト値は<code>queries/highlights.scm</code>である。</li>
+<li><code>locals</code> - <em>ローカル変数クエリ</em>へのパス。デフォルト値は<code>queries/locals.scm</code>である。</li>
+<li><code>injections</code> - <em>インジェクションクエリ</em>へのパス。デフォルト値は<code>queries/injections.scm</code>である。</li>
+</ul>
+<p>これらの3つのファイルの動作については、次のセクションで説明する。</p>
+<h3><a class="header" href="#例" id="例">例</a></h3>
+<p>一般的に、<code>&quot;tree-sitter&quot;</code>配列は1つのオブジェクトだけを含めば十分で、そのオブジェクトにはいくつかのキーを指定するだけでよい。</p>
+<pre><code class="language-json">{
+  &quot;tree-sitter&quot;: [
+    {
+      &quot;scope&quot;: &quot;source.ruby&quot;,
+      &quot;file-types&quot;: [
+        &quot;rb&quot;,
+        &quot;gemspec&quot;,
+        &quot;Gemfile&quot;,
+        &quot;Rakefile&quot;
+      ],
+      &quot;first-line-regex&quot;: &quot;#!.*\\bruby$&quot;
+    }
+  ]
+}
+</code></pre>
+<h2><a class="header" href="#クエリ" id="クエリ">クエリ</a></h2>
+<p>Tree-sitterのシンタックスハイライトの仕組みは、Tree-sitterの構文木にパターンマッチングする一般的なシステムである<em>tree queries</em>に基づいている。
+tree queriesについての詳細は<a href="./using-parsers#pattern-matching-with-queries">このセクション</a>を参照せよ。</p>
+<p>シンタックスハイライトは、<code>queries</code>フォルダに格納される3種類のクエリファイルによって制御される。
+デフォルトでは、クエリファイルの名前は<code>.scm</code>ファイルを使用する。
+この拡張子を採用した理由は、クエリがLispの一般的な方言である<a href="https://ja.wikipedia.org/wiki/Scheme">Scheme</a>に似た構文を使用しているためである。</p>
+<p>また、<code>.scm</code>を「Source Code Matching」の略と考えることもできる。</p>
+<h3><a class="header" href="#ハイライトクエリ" id="ハイライトクエリ">ハイライトクエリ</a></h3>
+<p>最も重要なクエリは、ハイライトクエリである。
+ハイライトクエリは、異なるノードに任意の<em>ハイライト名</em>を割り当てるために<em>キャプチャ</em>を使用する。
+各ハイライト名には、それぞれ色が割り当てられる（<a href="#theme">上記</a>参照）。
+一般的に使用されるハイライト名には、<code>keyword</code>、<code>function</code>、<code>type</code>、<code>property</code>、<code>string</code>などがある。
+ハイライト名は、<code>function.builtin</code>のようにドットで区切ることもできる。</p>
+<h4><a class="header" href="#例-1" id="例-1">例</a></h4>
+<p>例として、下記のGo言語のコードを考える。</p>
+<pre><code class="language-go">func increment(a int) int {
+    return a + 1
+}
+</code></pre>
+<p>構文木は下記の通りである。</p>
+<pre><code>(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter_declaration
+        name: (identifier)
+        type: (type_identifier)))
+    result: (type_identifier)
+    body: (block
+      (return_statement
+        (expression_list
+          (binary_expression
+            left: (identifier)
+            right: (int_literal)))))))
+</code></pre>
+<h4><a class="header" href="#クエリの例" id="クエリの例">クエリの例</a></h4>
+<p>下記の色でこのコードをレンダリングしたいとする。</p>
+<ul>
+<li>キーワード<code>func</code>と<code>return</code>は紫色</li>
+<li>関数<code>increment</code>は青色</li>
+<li>型<code>int</code>は緑色</li>
+<li>数字<code>5</code>は茶色</li>
+</ul>
+<p>下記のようなクエリを使用することで、それぞれのカテゴリに<em>ハイライト名</em>を割り当てることができる。</p>
+<pre><code>; highlights.scm
+
+&quot;func&quot; @keyword
+&quot;return&quot; @keyword
+(type_identifier) @type
+(int_literal) @number
+(function_declaration name: (identifier) @function)
+</code></pre>
+<p>設定ファイルでは、これらのハイライト名を色にマッピングすることができる。</p>
+<pre><code class="language-json">{
+  &quot;theme&quot;: {
+    &quot;keyword&quot;: &quot;purple&quot;,
+    &quot;function&quot;: &quot;blue&quot;,
+    &quot;type&quot;: &quot;green&quot;,
+    &quot;number&quot;: &quot;brown&quot;
+  }
+}
+</code></pre>
+<h4><a class="header" href="#結果" id="結果">結果</a></h4>
+<p><code>tree-sitter highlight</code>をこのGoファイルで実行すると、次のような出力が得られる。</p>
+<pre class='highlight' style='border: 1px solid #aaa;'>
+<span style='color: purple;'>func</span> <span style='color: #005fd7;'>increment</span>(<span>a</span> <span style='color: green;'>int</span>) <span style='color: green;'>int</span> {
+    <span style='color: purple;'>return</span> <span>a</span> <span style='font-weight: bold;color: #4e4e4e;'>+</span> <span style='font-weight: bold;color: #875f00;'>1</span>
+}
+</pre>
+<h3><a class="header" href="#ローカル変数" id="ローカル変数">ローカル変数</a></h3>
+<p>優れたシンタックスハイライトは、コード内の異なる<em>エンティティ</em>を素早く区別できるようにする。
+理想的には、特定のエンティティが<em>複数</em>の場所に現れる場合、それぞれの場所で同じ色で表示されるべきである。
+Tree-sitterのシンタックスハイライトシステムは、ローカルスコープと変数を追跡することで、これを実現する。</p>
+<p><em>ローカル変数</em>クエリは、<em>任意の</em>キャプチャ名を使用しそれを色にマッピングするハイライトへクリと異なり、特別な意味を持つ固定されたキャプチャ名を使用する。</p>
+<p>キャプチャ名は以下の通りである。</p>
+<ul>
+<li><code>@local.scope</code> - シンタックスノードが新しいローカルスコープを導入することを示す。</li>
+<li><code>@local.definition</code> - シンタックスノードが現在のローカルスコープ内の定義の<em>名前</em>を含むことを示す。</li>
+<li><code>@local.reference</code> - シンタックスノードが、いくつかの包含スコープ内の以前の定義を参照する<em>名前</em>を含むことを示す。</li>
+</ul>
+<p>ファイルをハイライトするとき、tree-sitterは与えられた位置を含むスコープの集合と、各スコープ内の定義の集合を追跡する。
+<code>local.reference</code>としてキャプチャされた構文ノードを処理するとき、Tree-sitterはノードのテキストに一致する名前の定義を検索する。
+一致するものが見つかった場合、Tree-sitterは<em>参照</em>と<em>定義</em>が同じ色で表示されるようにする。</p>
+<p>このクエリによって生成された情報は、ハイライトクエリによっても<em>使用</em>される。
+ローカル変数として識別されたノードに対して<code>(#is-not? local)</code>述語をパターンに追加することで、そのパターンを無効にすることができる。</p>
+<h4><a class="header" href="#例-2" id="例-2">例</a></h4>
+<p>下記のRubyコードを考える。</p>
+<pre><code class="language-ruby">def process_list(list)
+  context = current_context
+  list.map do |item|
+    process_item(item, context)
+  end
+end
+
+item = 5
+list = [item]
+</code></pre>
+<p>構文木は下記の通りである。</p>
+<pre><code>(program
+  (method
+    name: (identifier)
+    parameters: (method_parameters
+      (identifier))
+    (assignment
+      left: (identifier)
+      right: (identifier))
+    (method_call
+      method: (call
+        receiver: (identifier)
+        method: (identifier))
+      block: (do_block
+        (block_parameters
+          (identifier))
+        (method_call
+          method: (identifier)
+          arguments: (argument_list
+            (identifier)
+            (identifier))))))
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (array
+      (identifier))))
+</code></pre>
+<p>メソッドの中にはいくつかの異なる種類の名前がある。</p>
+<ul>
+<li><code>process_list</code>はメソッドである。</li>
+<li>メソッド内で<code>list</code>は形式パラメータである。</li>
+<li><code>context</code>はローカル変数である。</li>
+<li><code>current_context</code>はローカル変数ではないので、メソッドである。</li>
+<li>doブロック内で、<code>item</code>は形式パラメータである。</li>
+<li>さらに、<code>item</code>と<code>list</code>はどちらもローカル変数である（形式パラメータではない）。</li>
+</ul>
+<h4><a class="header" href="#クエリの例-1" id="クエリの例-1">クエリの例</a></h4>
+<p>これらの名前の種類を明確に区別できるようにするために、いくつかのクエリを示す。
+まず、前のセクションで説明したように、ハイライトクエリを設定する。
+メソッド呼び出し、メソッド定義、形式パラメータに異なる色を割り当てる。</p>
+<pre><code>; highlights.scm
+
+(call method: (identifier) @function.method)
+(method_call method: (identifier) @function.method)
+
+(method name: (identifier) @function.method)
+
+(method_parameters (identifier) @variable.parameter)
+(block_parameters (identifier) @variable.parameter)
+
+((identifier) @function.method
+ (#is-not? local))
+</code></pre>
+<p>その後、変数とスコープを追跡するためのローカル変数クエリを設定する。
+ここでは、メソッドとブロックがローカル<em>スコープ</em>を作成し、パラメータと代入が<em>定義</em>を作成し、他の識別子は<em>参照</em>として扱われることを示している。</p>
+<pre><code>; locals.scm
+
+(method) @local.scope
+(do_block) @local.scope
+
+(method_parameters (identifier) @local.definition)
+(block_parameters (identifier) @local.definition)
+
+(assignment left:(identifier) @local.definition)
+
+(identifier) @local.reference
+</code></pre>
+<h4><a class="header" href="#結果-1" id="結果-1">結果</a></h4>
+<p>rubyファイルで<code>tree-sitter highlight</code>を実行すると、次のような出力が得られる。</p>
+<pre class='highlight' style='border: 1px solid #aaa;'>
+<span style='color: purple;'>def</span> <span style='color: #005fd7;'>process_list</span><span style='color: #4e4e4e;'>(</span><span style='text-decoration: underline;'>list</span><span style='color: #4e4e4e;'>)</span>
+  <span>context</span> <span style='font-weight: bold;color: #4e4e4e;'>=</span> <span style='color: #005fd7;'>current_context</span>
+  <span style='text-decoration: underline;'>list</span><span style='color: #4e4e4e;'>.</span><span style='color: #005fd7;'>map</span> <span style='color: purple;'>do</span> |<span style='text-decoration: underline;'>item</span>|
+    <span style='color: #005fd7;'>process_item</span>(<span style='text-decoration: underline;'>item</span><span style='color: #4e4e4e;'>,</span> <span>context</span><span style='color: #4e4e4e;'>)</span>
+  <span style='color: purple;'>end</span>
+<span style='color: purple;'>end</span>
+
+<span>item</span> <span style='font-weight: bold;color: #4e4e4e;'>=</span> <span style='font-weight: bold;color: #875f00;'>5</span>
+<span>list</span> <span style='font-weight: bold;color: #4e4e4e;'>=</span> [<span>item</span><span style='color: #4e4e4e;'>]</span>
+</pre>
+<h3><a class="header" href="#言語インジェクション" id="言語インジェクション">言語インジェクション</a></h3>
+<p>いくつかのソースファイルには、複数の異なる言語で書かれたコードが含まれている。例としては、</p>
+<ul>
+<li>HTMLファイルは、<code>&lt;script&gt;</code>タグ内にJavaScript、<code>&lt;style&gt;</code>タグ内にCSSを含めることができる。</li>
+<li><a href="https://en.wikipedia.org/wiki/ERuby">ERB</a>ファイルは、<code>&lt;% %&gt;</code>タグ内にRubyを含み、それ以外の部分にHTMLを含めることができる。</li>
+<li>PHPファイルは、<code>&lt;php</code>タグ内にHTMLを含めることができる。</li>
+<li>JavaScriptファイルは、正規表現リテラル内に正規表現構文を含む。</li>
+<li>Rubyはヒアドキュメント内にコードスニペットを含むことができ、ヒアドキュメントの区切り文字にはそのコードスニペットの言語を示す語が使われる。</li>
+</ul>
+<p>これらの例はすべて、<em>親</em>構文木と、ノードの内部に存在する1つ以上の<em>インジェクション</em>構文木を使用してモデル化できる。
+言語インジェクションクエリを使用すると、これらの「インジェクション」を次のキャプチャを使用して指定できる。</p>
+<ul>
+<li><code>@injection.content</code> - キャプチャされたノードの内容を別の言語を使用して再解析することを示す。</li>
+<li><code>@injection.language</code> - キャプチャされたノードのテキストが、<code>@injection.content</code>を再解析するために使用される言語の<em>名前</em>を含む可能性があることを示す。</li>
+</ul>
+<p>言語インジェクションの動作は、パターンに関連付けられたいくつかのプロパティによっても設定できる。</p>
+<ul>
+<li><code>injection.language</code> - 特定の言語の名前をハードコードするために使用する。</li>
+<li><code>injection.combined</code> - 一致するノードの<em>すべて</em>の内容が<em>1つ</em>の入れ子ドキュメントとして解析されるべきであることを示す。</li>
+<li><code>injection.include-children</code> - <code>@injection.content</code>ノードの<em>全体</em>のテキストが再解析されるべきであることを示す。デフォルトでは、子ノードのテキストはインジェクトされたドキュメントから<em>除外</em>される。</li>
+</ul>
+<h4><a class="header" href="#例-3" id="例-3">例</a></h4>
+<p>下記のRubyコードを考える。</p>
+<pre><code class="language-ruby">system &lt;&lt;-BASH.strip!
+  abc --def | ghi &gt; jkl
+BASH
+</code></pre>
+<p>構文木は下記の通りである。</p>
+<pre><code>(program
+  (method_call
+    method: (identifier)
+    arguments: (argument_list
+      (call
+        receiver: (heredoc_beginning)
+        method: (identifier))))
+  (heredoc_body
+    (heredoc_end)))
+</code></pre>
+<p>下記のクエリは、ヒアドキュメントの内容を「BASH」という名前の言語を使用して解析することを指定する。(なぜなら、これは<code>heredoc_end</code>ノードのテキストであるため)</p>
+<pre><code>(heredoc_body
+  (heredoc_end) @injection.language) @injection.content
+</code></pre>
+<p><code>#set!</code>述語を使用して言語を強制することもできる。
+例えば、これは常に言語を<code>ruby</code>に強制する。</p>
+<pre><code>((heredoc_body) @injection.content
+ (#set! injection.language &quot;ruby&quot;))
+</code></pre>
+<h2><a class="header" href="#ユニットテスト" id="ユニットテスト">ユニットテスト</a></h2>
+<p>Tree-sitterは、シンタックスハイライトの結果を検証方法がするための組み込まれている。
+このインターフェースは、<a href="https://www.sublimetext.com/docs/3/syntax.html#testing">Sublime Textシンタックスハイライトのテスト</a>に基づいている。</p>
+<p>テストは、特別なフォーマットのコメントを含む通常のソースコードファイルとして書かれる。
+このコメントは、周囲のシンタックスハイライトについてのアサーションを行う。
+これらのファイルは、文法リポジトリの<code>test/highlight</code>ディレクトリに格納される。</p>
+<p>ここにJavaScriptのシンタックスハイライトテストの例を示す。</p>
+<pre><code class="language-js">var abc = function(d) {
+  // &lt;- keyword
+  //          ^ keyword
+  //               ^ variable.parameter
+  // ^ function
+
+  if (a) {
+  // &lt;- keyword
+  // ^ punctuation.bracket
+
+    foo(`foo ${bar}`);
+    // &lt;- function
+    //    ^ string
+    //          ^ variable
+  }
+};
+</code></pre>
+<p>以下はSublime Textのドキュメントからの引用である。</p>
+<blockquote>
+<p>The two types of tests are:</p>
+<p><strong>Caret</strong>: ^ this will test the following selector against the scope on the most recent non-test line. It will test it at the same column the ^ is in. Consecutive ^s will test each column against the selector.</p>
+<p><strong>Arrow</strong>: &lt;- this will test the following selector against the scope on the most recent non-test line. It will test it at the same column as the comment character is in.</p>
+</blockquote>
+<p>下記は上記のドキュメントの日本語訳である</p>
+<blockquote>
+<p><strong>キャレット</strong>: ^ これは、直近の非テスト行のスコープに対して、次のセレクタをテストする。 ^がある列でテストする。連続する^は、各列をセレクタに対してテストします。
+<strong>アロー</strong>: &lt;- これは、直近の非テスト行のスコープに対して、次のセレクタをテストする。コメント文字がある列でテストする。</p>
+</blockquote>
+<!-- textlint-enable -->
+<p><a href="./section-3-creating-parsers.html">前のページ(パーサを作る)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-5-implementation.html">次のページ(Tree-sitterの実装)</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="section-3-creating-parsers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="section-5-implementation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="section-3-creating-parsers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="section-5-implementation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+            window.clip_buttons = true;
+            window.tryit_buttons = false;
+            window.side_bar = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

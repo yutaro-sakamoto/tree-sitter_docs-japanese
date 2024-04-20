@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>実装 - My first Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">概要</a></li><li class="chapter-item expanded "><a href="section-2-using-parsers.html"><strong aria-hidden="true">1.</strong> パーサを使う</a></li><li class="chapter-item expanded "><a href="section-3-creating-parsers.html"><strong aria-hidden="true">2.</strong> パーサを作る</a></li><li class="chapter-item expanded "><a href="section-4-syntax-highlighting.html"><strong aria-hidden="true">3.</strong> シンタックスハイライト</a></li><li class="chapter-item expanded "><a href="section-5-implementation.html" class="active"><strong aria-hidden="true">4.</strong> 実装</a></li><li class="chapter-item expanded "><a href="section-6-contributing.html"><strong aria-hidden="true">5.</strong> コントリビュート</a></li><li class="chapter-item expanded "><a href="section-7-playground.html"><strong aria-hidden="true">6.</strong> Playground</a></li><li class="chapter-item expanded "><a href="section-8-code-navigation-systems.html"><strong aria-hidden="true">7.</strong> コードナビゲーションシステム</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">My first Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><a href="./section-4-syntax-highlighting.html">前のページ(シンタックスハイライター)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-6-contributing.html">次のページ(コントリビュート)</a></p>
+<h1><a class="header" href="#実装" id="実装">実装</a></h1>
+<p>Tree-sitterCライブラリ（<code>libtree-sitter</code>）とコマンドラインツール（<code>tree-sitter</code> CLI）の2つのコンポーネントで構成されている。</p>
+<p><code>libtree-sitter</code>はCLIで生成されたパーサーと組み合わせて、ソースコードから構文木を生成し、ソースコードが変更されるたびに構文木を最新の状態に保つ。
+<code>libtree-sitter</code>はプレーンなC言語で書かれ、アプリケーションに埋め込むことを想定して設計されている。
+そのインターフェースはヘッダファイル<a href="https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h"><code>tree_sitter/api.h</code></a>で定義される。</p>
+<p>CLIは、言語を記述する文脈自由文法を提供することで、言語のパーサーを生成できる。
+CLIはビルドツールであり、一度パーサーが生成されると不要になる。
+パーサはRustで書かれており、<a href="https://crates.io">crates.io</a>や<a href="http://npmjs.com">npm</a>から利用でき、またビルド済みバイナリを<a href="https://github.com/tree-sitter/tree-sitter/releases/latest">GitHub</a>からダウンロードできる。</p>
+<h2><a class="header" href="#the-cli" id="the-cli">The CLI</a></h2>
+<p><code>tree-sitter</code> CLIの最も重要な機能は、サブコマンドの<code>generate</code>である。
+このサブコマンドは文脈自由文法を<code>grammar.js</code>というファイルから読み込み、<code>parser.c</code>というCファイルとしてパーサを出力する。
+<a href="https://github.com/tree-sitter/tree-sitter/tree/master/cli/src"><code>cli/src</code></a>ディレクトリのソースコードは、<code>parser.c</code>の生成に使用される。
+このセクションでは、この生成プロセスのいくつかの重要な部分について説明する。</p>
+<!-- textlint-disable -->
+<h3><a class="header" href="#文法のパース" id="文法のパース">文法のパース</a></h3>
+<p>はじめに、Tree-sitterは<code>grammar.js</code>のJavaScriptコードを評価し、文法をJSON形式に変換する必要がある。
+これは<code>node</code>を使って行われる。 
+文法のフォーマットは<a href="https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/grammar-schema.json">grammar-schema.json</a>によって規定される。
+パースは<a href="https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/parse_grammar.rs">parse_grammar.rs</a>に実装される。</p>
+<h3><a class="header" href="#文法ルール" id="文法ルール">文法ルール</a></h3>
+<p>tree-sitterの文法はルールの集合からなる
+。これらのルールは、構文ノードが他の構文ノードからどのように構成されるかを記述するオブジェクトである。
+ルールにはいくつかのタイプがある: シンボル、文字列、正規表現、シーケンス、選択、繰り返し、その他。
+内部ではこれらはすべて<a href="https://github.com/tree-sitter/tree-sitter/blob/master/cli/src/generate/rules.rs"><code>Rule</code></a>と呼ばれる<a href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html">enum</a>を使って表現される。</p>
+<h3><a class="header" href="#preparing-a-grammar" id="preparing-a-grammar">Preparing a Grammar</a></h3>
+<p>一度文法が解析されると、パーサを生成するためにいくつかの方法で変換する必要がある。
+各変換は<a href="https://github.com/tree-sitter/tree-sitter/tree/master/cli/src/generate/prepare_grammar"><code>prepare_grammar</code></a>ディレクトリの中の
+個々のファイルで実装され、最終的には<code>prepare_grammar/mod.rs</code>で統合される。</p>
+<p>これらの変換の最後に、初期の文法は<em>構文文法</em>と<em>レキシカル文法の</em>2つの文法に分割される。
+構文の文法は、言語の<a href="https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols"><em>非終端記号</em></a>が
+他の文法記号からどのように構成されるかを記述し、字句の文法は文法の<em>終端記号</em>（文字列と正規表現）が個々の文字からどのように構成されるかを記述する。</p>
+<h3><a class="header" href="#building-parse-tables" id="building-parse-tables">Building Parse Tables</a></h3>
+<h2><a class="header" href="#the-runtime" id="the-runtime">The Runtime</a></h2>
+<p>WIP</p>
+<!-- textlint-enable -->
+<p><a href="./section-4-syntax-highlighting.html">前のページ(シンタックスハイライター)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-6-contributing.html">次のページ(コントリビュート)</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="section-4-syntax-highlighting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="section-6-contributing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="section-4-syntax-highlighting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="section-6-contributing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+            window.clip_buttons = true;
+            window.tryit_buttons = false;
+            window.side_bar = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>パーサを使う - My first Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">概要</a></li><li class="chapter-item expanded "><a href="section-2-using-parsers.html" class="active"><strong aria-hidden="true">1.</strong> パーサを使う</a></li><li class="chapter-item expanded "><a href="section-3-creating-parsers.html"><strong aria-hidden="true">2.</strong> パーサを作る</a></li><li class="chapter-item expanded "><a href="section-4-syntax-highlighting.html"><strong aria-hidden="true">3.</strong> シンタックスハイライト</a></li><li class="chapter-item expanded "><a href="section-5-implementation.html"><strong aria-hidden="true">4.</strong> 実装</a></li><li class="chapter-item expanded "><a href="section-6-contributing.html"><strong aria-hidden="true">5.</strong> コントリビュート</a></li><li class="chapter-item expanded "><a href="section-7-playground.html"><strong aria-hidden="true">6.</strong> Playground</a></li><li class="chapter-item expanded "><a href="section-8-code-navigation-systems.html"><strong aria-hidden="true">7.</strong> コードナビゲーションシステム</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">My first Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><a href="./index.html">前のページ(トップページ)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-3-creating-parsers.html">次のページ(パーサを作る)</a></p>
+<h1><a class="header" href="#パーサを使う" id="パーサを使う">パーサを使う</a></h1>
+<p>Tree-sitterのパーサ機能はすべてC言語のAPIから利用可能である。高級言語で書かれたアプリケーションは、<a href="https://github.com/tree-sitter/node-tree-sitter">node-tree-sitter</a>や<a href="https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust">tree-sitter rust crate</a>のようなバインディングライブラリを介してTree-sitterを利用できる。また、これらには独自のドキュメントが存在する。</p>
+<p>この文書では、使用している言語に関係なく関連する、Tree-sitterの使用方法に関する一般的な概念について説明する。また、C言語APIを直接使用している場合や、異なる言語への新しいバインディングを構築している場合に役立つ、C言語固有の詳細についても説明する。</p>
+<p>ここで紹介するAPI関数は、<a href="https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h"><code>tree_sitter/api.h</code></a>で宣言され、文書化されている。また、C言語APIと密接に対応する<a href="https://docs.rs/tree-sitter/latest/tree_sitter/">Rust APIドキュメント</a>を参照するとよい。</p>
+<h2><a class="header" href="#はじめに" id="はじめに">はじめに</a></h2>
+<h3><a class="header" href="#ライブラリのビルド" id="ライブラリのビルド">ライブラリのビルド</a></h3>
+<p>POSIXシステム上でライブラリをビルドするには、Tree-sitterディレクトリで<code>make</code>を実行するだけである。これにより、動的ライブラリの他に、<code>libtree-sitter.a</code>という静的ライブラリが作成される。</p>
+<p>また、大規模なプロジェクトのビルドシステムにこのライブラリを組み込むには、下記のソースファイルを追加する。このソースファイルをコンパイルするには、インクルードパスに下記の2つのディレクトリを追加する必要がある。</p>
+<p><strong>ソースファイル:</strong></p>
+<ul>
+<li><code>tree-sitter/lib/src/lib.c</code></li>
+</ul>
+<p><strong>インクルードディレクトリ:</strong></p>
+<ul>
+<li><code>tree-sitter/lib/src</code></li>
+<li><code>tree-sitter/lib/include</code></li>
+</ul>
+<h3><a class="header" href="#基本オブジェクト" id="基本オブジェクト">基本オブジェクト</a></h3>
+<p>Tree-sitterを使用する際には、言語・パーサ・構文木・構文ノードに対応する4種類のオブジェクトを利用する。C言語APIでは、これらを<code>TSLanguage</code>・<code>TSParser</code>・<code>TSTree</code>・<code>TSNode</code>として定義する。</p>
+<ul>
+<li><code>TSLanguage</code>は、解析対象のプログラミング言語をどのようにパースするかを定義するオブジェクトである。各<code>TSLanguage</code>のコードは、Tree-sitterによって生成される。多くの言語は、<a href="https://github.com/tree-sitter">Tree-sitterのGitHub Organization</a>の個別のGitリポジトリから利用可能である。新しい言語のパーサを作成するには<a href="./section-3-creating-parsers.html">次のページ</a>を参照せよ。</li>
+<li><code>TSParser</code>は、<code>TSLanguage</code>を割り当てられ、あるソースコードに基づいてTSTreeを生成するために使用できるステートフルなオブジェクトである。</li>
+<li><code>TSTree</code>は、ソースコード全体の構文木を表す。この構文木は、ソースコードの構造を示す<code>TSNode</code>インスタンスを含む。またソースコードが変更時に、<code>TSTree</code>を編集することで新しい<code>TSTree</code>を生成できる。</li>
+<li><code>TSNode</code>は、構文木に含まれるある1つのノードを表す。<code>TSNode</code>はソースコード内における開始位置・終了位置や親ノード・兄弟ノード・子ノードなどの他のノードとの関係に関する情報を保持する。</li>
+</ul>
+<h3><a class="header" href="#サンプルプログラム" id="サンプルプログラム">サンプルプログラム</a></h3>
+<p>以下はTree-sitterの<a href="https://github.com/tree-sitter/tree-sitter-json">JSONパーサ</a>を利用するC言語のサンプルプログラムである。</p>
+<pre><code class="language-c">// ファイル名 - test-json-parser.c
+
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;tree_sitter/api.h&gt;
+
+// `tree-sitter-json`ライブラリで実装された`tree_sitter_json`関数の宣言
+TSLanguage *tree_sitter_json();
+
+int main() {
+  // パーサの作成
+  TSParser *parser = ts_parser_new();
+
+  // パーサの言語(この例ではJSON)を設定する
+  ts_parser_set_language(parser, tree_sitter_json());
+
+  // ソースコードを格納した文字列から構文木を作成する
+  const char *source_code = &quot;[1, null]&quot;;
+  TSTree *tree = ts_parser_parse_string(
+    parser,
+    NULL,
+    source_code,
+    strlen(source_code)
+  );
+
+  // 構文木のルートノードを取得する
+  TSNode root_node = ts_tree_root_node(tree);
+
+  // 子ノードを取得をする
+  TSNode array_node = ts_node_named_child(root_node, 0);
+  TSNode number_node = ts_node_named_child(array_node, 0);
+
+  // ノードが期待通りの型を持つかを検査する
+  assert(strcmp(ts_node_type(root_node), &quot;document&quot;) == 0);
+  assert(strcmp(ts_node_type(array_node), &quot;array&quot;) == 0);
+  assert(strcmp(ts_node_type(number_node), &quot;number&quot;) == 0);
+
+  // ノードが期待通りの数の子ノードを持つかを検査する
+  assert(ts_node_child_count(root_node) == 1);
+  assert(ts_node_child_count(array_node) == 5);
+  assert(ts_node_named_child_count(array_node) == 2);
+  assert(ts_node_child_count(number_node) == 0);
+
+  // 構文木をS式として出力する
+  char *string = ts_node_string(root_node);
+  printf(&quot;Syntax tree: %s\n&quot;, string);
+
+  // ヒープメモリに確保したデータを解放する
+  free(string);
+  ts_tree_delete(tree);
+  ts_parser_delete(parser);
+  return 0;
+}
+</code></pre>
+<p>このプログラムは<code>tree-sitter/api.h</code>で宣言されたC言語APIを利用しているため、<code>tree-sitter/lib/include</code>をインクルードパスに追加する必要がある。
+また、<code>libtree-sitter.a</code> をバイナリにリンクする必要もある。
+JSONのソースコードもバイナリに直接コンパイルしている。</p>
+<pre><code class="language-sh">clang                                   \
+  -I tree-sitter/lib/include            \
+  test-json-parser.c                    \
+  tree-sitter-json/src/parser.c         \
+  tree-sitter/libtree-sitter.a          \
+  -o test-json-parser
+
+./test-json-parser
+</code></pre>
+<h2><a class="header" href="#構文解析の基礎" id="構文解析の基礎">構文解析の基礎</a></h2>
+<h3><a class="header" href="#ソースコードを引き渡す" id="ソースコードを引き渡す">ソースコードを引き渡す</a></h3>
+<p>上記の例では<code>ts_parser_parse_string</code>を使って、stringに格納されたソースコードをパースした。</p>
+<pre><code class="language-c">TSTree *ts_parser_parse_string(
+  TSParser *self,
+  const TSTree *old_tree,
+  const char *string,
+  uint32_t length
+);
+</code></pre>
+<p><a href="https://en.wikipedia.org/wiki/Piece_table">piece table</a>や<a href="https://en.wikipedia.org/wiki/Rope_(data_structure)">rope</a>等の独自のデータ構造に格納されたデータを構文解析したい場合は、<code>ts_parser_parse</code>関数を使用する。</p>
+<pre><code class="language-c">TSTree *ts_parser_parse(
+  TSParser *self,
+  const TSTree *old_tree,
+  TSInput input
+);
+</code></pre>
+<p><code>TSInput</code>構造体を使うことで、与えられたバイトオフセットと行/列の位置でテキストのチャンクを読み取るための独自の関数を指定できる。この関数は、UTF-8またはUTF-16でエンコードされたテキストを返す。このインタフェースにより、独自のデータ構造に格納されたテキストを効率的に解析できる。</p>
+<pre><code class="language-c">typedef struct {
+  void *payload;
+  const char *(*read)(
+    void *payload,
+    uint32_t byte_offset,
+    TSPoint position,
+    uint32_t *bytes_read
+  );
+  TSInputEncoding encoding;
+} TSInput;
+</code></pre>
+<h3><a class="header" href="#構文ノード" id="構文ノード">構文ノード</a></h3>
+<p>Tree-sitterは構文木を検査するために、<a href="https://ja.wikipedia.org/wiki/Document_Object_Model">DOM</a>に類似したインタフェースを提供する。構文ノードの型は、そのノードがどの文法規則を表しているかを示す文字列である。</p>
+<pre><code class="language-c">const char *ts_node_type(TSNode);
+</code></pre>
+<p>構文ノードは、ソースコード内の位置を先頭バイトからのオフセットと行／列の両方の形式で保持する。</p>
+<pre><code class="language-c">uint32_t ts_node_start_byte(TSNode);
+uint32_t ts_node_end_byte(TSNode);
+
+typedef struct {
+  uint32_t row;
+  uint32_t column;
+} TSPoint;
+
+TSPoint ts_node_start_point(TSNode);
+TSPoint ts_node_end_point(TSNode);
+</code></pre>
+<h3><a class="header" href="#ノードの取得" id="ノードの取得">ノードの取得</a></h3>
+<p>すべての構文木はルートノードを持つ。</p>
+<pre><code class="language-c">TSNode ts_tree_root_node(const TSTree *);
+</code></pre>
+<p>任意のノードに対して、その子ノードにアクセスできる。</p>
+<pre><code class="language-c">uint32_t ts_node_child_count(TSNode);
+TSNode ts_node_child(TSNode, uint32_t);
+</code></pre>
+<p>兄弟ノードや親ノードにもアクセスできる。</p>
+<pre><code class="language-c">TSNode ts_node_next_sibling(TSNode);
+TSNode ts_node_prev_sibling(TSNode);
+TSNode ts_node_parent(TSNode);
+</code></pre>
+<p>これらの関数はnullノードを返す場合がある。例えば、<code>ts_node_next_sibling</code>関数がnullノードを返した場合、次の兄弟ノードが存在しないことを示す。
+与えられたノードがnullノードかを検査できる。</p>
+<pre><code class="language-c">bool ts_node_is_null(TSNode);
+</code></pre>
+<h3><a class="header" href="#名前付きノードと匿名ノード" id="名前付きノードと匿名ノード">名前付きノードと匿名ノード</a></h3>
+<p>Tree-sitterは<a href="https://ja.wikipedia.org/wiki/%E6%A7%8B%E6%96%87%E6%9C%A8">具象構文木</a>を生成する。具象構文木はコンマやカッコを含めたソースコードの全トークンの情報を保持する。<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">シンタックスハイライト</a>のように全トークンを処理する場合は、この機能は重要である。
+しかし、使用用途によっては<a href="https://ja.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E6%A7%8B%E6%96%87%E6%9C%A8">抽象構文木</a>を利用するほうが、解析が簡単である。抽象構文木とは具象構文木から重要度の低い情報を削除した木構造のデータである。
+Tree-sitterの構文木は、<em>名前付きノード</em> と <em>匿名ノード</em> の2つのノードを使うことで両方の使用方法をサポートする。</p>
+<p>下記のような文法定義を考える。</p>
+<pre><code class="language-js">if_statement: ($) =&gt; seq(&quot;if&quot;, &quot;(&quot;, $._expression, &quot;)&quot;, $._statement);
+</code></pre>
+<p>この言語における<code>if_statement</code>が表す構文木は、条件式・（条件式がtrueのときに実行すべき）文・<code>if</code>・<code>(</code>・<code>)</code>の5つの子ノードを持つ。
+条件式（<code>$._expression</code>）と文（<code>$._statement</code>）は、文法定義の中で明示的に名前を与えられているため <em>名前付きノード</em> である。
+一方で<code>if</code>・<code>(</code>・<code>)</code>は、文法定義上は単なる文字列のため、名前付きノードではない（<em>匿名ノード</em> である）。</p>
+<p>与えられたノードが名前付きノードであるかを検査できる。</p>
+<pre><code class="language-c">bool ts_node_is_named(TSNode);
+</code></pre>
+<p>構文木を走査するときに、<code>_named_</code>を関数名に含む関数を使用することで、匿名ノードを読み飛ばせる。</p>
+<pre><code class="language-c">TSNode ts_node_named_child(TSNode, uint32_t);
+uint32_t ts_node_named_child_count(TSNode);
+TSNode ts_node_next_named_sibling(TSNode);
+TSNode ts_node_prev_named_sibling(TSNode);
+</code></pre>
+<p>これらの関数を使用することで、構文木は抽象構文木のように扱える。</p>
+<h3><a class="header" href="#ノードのフィールド名" id="ノードのフィールド名">ノードのフィールド名</a></h3>
+<!-- textlint-disable -->
+<p>構文木の解析を容易にするために、多くの文法定義では一意な <em>フィールド名</em> を一部の子ノードに付与する。</p>
+<!-- textlint-enable -->
+<p>フィールドが存在する場合、フィールド名を介して子ノードにアクセスできる。</p>
+<pre><code class="language-c">TSNode ts_node_child_by_field_name(
+  TSNode self,
+  const char *field_name,
+  uint32_t field_name_length
+);
+</code></pre>
+<p>フィールドは数値のIDも持っており、文字列の比較を繰り返したくない場合に利用できる。文字列とIDの変換には <code>TSLanguage</code> を使用できる。</p>
+<pre><code class="language-c">uint32_t ts_language_field_count(const TSLanguage *);
+const char *ts_language_field_name_for_id(const TSLanguage *, TSFieldId);
+TSFieldId ts_language_field_id_for_name(const TSLanguage *, const char *, uint32_t);
+</code></pre>
+<p>フィールドIDはフィールド名の代わりに使用できる。</p>
+<pre><code class="language-c">TSNode ts_node_child_by_field_id(TSNode, TSFieldId);
+</code></pre>
+<h2><a class="header" href="#応用的な構文解析" id="応用的な構文解析">応用的な構文解析</a></h2>
+<h3><a class="header" href="#編集" id="編集">編集</a></h3>
+<p>テキストエディタのようなアプリケーションでは、ソースコードが変更されたら再度ソースコードを構文解析する必要がある。Tree-sitterはこのようなユースケースにも対応できるように設計されている。まず最初に、構文木を編集し、ノードの範囲を調整し、ソースコードと同期させる必要がある。</p>
+<pre><code class="language-c">typedef struct {
+  uint32_t start_byte;
+  uint32_t old_end_byte;
+  uint32_t new_end_byte;
+  TSPoint start_point;
+  TSPoint old_end_point;
+  TSPoint new_end_point;
+} TSInputEdit;
+
+void ts_tree_edit(TSTree *, const TSInputEdit *);
+</code></pre>
+<p>そして、古い構文木を渡して再び <code>ts_parser_parse</code> を呼び出す。これは、内部的に古い構文木と構造を共有する新しい構文木を作成しする。</p>
+<p>構文木を編集すると、そのノードの位置が変化する。<code>TSTree</code>の外側に<code>TSNode</code>インスタンスを保存している場合、キャッシュされた位置を更新するために、同じ<code>TSInput</code>値を使用して、それらの位置を個別に更新する必要がある。</p>
+<pre><code class="language-c">void ts_node_edit(TSNode *, const TSInputEdit *);
+</code></pre>
+<p>この<code>ts_node_edit</code>関数は、構文木を編集する前に<code>TSNode</code>インスタンスを取得しておき、構文木を編集した後もその特定のノードインスタンスを使用したい場合にのみ必要である。多くの場合、編集したツリーからノードを再取得したいだけのため、<code>ts_node_edit</code>関数は必要ない。</p>
+<h3><a class="header" href="#複数の言語を含む言語の構文解析" id="複数の言語を含む言語の構文解析">複数の言語を含む言語の構文解析</a></h3>
+<!-- textlint-disable -->
+<p>1つのファイルに複数の言語が記載される場合がある。</p>
+<!-- textlint-enable -->
+<p>例えば<a href="https://ejs.co/">EJS</a>や<a href="https://ruby-doc.org/stdlib-2.5.1/libdoc/erb/rdoc/ERB.html">ERB</a>といったテンプレート言語では、JavascriptやRubyのような別の言語を混ぜて書くことでHTMLを生成する。</p>
+<p>Tree-sitterは、ファイルの特定の範囲にあるテキストを基に構文木を作成することで、このような種類のドキュメントを扱う。</p>
+<pre><code class="language-c">typedef struct {
+  TSPoint start_point;
+  TSPoint end_point;
+  uint32_t start_byte;
+  uint32_t end_byte;
+} TSRange;
+
+void ts_parser_set_included_ranges(
+  TSParser *self,
+  const TSRange *ranges,
+  uint32_t range_count
+);
+</code></pre>
+<p>例えば、以下のようなERBドキュメントを考える。</p>
+<pre><code class="language-erb">&lt;ul&gt;
+  &lt;% people.each do |person| %&gt;
+    &lt;li&gt;&lt;%= person.name %&gt;&lt;/li&gt;
+  &lt;% end %&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>概念的には、範囲が重複する3つの構文木（ERB構文木、Ruby構文木、HTML構文木）で表せる。
+これらの構文木は次のようなコードによって生成できる。</p>
+<pre><code class="language-c">#include &lt;string.h&gt;
+#include &lt;tree_sitter/api.h&gt;
+
+// これらの関数は各リポジトリで実装されている
+const TSLanguage *tree_sitter_embedded_template();
+const TSLanguage *tree_sitter_html();
+const TSLanguage *tree_sitter_ruby();
+
+int main(int argc, const char **argv) {
+  const char *text = argv[1];
+  unsigned len = strlen(src);
+
+  // テキスト全体をERBとして構文解析を実行する
+  TSParser *parser = ts_parser_new();
+  ts_parser_set_language(parser, tree_sitter_embedded_template());
+  TSTree *erb_tree = ts_parser_parse_string(parser, NULL, text, len);
+  TSNode erb_root_node = ts_tree_root_node(erb_tree);
+
+  // ERB構文木において、HTMLを示す`content`ノードと挿入されたRubyを示す`code`ノードの範囲を見つける。
+  TSRange html_ranges[10];
+  TSRange ruby_ranges[10];
+  unsigned html_range_count = 0;
+  unsigned ruby_range_count = 0;
+  unsigned child_count = ts_node_child_count(erb_root_node);
+
+  for (unsigned i = 0; i &lt; child_count; i++) {
+    TSNode node = ts_node_child(erb_root_node, i);
+    if (strcmp(ts_node_type(node), &quot;content&quot;) == 0) {
+      html_ranges[html_range_count++] = (TSRange) {
+        ts_node_start_point(node),
+        ts_node_end_point(node),
+        ts_node_start_byte(node),
+        ts_node_end_byte(node),
+      };
+    } else {
+      TSNode code_node = ts_node_named_child(node, 0);
+      ruby_ranges[ruby_range_count++] = (TSRange) {
+        ts_node_start_point(code_node),
+        ts_node_end_point(code_node),
+        ts_node_start_byte(code_node),
+        ts_node_end_byte(code_node),
+      };
+    }
+  }
+
+  // HTMLを解析するために、HTMLの範囲を指定する
+  ts_parser_set_language(parser, tree_sitter_html());
+  ts_parser_set_included_ranges(parser, html_ranges, html_range_count);
+  TSTree *html_tree = ts_parser_parse_string(parser, NULL, text, len);
+  TSNode html_root_node = ts_tree_root_node(html_tree);
+
+  // Rubyを解析するために、Rubyの範囲を指定する
+  ts_parser_set_language(parser, tree_sitter_ruby());
+  ts_parser_set_included_ranges(parser, ruby_ranges, ruby_range_count);
+  TSTree *ruby_tree = ts_parser_parse_string(parser, NULL, text, len);
+  TSNode ruby_root_node = ts_tree_root_node(ruby_tree);
+
+  // 3つの構文木すべてを出力する
+  char *erb_sexp = ts_node_string(erb_root_node);
+  char *html_sexp = ts_node_string(html_root_node);
+  char *ruby_sexp = ts_node_string(ruby_root_node);
+  printf(&quot;ERB: %s\n&quot;, erb_sexp);
+  printf(&quot;HTML: %s\n&quot;, html_sexp);
+  printf(&quot;Ruby: %s\n&quot;, ruby_sexp);
+  return 0;
+}
+</code></pre>
+<p>このAPIにより、言語をどのように構成するかについて、高い柔軟性を持つ。
+Tree-sitterは言語間のインタラクションを媒介する責任はない。
+その代わり、任意のアプリケーション固有のロジックを使って、自由にそれを行える。</p>
+<h3><a class="header" href="#並行性" id="並行性">並行性</a></h3>
+<p>Tree-sitterは構文木のコピーを非常に軽量に実装することで、マルチスレッド処理もサポートする。</p>
+<pre><code class="language-c">TSTree *ts_tree_copy(const TSTree *);
+</code></pre>
+<p>内部的には、構文木をコピーすると、原子参照カウント（原文：atomic reference count）が増加するだけである。概念的には、異なるスレッドで元の構文木を使用しながら、新しいスレッドで自由に問い合わせ、編集、解析、削除できる新しい構文木を提供するものである。
+個々の<code>TSTree</code>インスタンスはスレッドセーフではないので、複数のスレッドで同時に使用したい場合は、構文木をコピーする必要があることに注意すること。</p>
+<h2><a class="header" href="#構文木に対するその他の操作" id="構文木に対するその他の操作">構文木に対するその他の操作</a></h2>
+<h3><a class="header" href="#カーソルを使った構文木の走査" id="カーソルを使った構文木の走査">カーソルを使った構文木の走査</a></h3>
+<p><a href="#retrieving-nodes">上記</a>の<code>TSNode</code> APIを使用して構文木のすべてのノードにアクセスできるが、多数のノードにアクセスする必要がある場合、カーソルを使用する方法が最も効率的である。
+カーソルは、最大限の効率で構文木を走査することを可能にするステートフルなオブジェクトである。</p>
+<p>任意のノードからカーソルの初期化を行える。</p>
+<pre><code class="language-c">TSTreeCursor ts_tree_cursor_new(TSNode);
+</code></pre>
+<p>カーソルを構文木の中で移動させられる。</p>
+<pre><code class="language-c">bool ts_tree_cursor_goto_first_child(TSTreeCursor *);
+bool ts_tree_cursor_goto_next_sibling(TSTreeCursor *);
+bool ts_tree_cursor_goto_parent(TSTreeCursor *);
+</code></pre>
+<p>これらの関数はカーソルの移動が成功した場合に<code>true</code>を返し、移動先のノードが存在しない場合は<code>false</code>を返す。</p>
+<p>カーソルの現在のノードと、現在のノードに関連するフィールド名を常に取得できる。</p>
+<pre><code class="language-c">TSNode ts_tree_cursor_current_node(const TSTreeCursor *);
+const char *ts_tree_cursor_current_field_name(const TSTreeCursor *);
+TSFieldId ts_tree_cursor_current_field_id(const TSTreeCursor *);
+</code></pre>
+<h2><a class="header" href="#パターンマッチを使ったクエリ" id="パターンマッチを使ったクエリ">パターンマッチを使ったクエリ</a></h2>
+<p>コード解析の多くは、構文木からパターンを探し出す作業である。
+Tree-sitterは、これらのパターンを表現し、マッチングを検索するための小さな宣言型言語を提供する。
+この言語はTree-sitterの<a href="./section-3-creating-parsers.html#command-test">ユニットテストシステム</a>のフォーマットと類似していする。</p>
+<h3><a class="header" href="#クエリの文法" id="クエリの文法">クエリの文法</a></h3>
+<p>クエリは1つ以上のパターンから構成され、各パターンは構文木における特定のノードの集合にマッチする<a href="https://ja.wikipedia.org/wiki/S%E5%BC%8F">S式</a>である。
+与えられたノードにマッチする式は、ノードの型と、オプションでそのノードの子にマッチする一連のS式を含む2つの括弧で構成される。
+たとえば、このパターンは、子ノードが両方とも<code>number_literal</code>ノードである<code>binary_expression</code>ノードにマッチする。</p>
+<pre><code class="language-scheme">(binary_expression (number_literal) (number_literal))
+</code></pre>
+<p>子ノードは省略できる。
+例えば、以下のクエリは<code>string_literal</code>の子ノードとして少なくとも1つ含むような<code>binary_expression</code>にマッチする。</p>
+<pre><code class="language-scheme">(binary_expression (string_literal))
+</code></pre>
+<h4><a class="header" href="#フィールド" id="フィールド">フィールド</a></h4>
+<p>一般に、子ノードに関連する<a href="#node-field-names">フィールド名</a>を指定して、パターンをより具体的に指定するのがよい。
+これは、子パターンの前にフィールド名を付け、その後にコロンを付けることで実現する。
+例えば、下記のパターンは、フィールド名<code>object</code>の子ノード<code>call_expression</code>とフィールド名<code>left</code>の子ノード<code>member_expression</code>を持つ<code>assignment_expression</code>ノードにマッチする。</p>
+<pre><code class="language-scheme">(assignment_expression
+  left: (member_expression
+    object: (call_expression)))
+</code></pre>
+<h4><a class="header" href="#フィールド条件の反転" id="フィールド条件の反転">フィールド条件の反転</a></h4>
+<p>指定したフィールドを <em>持たない</em> ようなパターンを構成できる。
+これを実現するには、フィールド名の直前に<code>!</code>を付与すれば良い。
+例えば、下記のパターンは型パラメータを含まないクラス宣言にマッチする。</p>
+<pre><code class="language-scheme">(class_declaration
+  name: (identifier) @class_name
+  !type_parameters)
+</code></pre>
+<h4><a class="header" href="#匿名ノード" id="匿名ノード">匿名ノード</a></h4>
+<p>ノードを記述するための括弧付きの構文は、<a href="#named-vs-anonymous-nodes">名前付きノード</a>にのみ適用される。
+特定の匿名ノードにマッチさせるには、その名前を&quot;&quot;で囲んで記述する。
+例えば、下記のパターンは演算子が<code>!=</code>で右辺が<code>null</code>であるような<code>binary_expression</code>にマッチする。</p>
+<pre><code class="language-scheme">(binary_expression
+  operator: &quot;!=&quot;
+  right: (null))
+</code></pre>
+<h4><a class="header" href="#ノードをキャプチャする" id="ノードをキャプチャする">ノードをキャプチャする</a></h4>
+<p>パターンにマッチするノードを見つけたら、そのノードの中の特定のノードに対して処理を行う場合がある。
+また、パターンマッチングを行う際、パターン内の特定のノードを処理したい場合もある。
+キャプチャを使うと、パターン内の特定のノードに名前を割り当てることができ、後でその名前でノードを参照できる。
+キャプチャの名前は、参照するノードの後に書かれ、<code>@</code>文字で始まる。</p>
+<p>たとえば、下記のパターンは識別子への関数の割り当てにマッチし、関数名<code>the-function-name</code>という名前を識別子に割り当てる。</p>
+<pre><code class="language-scheme">(assignment_expression
+  left: (identifier) @the-function-name
+  right: (function))
+</code></pre>
+<p>下記のパターンはメソッド定義にマッチし、<code>the-method-name</code>をメソッド名に割り当て、<code>the-class-name</code>をクラス名に割り当てる。</p>
+<pre><code class="language-scheme">(class_declaration
+  name: (identifier) @the-class-name
+  body: (class_body
+    (method_definition
+      name: (property_identifier) @the-method-name)))
+</code></pre>
+<h4><a class="header" href="#量化演算子" id="量化演算子">量化演算子</a></h4>
+<p>後置修飾子<code>+</code>および<code>*</code>繰り返し演算子は、<a href="https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E6%A6%82%E5%BF%B5">正規表現</a>における<code>+</code>および<code>*</code>演算子と同様に機能する。
+演算子はパターンの1回以上の繰り返しにマッチし、*演算子は0回以上の繰り返しにマッチする。</p>
+<p>例えば、下記のパターンは、1つ以上のコメントの並びにマッチする。</p>
+<pre><code class="language-scheme">(comment)+
+</code></pre>
+<p>下記のパターンはクラス宣言にマッチし、デコレータがあればすべてキャプチャする。</p>
+<pre><code class="language-scheme">(class_declaration
+  (decorator)* @the-decorator
+  name: (identifier) @the-name)
+</code></pre>
+<p>また、<code>?</code>演算子を使うと、ノードをオプションとしてマークする。
+例えば、このパターンはすべての関数呼び出しにマッチし、文字列引数が存在する場合はそれをキャプチャする。</p>
+<pre><code class="language-scheme">(call_expression
+  function: (identifier) @the-function
+  arguments: (arguments (string)? @the-string-arg))
+</code></pre>
+<h4><a class="header" href="#グループ化" id="グループ化">グループ化</a></h4>
+<p>カッコを使うことでノードの並びを1つのグループにできる。
+例えば、下記のパターンはコメントと関数宣言の並びにマッチする。</p>
+<pre><code class="language-scheme">(
+  (comment)
+  (function_declaration)
+)
+</code></pre>
+<p><code>+</code>・<code>*</code>・<code>?</code>といった量化演算子をグループ内で利用できる。
+例えば、このパターンはコンマ区切りの数字の並びにマッチする。</p>
+<pre><code class="language-scheme">(
+  (number)
+  (&quot;,&quot; (number))*
+)
+</code></pre>
+<h4><a class="header" href="#選言" id="選言">選言</a></h4>
+<p><code>[]</code>により選言を記述できる。
+これは正規表現における <em>文字クラス</em> に類似する。（<code>[abc]</code>はa,b,cのいずれかにマッチする）</p>
+<p>例えばこのパターンは、変数またはオブジェクトのプロパティのいずれかの呼び出すにマッチする。
+変数にマッチする場合は、<code>@function</code>としてキャプチャし、プロパティの場合は<code>@method</code>としてキャプチャする。</p>
+<pre><code class="language-scheme">(call_expression
+  function: [
+    (identifier) @function
+    (member_expression
+      property: (property_identifier) @method)
+  ])
+</code></pre>
+<p>下記のパターンはキーワードにマッチし、<code>@keyword</code>としてキャプチャする。</p>
+<pre><code class="language-scheme">[
+  &quot;break&quot;
+  &quot;delete&quot;
+  &quot;else&quot;
+  &quot;for&quot;
+  &quot;function&quot;
+  &quot;if&quot;
+  &quot;return&quot;
+  &quot;try&quot;
+  &quot;while&quot;
+] @keyword
+</code></pre>
+<h4><a class="header" href="#ワイルドカード" id="ワイルドカード">ワイルドカード</a></h4>
+<p><code>_</code>はワイルドカードであり、任意のノードにマッチする。
+これは正規表現の<code>.</code>に類似する。
+<code>(_)</code>は任意の名前付きノードにマッチし、<code>_</code>は任意の名前付きノードと匿名ノードのいずれにもマッチする。</p>
+<p>例えば、下記はcall内の任意のノードにマッチする。</p>
+<pre><code class="language-scheme">(call (_) @call.inner)
+</code></pre>
+<h4><a class="header" href="#アンカー" id="アンカー">アンカー</a></h4>
+<p>アンカー演算子 <code>.</code> は、子パターンのマッチング方法を制限するために使われる。
+<code>.</code>はクエリ内の位置によって動作が変わる。</p>
+<p><code>.</code>がパターン内の先頭の子ノードより前に位置する場合、そのノードは親ノードの先頭の名前付き子ノードにのみマッチする。
+例えば、下記のパターンは<code>array</code> ノードにマッチし、 <code>@the-element</code>キャプチャを親 <code>array</code> の最初の<code>identifier</code>ノードに代入しする。</p>
+<pre><code class="language-scheme">(array . (identifier) @the-element)
+</code></pre>
+<p>このアンカーがないとき、上記のパターンは<code>array</code>の各<code>identifier</code>にマッチし、それぞれのマッチは<code>@the-element</code>としてキャプチャされる。
+同様に、<code>.</code>がパターン内の最後尾の子ノードより後ろに位置する場合、そのノードは親ノードの最後尾の名前付き子ノードにのみマッチする。
+下記のパターンは<code>block</code>内の最後の名前付き子ノードにのみマッチする例である。</p>
+<pre><code class="language-scheme">(block (_) @last-expression .)
+</code></pre>
+<p>最後に、2つの子パターンの間にアンカーを置くと、パターンが直接の兄弟関係にあるノードにのみマッチする。
+下記のパターンは、<code>a.b.c.d</code>のような長いドット付きの名前が与えられた場合、連続した識別子である <code>a, b</code>, <code>b, c</code>, <code>c, d</code> の組にのみマッチする例である。</p>
+<pre><code class="language-scheme">(dotted_name
+  (identifier) @prev-id
+  .
+  (identifier) @next-id)
+</code></pre>
+<p>アンカーがない場合、<code>a, c</code>や<code>b, d</code>といった組み合わせにもマッチする。</p>
+<p>アンカー演算子がパターンに加える制限は、匿名ノードを無視する。</p>
+<h4><a class="header" href="#述語" id="述語">述語</a></h4>
+<p>パターン内の任意の場所に <em>述語</em> S式を追加することによって、パターンに関連する任意のメタデータや条件を指定できる。
+述語S式は<code>#述語名</code>で始まるS式である。
+<code>#述語名</code>の後、任意の数の <code>@</code> を接頭辞に持つキャプチャ名や文字列を記述して良い。</p>
+<p>例えば、下記のパターンは<a href="https://en.wikipedia.org/?title=SCREAMING_SNAKE_CASE&amp;redirect=no"><code>SCREAMING_SNAKE_CASE</code></a>の識別子にマッチする。</p>
+<pre><code class="language-scheme">(
+  (identifier) @constant
+  (#match? @constant &quot;^[A-Z][A-Z_]+&quot;)
+)
+</code></pre>
+<p>下記のパターンはキーと値が同じkey-valueのペアにマッチする。</p>
+<pre><code class="language-scheme">(
+  (pair
+    key: (property_identifier) @key-name
+    value: (identifier) @value-name)
+  (#eq? @key-name @value-name)
+)
+</code></pre>
+<p><em>注意</em> - 述語はTree-sitter Cライブラリでは直接扱えない。上位のコードがフィルタリングを実行できるように、構造化された形で公開されるだけである。しかし、<a href="https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust">Rustクレート</a>や<a href="https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_web">WebAssemblyバインディング</a>のようなTree-sitterの上位バインディングでは、<code>#eq?</code>や<code>#match?</code>のようないくつかの共通の述語を実装している。</p>
+<h3><a class="header" href="#クエリapi" id="クエリapi">クエリAPI</a></h3>
+<p>1つ以上のパターンを含む文字列をクエリとして作成する。</p>
+<pre><code class="language-c">TSQuery *ts_query_new(
+  const TSLanguage *language,
+  const char *source,
+  uint32_t source_len,
+  uint32_t *error_offset,
+  TSQueryError *error_type
+);
+</code></pre>
+<p>クエリにエラーがある場合は、<code>error_offset</code> 引数にエラーのバイトオフセットを設定し、<code>error_type</code> 引数にエラーの種類を示す値を設定する。</p>
+<pre><code class="language-c">typedef enum {
+  TSQueryErrorNone = 0,
+  TSQueryErrorSyntax,
+  TSQueryErrorNodeType,
+  TSQueryErrorField,
+  TSQueryErrorCapture,
+} TSQueryError;
+</code></pre>
+<p><code>TSQuery</code>の値は不変であるため、スレッド間で安全に共有できる。
+クエリを実行するには、クエリ処理のための状態を保持する<code>TSQueryCursor</code>を作成する。
+クエリカーソルはスレッド間で共有すべきでないが、クエリの繰り返し実行のために再利用できる。</p>
+<pre><code class="language-c">TSQueryCursor *ts_query_cursor_new(void);
+</code></pre>
+<p>構文木のノードを指定してクエリを実行できる。</p>
+<pre><code class="language-c">void ts_query_cursor_exec(TSQueryCursor *, const TSQuery *, TSNode);
+</code></pre>
+<p>そのマッチを繰り返し処理できる。</p>
+<pre><code class="language-c">typedef struct {
+  TSNode node;
+  uint32_t index;
+} TSQueryCapture;
+
+typedef struct {
+  uint32_t id;
+  uint16_t pattern_index;
+  uint16_t capture_count;
+  const TSQueryCapture *captures;
+} TSQueryMatch;
+
+bool ts_query_cursor_next_match(TSQueryCursor *, TSQueryMatch *match);
+</code></pre>
+<p>この関数はマッチが存在しない場合は<code>false</code>を返す。そうでない場合は、どのパターンにマッチし、どのノードがキャプチャされたかという情報を <code>match</code> に格納する。</p>
+<h2><a class="header" href="#静的なノードの型" id="静的なノードの型">静的なノードの型</a></h2>
+<!-- textlint-disable -->
+<p>静的型付けを行う言語では、構文木が個々の構文ノードに関する特定の型情報を提供することが有益な場合がある。</p>
+<!-- textlint-enable -->
+<p>Tree-sitterでは、この情報を <code>node-types.json</code> という生成されたファイルを通して利用できるようにする。この <em>ノード型ファイル</em> は、文法中のすべての可能な構文ノードに関する構造化されたデータを提供する。</p>
+<p>このデータを使って、静的型付けされたプログラミング言語の型宣言を生成できる。
+例えば、GitHubの<a href="https://github.com/github/semantic">Semantic</a>はこれらのノード型ファイルを使って、可能なすべての構文ノードに対して<a href="https://github.com/github/semantic/tree/main/semantic-ast">Haskellデータ型を生成</a>し、コード解析アルゴリズムがHaskell型システムによって構造的に検証されることを可能にしている。</p>
+<p>ノード型ファイルにはオブジェクトの配列が含まれており、各オブジェクトは以下の項目を使用して特定の型の構文ノードを記述する。</p>
+<h4><a class="header" href="#基本情報" id="基本情報">基本情報</a></h4>
+<p>この配列中の各オブジェクトは下記の2つのエントリを持つ。</p>
+<ul>
+<li><code>&quot;type&quot;</code> - どの文法規則を表すかを示す文字列。これは<a href="#syntax-nodes">前述</a>の<code>ts_node_type</code>関数に相当する。</li>
+<li><code>&quot;named&quot;</code> - この種のノードが、文法中のルール名に対応するか、それとも単なる文字列リテラルに対応するかを示すブール値。詳細は<a href="#named-vs-anonymous-nodes">ここ</a>を参照すること。</li>
+</ul>
+<!-- textlint-disable -->
+<p>例</p>
+<!-- textlint-enable -->
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;string_literal&quot;,
+  &quot;named&quot;: true
+}
+{
+  &quot;type&quot;: &quot;+&quot;,
+  &quot;named&quot;: false
+}
+</code></pre>
+<p>これら2つのフィールドは、合わせてノードタイプの一意な識別子を構成する。
+<code>node-types.json</code> 内の2つのトップレベルオブジェクトは、 <code>&quot;type&quot;</code>と<code>&quot;named&quot;</code>の両方が同じ値であるべきではない。</p>
+<h4><a class="header" href="#内部ノード" id="内部ノード">内部ノード</a></h4>
+<p>多くの構文ノードは子ノードを持つ。
+ノードの型オブジェクトは、ノードが持つことのできる子ノードを以下の項目で記述する。</p>
+<ul>
+<li><code>&quot;fields&quot;</code> - ノードが持つことのできる<a href="#node-field-names">フィールド</a>を記述したオブジェクト。このオブジェクトのキーはフィールド名で、値は以下に説明する子ノードの型オブジェクトである。</li>
+<li><code>&quot;children&quot;</code> - フィールドを持たない、ノードの可能な名前の付いた子ノードをすべて記述した、子ノードの型オブジェクト。</li>
+</ul>
+<p>子ノードの型オブジェクトは、以下の項目を使用して子ノードの集合を記述する。</p>
+<ul>
+<li><code>&quot;required&quot;</code> - この集合に少なくとも1つのノードが常に存在するかどうかを示す真偽値。</li>
+<li><code>&quot;multiple&quot;</code> - この集合に複数のノードが存在できるかどうかを示す真偽値。</li>
+<li><code>&quot;types&quot;</code>- この集合に含まれるノードの可能なタイプを表すオブジェクトの配列。各オブジェクトは2つのキーを持つ。
+その意味は前述した通りである。</li>
+</ul>
+<!-- textlint-disable -->
+<p>例</p>
+<!-- textlint-enable -->
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;method_definition&quot;,
+  &quot;named&quot;: true,
+  &quot;fields&quot;: {
+    &quot;body&quot;: {
+      &quot;multiple&quot;: false,
+      &quot;required&quot;: true,
+      &quot;types&quot;: [{ &quot;type&quot;: &quot;statement_block&quot;, &quot;named&quot;: true }]
+    },
+    &quot;decorator&quot;: {
+      &quot;multiple&quot;: true,
+      &quot;required&quot;: false,
+      &quot;types&quot;: [{ &quot;type&quot;: &quot;decorator&quot;, &quot;named&quot;: true }]
+    },
+    &quot;name&quot;: {
+      &quot;multiple&quot;: false,
+      &quot;required&quot;: true,
+      &quot;types&quot;: [
+        { &quot;type&quot;: &quot;computed_property_name&quot;, &quot;named&quot;: true },
+        { &quot;type&quot;: &quot;property_identifier&quot;, &quot;named&quot;: true }
+      ]
+    },
+    &quot;parameters&quot;: {
+      &quot;multiple&quot;: false,
+      &quot;required&quot;: true,
+      &quot;types&quot;: [{ &quot;type&quot;: &quot;formal_parameters&quot;, &quot;named&quot;: true }]
+    }
+  }
+}
+</code></pre>
+<!-- textlint-disable -->
+<p>例</p>
+<!-- textlint-enable -->
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;array&quot;,
+  &quot;named&quot;: true,
+  &quot;fields&quot;: {},
+  &quot;children&quot;: {
+    &quot;multiple&quot;: true,
+    &quot;required&quot;: false,
+    &quot;types&quot;: [
+      { &quot;type&quot;: &quot;_expression&quot;, &quot;named&quot;: true },
+      { &quot;type&quot;: &quot;spread_element&quot;, &quot;named&quot;: true }
+    ]
+  }
+}
+</code></pre>
+<h4><a class="header" href="#スーパータイプノード" id="スーパータイプノード">スーパータイプ・ノード</a></h4>
+<p>Tree-sitterの文法では、通常、構文ノードの抽象的なカテゴリを表す特定のルールがある（例えば、「式」、「型」、「宣言」等）。
+<code>grammar.js</code>では、これらのルールは<a href="./section-3-creating-parsers#hiding-rules">隠しルール</a>として記述され、
+その定義は各メンバーが1つのシンボルである単純な<a href="./section-3-creating-parsers#the-grammar-dsl">選択</a>である場合が多い。</p>
+<p>通常、隠れルールは構文ツリーには現れないので、ノードタイプファイルには記述されない。
+しかし、文法の<a href="./section-3-creating-parsers#the-grammar-dsl">スーパータイプのリスト</a>に隠しルールを追加すると、ノード型ファイルに次のような特別な項目とともに表示されるようになる。</p>
+<ul>
+<li><code>&quot;subtypes&quot;</code> - この 'supertype' ノードがラップできるノードの型を指定するオブジェクトの配列。</li>
+</ul>
+<!-- textlint-disable -->
+<p>例</p>
+<!-- textlint-enable -->
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;_declaration&quot;,
+  &quot;named&quot;: true,
+  &quot;subtypes&quot;: [
+    { &quot;type&quot;: &quot;class_declaration&quot;, &quot;named&quot;: true },
+    { &quot;type&quot;: &quot;function_declaration&quot;, &quot;named&quot;: true },
+    { &quot;type&quot;: &quot;generator_function_declaration&quot;, &quot;named&quot;: true },
+    { &quot;type&quot;: &quot;lexical_declaration&quot;, &quot;named&quot;: true },
+    { &quot;type&quot;: &quot;variable_declaration&quot;, &quot;named&quot;: true }
+  ]
+}
+</code></pre>
+<p>スーパータイプ・ノードは、ノードタイプ・ファイル内の他の場所でも、文法でスーパータイプ・ルールがどのように使われたかに対応する形で、他のノードタイプの子として表示される。これは、1つのスーパータイプが複数のサブタイプの代わりとなるため、ノードタイプをより短く、読みやすくできる。</p>
+<!-- textlint-disable -->
+<p>例</p>
+<!-- textlint-enable -->
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;export_statement&quot;,
+  &quot;named&quot;: true,
+  &quot;fields&quot;: {
+    &quot;declaration&quot;: {
+      &quot;multiple&quot;: false,
+      &quot;required&quot;: false,
+      &quot;types&quot;: [{ &quot;type&quot;: &quot;_declaration&quot;, &quot;named&quot;: true }]
+    },
+    &quot;source&quot;: {
+      &quot;multiple&quot;: false,
+      &quot;required&quot;: false,
+      &quot;types&quot;: [{ &quot;type&quot;: &quot;string&quot;, &quot;named&quot;: true }]
+    }
+  }
+}
+</code></pre>
+<p><a href="./index.html">前のページ(トップページ)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-3-creating-parsers.html">次のページ(パーサを作る)</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="section-3-creating-parsers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="section-3-creating-parsers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+            window.clip_buttons = true;
+            window.tryit_buttons = false;
+            window.side_bar = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

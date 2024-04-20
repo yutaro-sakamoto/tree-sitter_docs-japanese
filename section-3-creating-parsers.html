@@ -1,0 +1,848 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>パーサを作る - My first Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">概要</a></li><li class="chapter-item expanded "><a href="section-2-using-parsers.html"><strong aria-hidden="true">1.</strong> パーサを使う</a></li><li class="chapter-item expanded "><a href="section-3-creating-parsers.html" class="active"><strong aria-hidden="true">2.</strong> パーサを作る</a></li><li class="chapter-item expanded "><a href="section-4-syntax-highlighting.html"><strong aria-hidden="true">3.</strong> シンタックスハイライト</a></li><li class="chapter-item expanded "><a href="section-5-implementation.html"><strong aria-hidden="true">4.</strong> 実装</a></li><li class="chapter-item expanded "><a href="section-6-contributing.html"><strong aria-hidden="true">5.</strong> コントリビュート</a></li><li class="chapter-item expanded "><a href="section-7-playground.html"><strong aria-hidden="true">6.</strong> Playground</a></li><li class="chapter-item expanded "><a href="section-8-code-navigation-systems.html"><strong aria-hidden="true">7.</strong> コードナビゲーションシステム</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">My first Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><a href="./section-2-using-parsers.html">前のページ(パーサを使う)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-4-syntax-highlighting.html">次のページ(シンタックスハイライター)</a></p>
+<h1><a class="header" href="#パーサを作る" id="パーサを作る">パーサを作る</a></h1>
+<p>Tree-sitterによるパーサの開発は学習が難しいものの、一度コツをつかめば楽しく、禅のような感覚さえ覚えるだろう。
+このドキュメントは、開発を始め方を示し、開発を進める上での考え方を身につける一助となるだろう。</p>
+<h2><a class="header" href="#はじめに" id="はじめに">はじめに</a></h2>
+<h3><a class="header" href="#依存するソフトウェア" id="依存するソフトウェア">依存するソフトウェア</a></h3>
+<p>Tree-sitterパーサを開発するためには、いくつかのソフトウェアをインストールする必要がある。</p>
+<ul>
+<li><strong>Node.js</strong> - Tree-sitterの文法規則はJavaScriptで記述され、Tree-sitterはJavascript処理系として<a href="https://nodejs.org/ja/">Node.js</a>を利用する。したがって、<code>node</code>コマンドの存在するディレクトリを環境変数<code>PATH</code>に追加する必要がある。また、Node.jsのバージョンが6.0以上であることも必要である。</li>
+<li><strong>Cコンパイラ</strong> - Tree-sitterはC言語で記述されたパーサを生成する。パーサの実行とテストを行う<code>tree-sitter parse</code>と<code>tree-sitter test</code>コマンドを使うにはC/C++コンパイラがインストールされている必要がある。Tree-sitterは各プラットフォーム規定する標準的なディレクトリからC/C++コンパイラを検索して利用する。</li>
+</ul>
+<h3><a class="header" href="#インストール" id="インストール">インストール</a></h3>
+<p>Tree-sitterパーサを生成するには、<a href="https://github.com/tree-sitter/tree-sitter/tree/master/cli">the <code>tree-sitter</code> CLI</a>が必要であり、複数の方法でインストールできる。</p>
+<ul>
+<li><code>tree-sitter-cli</code> <a href="https://github.com/tree-sitter/tree-sitter/tree/master/cli">Rustクレート</a> をRustパッケージマネージャである<a href="https://doc.rust-lang.org/cargo/getting-started/installation.html"><code>cargo</code></a>を使ってソースコードからビルドする。これは任意のプラットフォームで有効なインストール方法である。詳細は<a href="./section-6-contributing.html">コントリビュート</a>を参照すること。
+<code>tree-sitter-cli</code><a href="https://www.npmjs.com/package/tree-sitter-cli">Node.jsモジュール</a>をNodeパッケージマネージャの<a href="https://docs.npmjs.com/"><code>npm</code></a>を使ってインストールする。</li>
+</ul>
+<!-- textlint-disable -->
+<p>この方法は手軽だが、pre-builtバイナリを使うため、限られたプラットフォームでのみ利用可能な方法である。</p>
+<!-- textlint-enable -->
+<ul>
+<li>使用するプラットフォーム向けのバイナリを<a href="https://github.com/tree-sitter/tree-sitter/releases">最新のGitHubリリースページ</a>からダウンロードし、そのバイナリを格納したディレクトリのパスを環境変数<code>PATH</code>に追加する。</li>
+</ul>
+<h3><a class="header" href="#プロジェクトの新規作成" id="プロジェクトの新規作成">プロジェクトの新規作成</a></h3>
+<!-- textlint-disable -->
+<p>パーサのリポジトリ名は「tree-sitter-」後に言語名を付けたものが好ましい。</p>
+<!-- textlint-enable -->
+<pre><code class="language-sh">mkdir tree-sitter-${YOUR_LANGUAGE_NAME}
+cd tree-sitter-${YOUR_LANGUAGE_NAME}
+</code></pre>
+<p><code>npm</code> コマンドを使って、プロジェクトに関する情報を格納する<code>package.json</code>を作成し、Node.jsから開発したパーサを利用できるようする。</p>
+<pre><code class="language-sh"># 下記のコマンドでは、対話モードでプロジェクトに関する情報を入力する。
+npm init
+
+# 下記のコマンドにより、Nodeから開発したパーサを利用可能にするためのモジュールをインストールする。
+npm install --save nan
+
+# 下記のコマンドにより、Tree-sitter CLIをインストールする。
+npm install --save-dev tree-sitter-cli
+</code></pre>
+<p>最後のコマンドにより、作業ディレクトリの<code>node_modules</code>ディレクトリにCLIツールをインストールする。
+実行可能ファイル<code>tree-sitter</code>が<code>node_modules/.bin</code>ディレクトリに作成される。
+Node.jsの慣習に従って、このフォルダを環境変数<code>PATH</code>に追加しておくと、このディレクトリで作業しているときに簡単にプログラムを実行できる。</p>
+<pre><code class="language-sh"># In your shell profile script
+export PATH=$PATH:./node_modules/.bin
+</code></pre>
+<p>CLIのインストールを完了したら、<code>grammar.js</code>に下記の内容を書き込む。</p>
+<pre><code class="language-js">module.exports = grammar({
+  name: 'YOUR_LANGUAGE_NAME',
+
+  rules: {
+    // TODO: add the actual grammar rules
+    source_file: $ =&gt; 'hello'
+  }
+});
+</code></pre>
+<p>その後、下記のコマンドを実行する。</p>
+<pre><code class="language-sh">tree-sitter generate
+</code></pre>
+<p>これは、この些細な言語を解析するのに必要なCコードと、このネイティブパーサーをNode.jsモジュールとしてコンパイルしてロードするために必要ないくつかのファイルを生成する。</p>
+<p>下記のように「hello」と書き込まれたソースファイルを用意すれば、生成したパーサをテストできる。</p>
+<pre><code class="language-sh">echo 'hello' &gt; example-file
+tree-sitter parse example-file
+</code></pre>
+<p>WindowsのPowerShellを使う場合は下記のコマンドを実行する。</p>
+<pre><code class="language-pwsh">&quot;hello&quot; | Out-File example-file -Encoding utf8
+tree-sitter parse example-file
+</code></pre>
+<p>これにより、下記のメッセージが出力される。</p>
+<pre><code>(source_file [0, 0] - [1, 0])
+</code></pre>
+<p>実際に動作するパーサを作成できた。</p>
+<h2><a class="header" href="#tool-overview" id="tool-overview">Tool Overview</a></h2>
+<p>コマンドラインツール<code>tree-sitter</code>の機能を紹介する。</p>
+<h3><a class="header" href="#generateコマンド" id="generateコマンド"><code>generate</code>コマンド</a></h3>
+<p>最も重要なのは<code>tree-sitter generate</code>コマンドである。
+このコマンドはカレントディレクトリの<code>grammar.js</code>を読み込み、<code>src/parser.c</code>にパーサの実装を書き出す。
+文法を変更したら、<code>tree-sitter generate</code>コマンドを再度実行する必要がある。</p>
+<p><code>tree-sitter generate</code>を最初に実行したとき、下記のファイルも生成される。</p>
+<ul>
+<li><code>binding.gyp</code> -Node.jsが作成した言語をどのようにコンパイルするかが記述されるたファイル。</li>
+<li><code>bindings/node/index.js</code> - 作成した言語を使用する際にNode.jsが内部で読み込むファイル。</li>
+<li><code>bindings/node/binding.cc</code> - Node.jsが使用するJavaScriptオブジェクトのラッパーが記述されるたファイル。</li>
+<li><code>bindings/rust/lib.rs</code> - 作成した言語をRustから利用するためのラッパーが記述されたファイル。</li>
+<li><code>bindings/rust/build.rs</code> - Rustクレート向けのビルド処理が記述されるたファイル。</li>
+<li><code>src/tree_sitter/parser.h</code> - 生成した<code>parser.c</code>が使用するヘッダファイル。</li>
+</ul>
+<p>文法に曖昧さや局所的な曖昧さ（原文：local ambiguity）がある場合、Tree-sitterはパーサの生成時にそれを検出し、
+Unresolved conflictというエラーメッセージを表示して終了する。
+これらのエラーの詳細については、以下を参照せよ。</p>
+<h3><a class="header" href="#command-test" id="command-test">Command: <code>test</code></a></h3>
+<p><code>tree-sitter test</code>コマンドを使ってパーサを簡単にテストできる。</p>
+<p>新たな文法規則を追加するたびに、パースするたびに構文木がどのような形式になるかを検証するテストを作成すべきである。
+これらのテストはプロジェクトルートの<code>corpus/</code>または<code>test/corpus/</code>ディレクトリ以下のテキストファイルに専用フォーマットで記述する。</p>
+<p>例えば、下記の内容が書き込まれた<code>test/corpus/statements.txt</code>ファイルを考える。</p>
+<pre><code>==================
+Return statements
+==================
+
+func x() int {
+  return 1;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (primitive_type)
+    (block
+      (return_statement (number)))))
+</code></pre>
+<ul>
+<li><code>=</code>がの間に<strong>テスト名</strong>を書く。</li>
+<li>その後にパーサの<strong>入力</strong>となるソースコードを書き、3つ以上の<code>-</code>を含む行を書く。</li>
+<li>その後に<strong>出力として期待される構文木</strong>を<a href="https://ja.wikipedia.org/wiki/S%E5%BC%8F"><code>S式</code></a>で書く。S式中の空白は無視されるが、理想的には構文木は読みやすい方が良い。S式は、<code>func</code>、<code>(</code>、<code>;</code>といった、分包機そうでは文字列や正規表現で表される構文ノードを表示しないことに注意せよ。構文木は、<a href="./section-2-using-parsers.html#%E5%90%8D%E5%89%8D%E4%BB%98%E3%81%8D%E3%83%8E%E3%83%BC%E3%83%89%E3%81%A8%E5%8C%BF%E5%90%8D%E3%83%8E%E3%83%BC%E3%83%89">「パーサの使う」のこの節</a>で説明した名前付きノード*のみを表示する。</li>
+</ul>
+<!-- textlint-disable -->
+<p>The expected output section can also <em>optionally</em> show the <a href="./using-parsers#node-field-names"><em>field names</em></a> associated with each child node. To include field names in your tests, you write a node's field name followed by a colon, before the node itself in the S-expression:</p>
+<pre><code>(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list)
+    result: (primitive_type)
+    body: (block
+      (return_statement (number)))))
+</code></pre>
+<ul>
+<li>If your language's syntax conflicts with the <code>===</code> and <code>---</code> test separators, you can optionally add an arbitrary identical suffix (in the below example, <code>|||</code>) to disambiguate them:</li>
+</ul>
+<pre><code>==================|||
+Basic module
+==================|||
+
+---- MODULE Test ----
+increment(n) == n + 1
+====
+
+---|||
+
+(source_file
+  (module (identifier)
+    (operator (identifier)
+      (parameter_list (identifier))
+      (plus (identifier_ref) (number)))))
+</code></pre>
+<p>These tests are important. They serve as the parser's API documentation, and they can be run every time you change the grammar to verify that everything still parses correctly.</p>
+<p>By default, the <code>tree-sitter test</code> command runs all of the tests in your <code>corpus</code> or <code>test/corpus/</code> folder. To run a particular test, you can use the <code>-f</code> flag:</p>
+<pre><code class="language-sh">tree-sitter test -f 'Return statements'
+</code></pre>
+<p>The recommendation is to be comprehensive in adding tests. If it's a visible node, add it to a test file in your <code>corpus</code> directory. It's typically a good idea to test all of the permutations of each language construct. This increases test coverage, but doubly acquaints readers with a way to examine expected outputs and understand the &quot;edges&quot; of a language.</p>
+<h4><a class="header" href="#automatic-compilation" id="automatic-compilation">Automatic Compilation</a></h4>
+<p>You might notice that the first time you run <code>tree-sitter test</code> after regenerating your parser, it takes some extra time. This is because Tree-sitter automatically compiles your C code into a dynamically-loadable library. It recompiles your parser as-needed whenever you update it by re-running <code>tree-sitter generate</code>.</p>
+<h4><a class="header" href="#syntax-highlighting-tests" id="syntax-highlighting-tests">Syntax Highlighting Tests</a></h4>
+<p>The <code>tree-sitter test</code> command will <em>also</em> run any syntax highlighting tests in the <code>test/highlight</code> folder, if it exists. For more information about syntax highlighting tests, see <a href="./syntax-highlighting#unit-testing">the syntax highlighting page</a>.</p>
+<h3><a class="header" href="#command-parse" id="command-parse">Command: <code>parse</code></a></h3>
+<p>You can run your parser on an arbitrary file using <code>tree-sitter parse</code>. This will print the resulting the syntax tree, including nodes' ranges and field names, like this:</p>
+<pre><code>(source_file [0, 0] - [3, 0]
+  (function_declaration [0, 0] - [2, 1]
+    name: (identifier [0, 5] - [0, 9])
+    parameters: (parameter_list [0, 9] - [0, 11])
+    result: (type_identifier [0, 12] - [0, 15])
+    body: (block [0, 16] - [2, 1]
+      (return_statement [1, 2] - [1, 10]
+        (expression_list [1, 9] - [1, 10]
+          (int_literal [1, 9] - [1, 10]))))))
+</code></pre>
+<p>You can pass any number of file paths and glob patterns to <code>tree-sitter parse</code>, and it will parse all of the given files. The command will exit with a non-zero status code if any parse errors occurred. You can also prevent the syntax trees from being printed using the <code>--quiet</code> flag. Additionally, the <code>--stat</code> flag prints out aggregated parse success/failure information for all processed files. This makes <code>tree-sitter parse</code> usable as a secondary testing strategy: you can check that a large number of files parse without error:</p>
+<pre><code class="language-sh">tree-sitter parse 'examples/**/*.go' --quiet --stat
+</code></pre>
+<h3><a class="header" href="#command-highlight" id="command-highlight">Command: <code>highlight</code></a></h3>
+<p>You can run syntax highlighting on an arbitrary file using <code>tree-sitter highlight</code>. This can either output colors directly to your terminal using ansi escape codes, or produce HTML (if the <code>--html</code> flag is passed). For more information, see <a href="./syntax-highlighting">the syntax highlighting page</a>.</p>
+<h3><a class="header" href="#the-grammar-dsl" id="the-grammar-dsl">The Grammar DSL</a></h3>
+<p>The following is a complete list of built-in functions you can use in your <code>grammar.js</code> to define rules. Use-cases for some of these functions will be explained in more detail in later sections.</p>
+<ul>
+<li><strong>Symbols (the <code>$</code> object)</strong> - Every grammar rule is written as a JavaScript function that takes a parameter conventionally called <code>$</code>. The syntax <code>$.identifier</code> is how you refer to another grammar symbol within a rule. Names starting with <code>$.MISSING</code> or <code>$.UNEXPECTED</code> should be avoided as they have special meaning for the <code>tree-sitter test</code> command.</li>
+<li><strong>String and Regex literals</strong> - The terminal symbols in a grammar are described using JavaScript strings and regular expressions. Of course during parsing, Tree-sitter does not actually use JavaScript's regex engine to evaluate these regexes; it generates its own regex-matching logic as part of each parser. Regex literals are just used as a convenient way of writing regular expressions in your grammar.</li>
+<li><strong>Sequences : <code>seq(rule1, rule2, ...)</code></strong> - This function creates a rule that matches any number of other rules, one after another. It is analogous to simply writing multiple symbols next to each other in <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">EBNF notation</a>.</li>
+<li><strong>Alternatives : <code>choice(rule1, rule2, ...)</code></strong> - This function creates a rule that matches <em>one</em> of a set of possible rules. The order of the arguments does not matter. This is analogous to the <code>|</code> (pipe) operator in EBNF notation.</li>
+<li><strong>Repetitions : <code>repeat(rule)</code></strong> - This function creates a rule that matches <em>zero-or-more</em> occurrences of a given rule. It is analogous to the <code>{x}</code> (curly brace) syntax in EBNF notation.</li>
+<li><strong>Repetitions : <code>repeat1(rule)</code></strong> - This function creates a rule that matches <em>one-or-more</em> occurrences of a given rule. The previous <code>repeat</code> rule is implemented in terms of <code>repeat1</code> but is included because it is very commonly used.</li>
+<li><strong>Options : <code>optional(rule)</code></strong> - This function creates a rule that matches <em>zero or one</em> occurrence of a given rule. It is analogous to the <code>[x]</code> (square bracket) syntax in EBNF notation.</li>
+<li><strong>Precedence : <code>prec(number, rule)</code></strong> - This function marks the given rule with a numerical precedence which will be used to resolve <a href="https://en.wikipedia.org/wiki/LR_parser#Conflicts_in_the_constructed_tables"><em>LR(1) Conflicts</em></a> at parser-generation time. When two rules overlap in a way that represents either a true ambiguity or a <em>local</em> ambiguity given one token of lookahead, Tree-sitter will try to resolve the conflict by matching the rule with the higher precedence. The default precedence of all rules is zero. This works similarly to the <a href="https://docs.oracle.com/cd/E19504-01/802-5880/6i9k05dh3/index.html">precedence directives</a> in Yacc grammars.</li>
+<li><strong>Left Associativity : <code>prec.left([number], rule)</code></strong> - This function marks the given rule as left-associative (and optionally applies a numerical precedence). When an LR(1) conflict arises in which all of the rules have the same numerical precedence, Tree-sitter will consult the rules' associativity. If there is a left-associative rule, Tree-sitter will prefer matching a rule that ends <em>earlier</em>. This works similarly to <a href="https://docs.oracle.com/cd/E19504-01/802-5880/6i9k05dh3/index.html">associativity directives</a> in Yacc grammars.</li>
+<li><strong>Right Associativity : <code>prec.right([number], rule)</code></strong> - This function is like <code>prec.left</code>, but it instructs Tree-sitter to prefer matching a rule that ends <em>later</em>.</li>
+<li><strong>Dynamic Precedence : <code>prec.dynamic(number, rule)</code></strong> - This function is similar to <code>prec</code>, but the given numerical precedence is applied at <em>runtime</em> instead of at parser generation time. This is only necessary when handling a conflict dynamically using the <code>conflicts</code> field in the grammar, and when there is a genuine <em>ambiguity</em>: multiple rules correctly match a given piece of code. In that event, Tree-sitter compares the total dynamic precedence associated with each rule, and selects the one with the highest total. This is similar to <a href="https://www.gnu.org/software/bison/manual/html_node/Generalized-LR-Parsing.html">dynamic precedence directives</a> in Bison grammars.</li>
+<li><strong>Tokens : <code>token(rule)</code></strong> - This function marks the given rule as producing only a single token. Tree-sitter's default is to treat each String or RegExp literal in the grammar as a separate token. Each token is matched separately by the lexer and returned as its own leaf node in the tree. The <code>token</code> function allows you to express a complex rule using the functions described above (rather than as a single regular expression) but still have Tree-sitter treat it as a single token.</li>
+<li><strong>Immediate Tokens : <code>token.immediate(rule)</code></strong> - Usually, whitespace (and any other extras, such as comments) is optional before each token. This function means that the token will only match if there is no whitespace.</li>
+<li><strong>Aliases : <code>alias(rule, name)</code></strong> - This function causes the given rule to <em>appear</em> with an alternative name in the syntax tree. If <code>name</code> is a <em>symbol</em>, as in <code>alias($.foo, $.bar)</code>, then the aliased rule will <em>appear</em> as a <a href="./using-parsers#named-vs-anonymous-nodes">named node</a> called <code>bar</code>. And if <code>name</code> is a <em>string literal</em>, as in <code>alias($.foo, 'bar')</code>, then the aliased rule will appear as an <a href="./using-parsers#named-vs-anonymous-nodes">anonymous node</a>, as if the rule had been written as the simple string.</li>
+<li><strong>Field Names : <code>field(name, rule)</code></strong> - This function assigns a <em>field name</em> to the child node(s) matched by the given rule. In the resulting syntax tree, you can then use that field name to access specific children.</li>
+</ul>
+<p>In addition to the <code>name</code> and <code>rules</code> fields, grammars have a few other optional public fields that influence the behavior of the parser.</p>
+<ul>
+<li><strong><code>extras</code></strong> - an array of tokens that may appear <em>anywhere</em> in the language. This is often used for whitespace and comments. The default value of <code>extras</code> is to accept whitespace. To control whitespace explicitly, specify <code>extras: $ =&gt; []</code> in your grammar.</li>
+<li><strong><code>inline</code></strong> - an array of rule names that should be automatically <em>removed</em> from the grammar by replacing all of their usages with a copy of their definition. This is useful for rules that are used in multiple places but for which you <em>don't</em> want to create syntax tree nodes at runtime.</li>
+<li><strong><code>conflicts</code></strong> - an array of arrays of rule names. Each inner array represents a set of rules that's involved in an <em>LR(1) conflict</em> that is <em>intended to exist</em> in the grammar. When these conflicts occur at runtime, Tree-sitter will use the GLR algorithm to explore all of the possible interpretations. If <em>multiple</em> parses end up succeeding, Tree-sitter will pick the subtree whose corresponding rule has the highest total <em>dynamic precedence</em>.</li>
+<li><strong><code>externals</code></strong> - an array of token names which can be returned by an <a href="#external-scanners"><em>external scanner</em></a>. External scanners allow you to write custom C code which runs during the lexing process in order to handle lexical rules (e.g. Python's indentation tokens) that cannot be described by regular expressions.</li>
+<li><strong><code>precedences</code></strong> - an array of array of strings, where each array of strings defines named precedence levels in descending order. These names can be used in the <code>prec</code> functions to define precedence relative only to other names in the array, rather than globally. Can only be used with parse precedence, not lexical precedence.</li>
+<li><strong><code>word</code></strong> - the name of a token that will match keywords for the purpose of the <a href="#keyword-extraction">keyword extraction</a> optimization.</li>
+<li><strong><code>supertypes</code></strong> an array of hidden rule names which should be considered to be 'supertypes' in the generated <a href="./using-parsers#static-node-types"><em>node types</em> file</a>.</li>
+</ul>
+<h2><a class="header" href="#writing-the-grammar" id="writing-the-grammar">Writing the Grammar</a></h2>
+<p>Writing a grammar requires creativity. There are an infinite number of CFGs (context-free grammars) that can be used to describe any given language. In order to produce a good Tree-sitter parser, you need to create a grammar with two important properties:</p>
+<ol>
+<li>
+<p><strong>An intuitive structure</strong> - Tree-sitter's output is a <a href="https://en.wikipedia.org/wiki/Parse_tree">concrete syntax tree</a>; each node in the tree corresponds directly to a <a href="https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols">terminal or non-terminal symbol</a> in the grammar. So in order to produce an easy-to-analyze tree, there should be a direct correspondence between the symbols in your grammar and the recognizable constructs in the language. This might seem obvious, but it is very different from the way that context-free grammars are often written in contexts like <a href="https://en.wikipedia.org/wiki/Programming_language_specification">language specifications</a> or <a href="https://en.wikipedia.org/wiki/Yacc">Yacc</a>/<a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a> parsers.</p>
+</li>
+<li>
+<p><strong>A close adherence to LR(1)</strong> - Tree-sitter is based on the <a href="https://en.wikipedia.org/wiki/GLR_parser">GLR parsing</a> algorithm. This means that while it can handle any context-free grammar, it works most efficiently with a class of context-free grammars called <a href="https://en.wikipedia.org/wiki/LR_parser">LR(1) Grammars</a>. In this respect, Tree-sitter's grammars are similar to (but less restrictive than) <a href="https://en.wikipedia.org/wiki/Yacc">Yacc</a> and <a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a> grammars, but <em>different</em> from <a href="http://www.antlr.org/">ANTLR grammars</a>, <a href="https://en.wikipedia.org/wiki/Parsing_expression_grammar">Parsing Expression Grammars</a>, or the <a href="https://en.wikipedia.org/wiki/Ambiguous_grammar">ambiguous grammars</a> commonly used in language specifications.</p>
+</li>
+</ol>
+<p>It's unlikely that you'll be able to satisfy these two properties just by translating an existing context-free grammar directly into Tree-sitter's grammar format. There are a few kinds of adjustments that are often required. The following sections will explain these adjustments in more depth.</p>
+<h3><a class="header" href="#the-first-few-rules" id="the-first-few-rules">The First Few Rules</a></h3>
+<p>It's usually a good idea to find a formal specification for the language you're trying to parse. This specification will most likely contain a context-free grammar. As you read through the rules of this CFG, you will probably discover a complex and cyclic graph of relationships. It might be unclear how you should navigate this graph as you define your grammar.</p>
+<p>Although languages have very different constructs, their constructs can often be categorized in to similar groups like <em>Declarations</em>, <em>Definitions</em>, <em>Statements</em>, <em>Expressions</em>, <em>Types</em>, and <em>Patterns</em>. In writing your grammar, a good first step is to create just enough structure to include all of these basic <em>groups</em> of symbols. For a language like Go, you might start with something like this:</p>
+<pre><code class="language-js">{
+  // ...
+
+  rules: {
+    source_file: $ =&gt; repeat($._definition),
+
+    _definition: $ =&gt; choice(
+      $.function_definition
+      // TODO: other kinds of definitions
+    ),
+
+    function_definition: $ =&gt; seq(
+      'func',
+      $.identifier,
+      $.parameter_list,
+      $._type,
+      $.block
+    ),
+
+    parameter_list: $ =&gt; seq(
+      '(',
+       // TODO: parameters
+      ')'
+    ),
+
+    _type: $ =&gt; choice(
+      'bool'
+      // TODO: other kinds of types
+    ),
+
+    block: $ =&gt; seq(
+      '{',
+      repeat($._statement),
+      '}'
+    ),
+
+    _statement: $ =&gt; choice(
+      $.return_statement
+      // TODO: other kinds of statements
+    ),
+
+    return_statement: $ =&gt; seq(
+      'return',
+      $._expression,
+      ';'
+    ),
+
+    _expression: $ =&gt; choice(
+      $.identifier,
+      $.number
+      // TODO: other kinds of expressions
+    ),
+
+    identifier: $ =&gt; /[a-z]+/,
+
+    number: $ =&gt; /\d+/
+  }
+}
+</code></pre>
+<p>Some of the details of this grammar will be explained in more depth later on, but if you focus on the <code>TODO</code> comments, you can see that the overall strategy is <em>breadth-first</em>. Notably, this initial skeleton does not need to directly match an exact subset of the context-free grammar in the language specification. It just needs to touch on the major groupings of rules in as simple and obvious a way as possible.</p>
+<p>With this structure in place, you can now freely decide what part of the grammar to flesh out next. For example, you might decide to start with <em>types</em>. One-by-one, you could define the rules for writing basic types and composing them into more complex types:</p>
+<pre><code class="language-js">{
+  // ...
+
+  _type: $ =&gt; choice(
+    $.primitive_type,
+    $.array_type,
+    $.pointer_type
+  ),
+
+  primitive_type: $ =&gt; choice(
+    'bool',
+    'int'
+  ),
+
+  array_type: $ =&gt; seq(
+    '[',
+    ']',
+    $._type
+  ),
+
+  pointer_type: $ =&gt; seq(
+    '*',
+    $._type
+  )
+}
+</code></pre>
+<p>After developing the <em>type</em> sublanguage a bit further, you might decide to switch to working on <em>statements</em> or <em>expressions</em> instead. It's often useful to check your progress by trying to parse some real code using <code>tree-sitter parse</code>.</p>
+<p><strong>And remember to add tests for each rule in your <code>corpus</code> folder!</strong></p>
+<h3><a class="header" href="#structuring-rules-well" id="structuring-rules-well">Structuring Rules Well</a></h3>
+<p>Imagine that you were just starting work on the <a href="https://github.com/tree-sitter/tree-sitter-javascript">Tree-sitter JavaScript parser</a>. Naively, you might try to directly mirror the structure of the <a href="https://262.ecma-international.org/6.0/">ECMAScript Language Spec</a>. To illustrate the problem with this approach, consider the following line of code:</p>
+<pre><code class="language-js">return x + y;
+</code></pre>
+<p>According to the specification, this line is a <code>ReturnStatement</code>, the fragment <code>x + y</code> is an <code>AdditiveExpression</code>, and <code>x</code> and <code>y</code> are both <code>IdentifierReferences</code>. The relationship between these constructs is captured by a complex series of production rules:</p>
+<pre><code>ReturnStatement          -&gt;  'return' Expression
+Expression               -&gt;  AssignmentExpression
+AssignmentExpression     -&gt;  ConditionalExpression
+ConditionalExpression    -&gt;  LogicalORExpression
+LogicalORExpression      -&gt;  LogicalANDExpression
+LogicalANDExpression     -&gt;  BitwiseORExpression
+BitwiseORExpression      -&gt;  BitwiseXORExpression
+BitwiseXORExpression     -&gt;  BitwiseANDExpression
+BitwiseANDExpression     -&gt;  EqualityExpression
+EqualityExpression       -&gt;  RelationalExpression
+RelationalExpression     -&gt;  ShiftExpression
+ShiftExpression          -&gt;  AdditiveExpression
+AdditiveExpression       -&gt;  MultiplicativeExpression
+MultiplicativeExpression -&gt;  ExponentiationExpression
+ExponentiationExpression -&gt;  UnaryExpression
+UnaryExpression          -&gt;  UpdateExpression
+UpdateExpression         -&gt;  LeftHandSideExpression
+LeftHandSideExpression   -&gt;  NewExpression
+NewExpression            -&gt;  MemberExpression
+MemberExpression         -&gt;  PrimaryExpression
+PrimaryExpression        -&gt;  IdentifierReference
+</code></pre>
+<p>The language spec encodes the twenty different precedence levels of JavaScript expressions using twenty levels of indirection between <code>IdentifierReference</code> and <code>Expression</code>. If we were to create a concrete syntax tree representing this statement according to the language spec, it would have twenty levels of nesting, and it would contain nodes with names like <code>BitwiseXORExpression</code>, which are unrelated to the actual code.</p>
+<h3><a class="header" href="#using-precedence" id="using-precedence">Using Precedence</a></h3>
+<p>To produce a readable syntax tree, we'd like to model JavaScript expressions using a much flatter structure like this:</p>
+<pre><code class="language-js">{
+  // ...
+
+  _expression: $ =&gt; choice(
+    $.identifier,
+    $.unary_expression,
+    $.binary_expression,
+    // ...
+  ),
+
+  unary_expression: $ =&gt; choice(
+    seq('-', $._expression),
+    seq('!', $._expression),
+    // ...
+  ),
+
+  binary_expression: $ =&gt; choice(
+    seq($._expression, '*', $._expression),
+    seq($._expression, '+', $._expression),
+    // ...
+  ),
+}
+</code></pre>
+<p>Of course, this flat structure is highly ambiguous. If we try to generate a parser, Tree-sitter gives us an error message:</p>
+<pre><code>Error: Unresolved conflict for symbol sequence:
+
+  '-'  _expression  •  '*'  …
+
+Possible interpretations:
+
+  1:  '-'  (binary_expression  _expression  •  '*'  _expression)
+  2:  (unary_expression  '-'  _expression)  •  '*'  …
+
+Possible resolutions:
+
+  1:  Specify a higher precedence in `binary_expression` than in the other rules.
+  2:  Specify a higher precedence in `unary_expression` than in the other rules.
+  3:  Specify a left or right associativity in `unary_expression`
+  4:  Add a conflict for these rules: `binary_expression` `unary_expression`
+</code></pre>
+<p>For an expression like <code>-a * b</code>, it's not clear whether the <code>-</code> operator applies to the <code>a * b</code> or just to the <code>a</code>. This is where the <code>prec</code> function <a href="#the-grammar-dsl">described above</a> comes into play. By wrapping a rule with <code>prec</code>, we can indicate that certain sequence of symbols should <em>bind to each other more tightly</em> than others. For example, the <code>'-', $._expression</code> sequence in <code>unary_expression</code> should bind more tightly than the <code>$._expression, '+', $._expression</code> sequence in <code>binary_expression</code>:</p>
+<pre><code class="language-js">{
+  // ...
+
+  unary_expression: $ =&gt; prec(2, choice(
+    seq('-', $._expression),
+    seq('!', $._expression),
+    // ...
+  ))
+}
+</code></pre>
+<h3><a class="header" href="#using-associativity" id="using-associativity">Using Associativity</a></h3>
+<p>Applying a higher precedence in <code>unary_expression</code> fixes that conflict, but there is still another conflict:</p>
+<pre><code>Error: Unresolved conflict for symbol sequence:
+
+  _expression  '*'  _expression  •  '*'  …
+
+Possible interpretations:
+
+  1:  _expression  '*'  (binary_expression  _expression  •  '*'  _expression)
+  2:  (binary_expression  _expression  '*'  _expression)  •  '*'  …
+
+Possible resolutions:
+
+  1:  Specify a left or right associativity in `binary_expression`
+  2:  Add a conflict for these rules: `binary_expression`
+</code></pre>
+<p>For an expression like <code>a * b * c</code>, it's not clear whether we mean <code>a * (b * c)</code> or <code>(a * b) * c</code>. This is where <code>prec.left</code> and <code>prec.right</code> come into use. We want to select the second interpretation, so we use <code>prec.left</code>.</p>
+<pre><code class="language-js">{
+  // ...
+
+  binary_expression: $ =&gt; choice(
+    prec.left(2, seq($._expression, '*', $._expression)),
+    prec.left(1, seq($._expression, '+', $._expression)),
+    // ...
+  ),
+}
+</code></pre>
+<h3><a class="header" href="#hiding-rules" id="hiding-rules">Hiding Rules</a></h3>
+<p>You may have noticed in the above examples that some of the grammar rule name like <code>_expression</code> and <code>_type</code> began with an underscore. Starting a rule's name with an underscore causes the rule to be <em>hidden</em> in the syntax tree. This is useful for rules like <code>_expression</code> in the grammars above, which always just wrap a single child node. If these nodes were not hidden, they would add substantial depth and noise to the syntax tree without making it any easier to understand.</p>
+<h3><a class="header" href="#using-fields" id="using-fields">Using Fields</a></h3>
+<p>Often, it's easier to analyze a syntax nodes if you can refer to its children by <em>name</em> instead of by their position in an ordered list. Tree-sitter grammars support this using the <code>field</code> function. This function allows you to assign unique names to some or all of a node's children:</p>
+<pre><code class="language-js">function_definition: $ =&gt; seq(
+  'func',
+  field('name', $.identifier),
+  field('parameters', $.parameter_list),
+  field('return_type', $._type),
+  field('body', $.block)
+)
+</code></pre>
+<p>Adding fields like this allows you to retrieve nodes using the <a href="./using-parsers#node-field-names">field APIs</a>.</p>
+<h2><a class="header" href="#lexical-analysis" id="lexical-analysis">Lexical Analysis</a></h2>
+<p>Tree-sitter's parsing process is divided into two phases: parsing (which is described above) and <a href="https://en.wikipedia.org/wiki/Lexical_analysis">lexing</a> - the process of grouping individual characters into the language's fundamental <em>tokens</em>. There are a few important things to know about how Tree-sitter's lexing works.</p>
+<h3><a class="header" href="#conflicting-tokens" id="conflicting-tokens">Conflicting Tokens</a></h3>
+<p>Grammars often contain multiple tokens that can match the same characters. For example, a grammar might contain the tokens (<code>&quot;if&quot;</code> and <code>/[a-z]+/</code>). Tree-sitter differentiates between these conflicting tokens in a few ways.</p>
+<ol>
+<li>
+<p><strong>External Scanning</strong> - If your grammar has an external scanner and one or more tokens in your <code>externals</code> array are valid at the current location, your external scanner will always be called first to determine whether those tokens are present.</p>
+</li>
+<li>
+<p><strong>Context-Aware Lexing</strong> - Tree-sitter performs lexing on-demand, during the parsing process. At any given position in a source document, the lexer only tries to recognize tokens that are <em>valid</em> at that position in the document.</p>
+</li>
+<li>
+<p><strong>Earliest Starting Position</strong> - Tree-sitter will prefer tokens with an earlier starting position. This is most often seen with very permissive regular expressions similar to <code>/.*/</code>, which are greedy and will consume as much text as possible. In this example the regex would consume all text until hitting a newline - even if text on that line could be interpreted as a different token.</p>
+</li>
+<li>
+<p><strong>Explicit Lexical Precedence</strong> - When the precedence functions described <a href="#the-grammar-dsl">above</a> are used within the <code>token</code> function, the given precedence values serve as instructions to the lexer. If there are two valid tokens that match the characters at a given position in the document, Tree-sitter will select the one with the higher precedence.</p>
+</li>
+<li>
+<p><strong>Match Length</strong> - If multiple valid tokens with the same precedence match the characters at a given position in a document, Tree-sitter will select the token that matches the <a href="https://en.wikipedia.org/wiki/Maximal_munch">longest sequence of characters</a>.</p>
+</li>
+<li>
+<p><strong>Match Specificity</strong> - If there are two valid tokens with the same precedence and which both match the same number of characters, Tree-sitter will prefer a token that is specified in the grammar as a <code>String</code> over a token specified as a <code>RegExp</code>.</p>
+</li>
+<li>
+<p><strong>Rule Order</strong> - If none of the above criteria can be used to select one token over another, Tree-sitter will prefer the token that appears earlier in the grammar.</p>
+</li>
+</ol>
+<h3><a class="header" href="#lexical-precedence-vs-parse-precedence" id="lexical-precedence-vs-parse-precedence">Lexical Precedence vs. Parse Precedence</a></h3>
+<p>One common mistake involves not distinguishing lexical precedence from parse precedence.
+Parse precedence determines which rule is chosen to interpret a given sequence of tokens.
+Lexical precedence determines which token is chosen to interpret a given section of text.
+It is a lower-level operation that is done first.
+The above list fully capture tree-sitter's lexical precedence rules, and you will probably refer back to this section of the documentation more often than any other.
+Most of the time when you really get stuck, you're dealing with a lexical precedence problem.
+Pay particular attention to the difference in meaning between using <code>prec</code> inside the <code>token</code> function versus outside of it.</p>
+<h3><a class="header" href="#keywords" id="keywords">Keywords</a></h3>
+<p>Many languages have a set of <em>keyword</em> tokens (e.g. <code>if</code>, <code>for</code>, <code>return</code>), as well as a more general token (e.g. <code>identifier</code>) that matches any word, including many of the keyword strings. For example, JavaScript has a keyword <code>instanceof</code>, which is used as a binary operator, like this:</p>
+<pre><code class="language-js">if (a instanceof Something) b();
+</code></pre>
+<p>The following, however, is not valid JavaScript:</p>
+<pre><code class="language-js">if (a instanceofSomething) b();
+</code></pre>
+<p>A keyword like <code>instanceof</code> cannot be followed immediately by another letter, because then it would be tokenized as an <code>identifier</code>, <strong>even though an identifier is not valid at that position</strong>. Because Tree-sitter uses context-aware lexing, as described <a href="#conflicting-tokens">above</a>, it would not normally impose this restriction. By default, Tree-sitter would recognize <code>instanceofSomething</code> as two separate tokens: the <code>instanceof</code> keyword followed by an <code>identifier</code>.</p>
+<h3><a class="header" href="#keyword-extraction" id="keyword-extraction">Keyword Extraction</a></h3>
+<p>Fortunately, Tree-sitter has a feature that allows you to fix this, so that you can match the behavior of other standard parsers: the <code>word</code> token. If you specify a <code>word</code> token in your grammar, Tree-sitter will find the set of <em>keyword</em> tokens that match strings also matched by the <code>word</code> token. Then, during lexing, instead of matching each of these keywords individually, Tree-sitter will match the keywords via a two-step process where it <em>first</em> matches the <code>word</code> token.</p>
+<p>For example, suppose we added <code>identifier</code> as the <code>word</code> token in our JavaScript grammar:</p>
+<pre><code class="language-js">grammar({
+  name: 'javascript',
+
+  word: $ =&gt; $.identifier,
+
+  rules: {
+    _expression: $ =&gt; choice(
+      $.identifier,
+      $.unary_expression,
+      $.binary_expression
+      // ...
+    ),
+
+    binary_expression: $ =&gt; choice(
+      prec.left(1, seq($._expression, 'instanceof', $._expression)
+      // ...
+    ),
+
+    unary_expression: $ =&gt; choice(
+      prec.left(2, seq('typeof', $._expression))
+      // ...
+    ),
+
+    identifier: $ =&gt; /[a-z_]+/
+  }
+});
+</code></pre>
+<p>Tree-sitter would identify <code>typeof</code> and <code>instanceof</code> as keywords. Then, when parsing the invalid code above, rather than scanning for the <code>instanceof</code> token individually, it would scan for an <code>identifier</code> first, and find <code>instanceofSomething</code>. It would then correctly recognize the code as invalid.</p>
+<p>Aside from improving error detection, keyword extraction also has performance benefits. It allows Tree-sitter to generate a smaller, simpler lexing function, which means that <strong>the parser will compile much more quickly</strong>.</p>
+<h3><a class="header" href="#external-scanners" id="external-scanners">External Scanners</a></h3>
+<p>Many languages have some tokens whose structure is impossible or inconvenient to describe with a regular expression. Some examples:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Off-side_rule">Indent and dedent</a> tokens in Python</li>
+<li><a href="https://en.wikipedia.org/wiki/Here_document">Heredocs</a> in Bash and Ruby</li>
+<li><a href="https://docs.ruby-lang.org/en/2.5.0/doc/syntax/literals_rdoc.html#label-Percent+Strings">Percent strings</a> in Ruby</li>
+</ul>
+<p>Tree-sitter allows you to handle these kinds of tokens using <em>external scanners</em>. An external scanner is a set of C functions that you, the grammar author, can write by hand in order to add custom logic for recognizing certain tokens.</p>
+<p>To use an external scanner, there are a few steps. First, add an <code>externals</code> section to your grammar. This section should list the names of all of your external tokens. These names can then be used elsewhere in your grammar.</p>
+<pre><code class="language-js">grammar({
+  name: 'my_language',
+
+  externals: $ =&gt; [
+    $.indent,
+    $.dedent,
+    $.newline
+  ],
+
+  // ...
+});
+</code></pre>
+<p>Then, add another C or C++ source file to your project. Currently, its path must be <code>src/scanner.c</code> or <code>src/scanner.cc</code> for the CLI to recognize it. Be sure to add this file to the <code>sources</code> section of your <code>binding.gyp</code> file so that it will be included when your project is compiled by Node.js and uncomment the appropriate block in your <code>bindings/rust/build.rs</code> file so that it will be included in your Rust crate.</p>
+<p>In this new source file, define an <a href="https://en.wikipedia.org/wiki/Enumerated_type#C"><code>enum</code></a> type containing the names of all of your external tokens. The ordering of this enum must match the order in your grammar's <code>externals</code> array; the actual names do not matter.</p>
+<pre><code class="language-c">#include &lt;tree_sitter/parser.h&gt;
+
+enum TokenType {
+  INDENT,
+  DEDENT,
+  NEWLINE
+}
+</code></pre>
+<p>Finally, you must define five functions with specific names, based on your language's name and five actions: <em>create</em>, <em>destroy</em>, <em>serialize</em>, <em>deserialize</em>, and <em>scan</em>. These functions must all use <a href="https://en.cppreference.com/w/cpp/language/language_linkage">C linkage</a>, so if you're writing the scanner in C++, you need to declare them with the <code>extern &quot;C&quot;</code> qualifier.</p>
+<h4><a class="header" href="#create" id="create">Create</a></h4>
+<pre><code class="language-c">void * tree_sitter_my_language_external_scanner_create() {
+  // ...
+}
+</code></pre>
+<p>This function should create your scanner object. It will only be called once anytime your language is set on a parser. Often, you will want to allocate memory on the heap and return a pointer to it. If your external scanner doesn't need to maintain any state, it's ok to return <code>NULL</code>.</p>
+<h4><a class="header" href="#destroy" id="destroy">Destroy</a></h4>
+<pre><code class="language-c">void tree_sitter_my_language_external_scanner_destroy(void *payload) {
+  // ...
+}
+</code></pre>
+<p>This function should free any memory used by your scanner. It is called once when a parser is deleted or assigned a different language. It receives as an argument the same pointer that was returned from the <em>create</em> function. If your <em>create</em> function didn't allocate any memory, this function can be a noop.</p>
+<h4><a class="header" href="#serialize" id="serialize">Serialize</a></h4>
+<pre><code class="language-c">unsigned tree_sitter_my_language_external_scanner_serialize(
+  void *payload,
+  char *buffer
+) {
+  // ...
+}
+</code></pre>
+<p>This function should copy the complete state of your scanner into a given byte buffer, and return the number of bytes written. The function is called every time the external scanner successfully recognizes a token. It receives a pointer to your scanner and a pointer to a buffer. The maximum number of bytes that you can write is given by the <code>TREE_SITTER_SERIALIZATION_BUFFER_SIZE</code> constant, defined in the <code>tree_sitter/parser.h</code> header file.</p>
+<p>The data that this function writes will ultimately be stored in the syntax tree so that the scanner can be restored to the right state when handling edits or ambiguities. For your parser to work correctly, the <code>serialize</code> function must store its entire state, and <code>deserialize</code> must restore the entire state. For good performance, you should design your scanner so that its state can be serialized as quickly and compactly as possible.</p>
+<h4><a class="header" href="#deserialize" id="deserialize">Deserialize</a></h4>
+<pre><code class="language-c">void tree_sitter_my_language_external_scanner_deserialize(
+  void *payload,
+  const char *buffer,
+  unsigned length
+) {
+  // ...
+}
+</code></pre>
+<p>This function should <em>restore</em> the state of your scanner based the bytes that were previously written by the <code>serialize</code> function. It is called with a pointer to your scanner, a pointer to the buffer of bytes, and the number of bytes that should be read.
+It is good practice to explicitly erase your scanner state variables at the start of this function, before restoring their values from the byte buffer.</p>
+<h4><a class="header" href="#scan" id="scan">Scan</a></h4>
+<pre><code class="language-c">bool tree_sitter_my_language_external_scanner_scan(
+  void *payload,
+  TSLexer *lexer,
+  const bool *valid_symbols
+) {
+  // ...
+}
+</code></pre>
+<p>This function is responsible for recognizing external tokens. It should return <code>true</code> if a token was recognized, and <code>false</code> otherwise. It is called with a &quot;lexer&quot; struct with the following fields:</p>
+<ul>
+<li><strong><code>int32_t lookahead</code></strong> - The current next character in the input stream, represented as a 32-bit unicode code point.</li>
+<li><strong><code>TSSymbol result_symbol</code></strong> - The symbol that was recognized. Your scan function should <em>assign</em> to this field one of the values from the <code>TokenType</code> enum, described above.</li>
+<li><strong><code>void (*advance)(TSLexer *, bool skip)</code></strong> - A function for advancing to the next character. If you pass <code>true</code> for the second argument, the current character will be treated as whitespace; whitespace won't be included in the text range associated with tokens emitted by the external scanner.</li>
+<li><strong><code>void (*mark_end)(TSLexer *)</code></strong> - A function for marking the end of the recognized token. This allows matching tokens that require multiple characters of lookahead. By default (if you don't call <code>mark_end</code>), any character that you moved past using the <code>advance</code> function will be included in the size of the token. But once you call <code>mark_end</code>, then any later calls to <code>advance</code> will <em>not</em> increase the size of the returned token. You can call <code>mark_end</code> multiple times to increase the size of the token.</li>
+<li><strong><code>uint32_t (*get_column)(TSLexer *)</code></strong> - A function for querying the current column position of the lexer. It returns the number of codepoints since the start of the current line. The codepoint position is recalculated on every call to this function by reading from the start of the line.</li>
+<li><strong><code>bool (*is_at_included_range_start)(const TSLexer *)</code></strong> - A function for checking whether the parser has just skipped some characters in the document. When parsing an embedded document using the <code>ts_parser_set_included_ranges</code> function (described in the <a href="./using-parsers#multi-language-documents">multi-language document section</a>), your scanner may want to apply some special behavior when moving to a disjoint part of the document. For example, in <a href="https://ejs.co">EJS documents</a>, the JavaScript parser uses this function to enable inserting automatic semicolon tokens in between the code directives, delimited by <code>&lt;%</code> and <code>%&gt;</code>.</li>
+<li><strong><code>bool (*eof)(const TSLexer *)</code></strong> - A function for determining whether the lexer is at the end of the file. The value of <code>lookahead</code> will be <code>0</code> at the end of a file, but this function should be used instead of checking for that value because the <code>0</code> or &quot;NUL&quot; value is also a valid character that could be present in the file being parsed.</li>
+</ul>
+<p>The third argument to the <code>scan</code> function is an array of booleans that indicates which of your external tokens are currently expected by the parser. You should only look for a given token if it is valid according to this array. At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.</p>
+<pre><code class="language-c">if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
+
+  // ... logic that is common to both `INDENT` and `DEDENT`
+
+  if (valid_symbols[INDENT]) {
+
+    // ... logic that is specific to `INDENT`
+
+    lexer-&gt;result_symbol = INDENT;
+    return true;
+  }
+}
+</code></pre>
+<h4><a class="header" href="#other-external-scanner-details" id="other-external-scanner-details">Other External Scanner Details</a></h4>
+<p>If a token in your <code>externals</code> array is valid at the current position in the parse, your external scanner will be called first before anything else is done.
+This means your external scanner functions as a powerful override of tree-sitter's lexing behavior, and can be used to solve problems that can't be cracked with ordinary lexical, parse, or dynamic precedence.</p>
+<p>If a syntax error is encountered during regular parsing, tree-sitter's first action during error recovery will be to call your external scanner's <code>scan</code> function with all tokens marked valid.
+Your scanner should detect this case and handle it appropriately.
+One simple method of detection is to add an unused token to the end of your <code>externals</code> array, for example <code>externals: $ =&gt; [$.token1, $.token2, $.error_sentinel]</code>, then check whether that token is marked valid to determine whether tree-sitter is in error correction mode.</p>
+<p>If you put terminal keywords in your <code>externals</code> array, for example <code>externals: $ =&gt; ['if', 'then', 'else']</code>, then any time those terminals are present in your grammar they will be tokenized by your external scanner.
+It is equivalent to writing <code>externals: [$.if_keyword, $.then_keyword, $.else_keyword]</code> then using <code>alias($.if_keyword, 'if')</code> in your grammar.</p>
+<p>External scanners are a common cause of infinite loops.
+Be very careful when emitting zero-width tokens from your external scanner, and if you consume characters in a loop be sure use the <code>eof</code> function to check whether you are at the end of the file.</p>
+<!-- textlint-enable -->
+<p><a href="./section-2-using-parsers.html">前のページ(パーサを使う)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-4-syntax-highlighting.html">次のページ(シンタックスハイライター)</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="section-2-using-parsers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="section-4-syntax-highlighting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="section-2-using-parsers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="section-4-syntax-highlighting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+            window.clip_buttons = true;
+            window.tryit_buttons = false;
+            window.side_bar = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

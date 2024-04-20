@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>コードナビゲーションシステム - My first Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">概要</a></li><li class="chapter-item expanded "><a href="section-2-using-parsers.html"><strong aria-hidden="true">1.</strong> パーサを使う</a></li><li class="chapter-item expanded "><a href="section-3-creating-parsers.html"><strong aria-hidden="true">2.</strong> パーサを作る</a></li><li class="chapter-item expanded "><a href="section-4-syntax-highlighting.html"><strong aria-hidden="true">3.</strong> シンタックスハイライト</a></li><li class="chapter-item expanded "><a href="section-5-implementation.html"><strong aria-hidden="true">4.</strong> 実装</a></li><li class="chapter-item expanded "><a href="section-6-contributing.html"><strong aria-hidden="true">5.</strong> コントリビュート</a></li><li class="chapter-item expanded "><a href="section-7-playground.html"><strong aria-hidden="true">6.</strong> Playground</a></li><li class="chapter-item expanded "><a href="section-8-code-navigation-systems.html" class="active"><strong aria-hidden="true">7.</strong> コードナビゲーションシステム</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">My first Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- textlint-disable -->
+<p><a href="./section-7-playground.html">前のページ(Playground)</a> &lt;---- <a href="../README.html">目次</a></p>
+<h1><a class="header" href="#コードナビゲーションシステム" id="コードナビゲーションシステム">コードナビゲーションシステム</a></h1>
+<p>Tree-sitterは、コードナビゲーションシステムの一部として、
+<a href="https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries">tree query language</a>を使用できます。
+そのようなシステムの例として、<code>tree-sitter tags</code>コマンドがあります。
+このコマンドは、ファイル引数内の特定の構文ノードをテキスト形式で出力します。
+この機能の利用例として、GitHubの<a href="https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#precise-and-search-based-navigation">search-based code navigation</a>があります。
+このドキュメントは、このようなシステムとの統合方法、およびTree-sitterの文法を持つ任意の言語にこの機能を拡張する方法について説明します。</p>
+<h2><a class="header" href="#タグ付けとキャプチャ" id="タグ付けとキャプチャ">タグ付けとキャプチャ</a></h2>
+<p>タグ付けとは、プログラムで名前を付けられるエンティティを特定することです。
+Tree-sitterのクエリを使用してこれらのエンティティを見つけたら、構文キャプチャを使用してエンティティとその名前をラベル付けします。</p>
+<p>特定のタグ付けの本質は、一致したエンティティの_役割_（つまり、定義か参照か）と、そのエンティティの_種類_の2つのデータです。
+種類は、エンティティがどのように使用されるかを説明します（クラス定義、関数呼び出し、変数参照など）。
+慣習的に、<code>@role.kind</code>キャプチャ名形式に続く構文キャプチャを使用し、常に<code>@name</code>と呼ばれる別の内部キャプチャを使用して、特定の識別子の名前を取り出します。</p>
+<p>オプションで、docstringを紐づけるに<code>@doc</code>という名前のキャプチャを含めることができます。
+便宜上、タグ付けシステムは、コメント構文をdocstringから削除するのに便利な2つの組み込み関数、
+<code>#select-adjacent!</code>と<code>#strip!</code>を提供します。
+<code>#strip!</code>は、最初の引数としてキャプチャを取り、2番目に引数として正規表現を取り、クォートされた文字列として表現します。
+正規表現に一致するテキストパターンは、渡されたキャプチャに関連付けられたテキストから削除されます。
+<code>#select-adjacent!</code>は、2つのキャプチャ名を渡すと、最初のキャプチャに関連付けられたテキストをフィルタリングし、2番目のキャプチャに隣接するノードのみを保持します。
+これは、一致したコメントに含まれる情報が多すぎる場合に便利です。</p>
+<h2><a class="header" href="#例" id="例">例</a></h2>
+<p>この<a href="https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/queries/tags.scm#L4-L5">クエリ</a>は
+Pythonの関数定義を認識し、宣言された名前をキャプチャします。
+<code>function_definition</code>構文ノードは、<a href="https://github.com/tree-sitter/tree-sitter-python/blob/78c4e9b6b2f08e1be23b541ffced47b15e2972ad/grammar.js#L354">Python Tree-sitterの文法</a>で定義されています。</p>
+<pre><code class="language-scheme">(function_definition
+  name: (identifier) @name) @definition.function
+</code></pre>
+<p>より洗練されたクエリは、<a href="https://github.com/tree-sitter/tree-sitter-javascript/blob/fdeb68ac8d2bd5a78b943528bb68ceda3aade2eb/queries/tags.scm#L63-L70">JavaScript Tree-sitterリポジトリ</a>にあります。</p>
+<pre><code class="language-scheme">(assignment_expression
+  left: [
+    (identifier) @name
+    (member_expression
+      property: (property_identifier) @name)
+  ]
+  right: [(arrow_function) (function)]
+) @definition.function
+</code></pre>
+<p>更に洗練されたクエリは、<a href="https://github.com/tree-sitter/tree-sitter-ruby/blob/1ebfdb288842dae5a9233e2509a135949023dd82/queries/tags.scm#L24-L43">Ruby Tree-sitterリポジトリ</a>にあります。
+このクエリは、Rubyのクラスまたはシングルトンクラス宣言に関連付けられたdocstringからRubyコメント文字(<code>#</code>)を削除するための組み込み関数を使用し、<code>@definition.class</code>として一致したノードに隣接するdocstringのみを選択します。</p>
+<pre><code class="language-scheme">(
+  (comment)* @doc
+  .
+  [
+    (class
+      name: [
+        (constant) @name
+        (scope_resolution
+          name: (_) @name)
+      ]) @definition.class
+    (singleton_class
+      value: [
+        (constant) @name
+        (scope_resolution
+          name: (_) @name)
+      ]) @definition.class
+  ]
+  (#strip! @doc &quot;^#\\s*&quot;)
+  (#select-adjacent! @doc @definition.class)
+)
+</code></pre>
+<p>以下の表は、タグ付けプロセス中の種類と役割の標準的な語彙を説明しています。
+新しいアプリケーションは、これらのキャプチャ名を拡張（またはそのサブセットのみを認識）することができますが、以下の名前を標準化することが望ましいです。</p>
+<table><thead><tr><th>カテゴリ</th><th>タグ</th></tr></thead><tbody>
+<tr><td>Class definitions</td><td><code>@definition.class</code></td></tr>
+<tr><td>Function definitions</td><td><code>@definition.function</code></td></tr>
+<tr><td>Interface definitions</td><td><code>@definition.interface</code></td></tr>
+<tr><td>Method definitions</td><td><code>@definition.method</code></td></tr>
+<tr><td>Module definitions</td><td><code>@definition.module</code></td></tr>
+<tr><td>Function/method calls</td><td><code>@reference.call</code></td></tr>
+<tr><td>Class reference</td><td><code>@reference.class</code></td></tr>
+<tr><td>Interface implementation</td><td><code>@reference.implementation</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#コマンドライン呼び出し" id="コマンドライン呼び出し">コマンドライン呼び出し</a></h2>
+<p><code>tree-sitter tags</code>コマンドを使用して、タグクエリファイルをテストし、タグ付けするファイルを1つ以上の引数として渡すことができます。
+Tree-sitter Rubyリポジトリ内から、<code>test.rb</code>というファイルに対してこのツールを実行できます。</p>
+<pre><code class="language-ruby">module Foo
+  class Bar
+    # won't be included
+
+    # is adjacent, will be
+    def baz
+    end
+  end
+end
+</code></pre>
+<p><code>tree-sitter tags test.rb</code>を呼び出すと、一致したエンティティの名前、役割、場所、最初の行、およびdocstringを示す情報が表示されます。
+下記は、コンソール出力の例です。</p>
+<pre><code>    test.rb
+        Foo              | module       def (0, 7) - (0, 10) `module Foo`
+        Bar              | class        def (1, 8) - (1, 11) `class Bar`
+        baz              | method       def (2, 8) - (2, 11) `def baz`  &quot;is adjacent, will be&quot;
+</code></pre>
+<p>各言語のレポジトリの<code>queries/tags.scm</code>に、その言語のタグクエリが配置するのが良いでしょう。</p>
+<h2><a class="header" href="#ユニットテスト" id="ユニットテスト">ユニットテスト</a></h2>
+<p>タグクエリは、<code>tree-sitter test</code>を使用してテストできます。
+<code>test/tags/</code>の下のファイルは、<a href="https://tree-sitter.github.io/tree-sitter/syntax-highlighting#unit-testing">ハイライトクエリ</a>と同じコメントシステムを使用してチェックされます。
+たとえば、上記のRubyタグは、次のコメントを使用してテストできます。</p>
+<pre><code class="language-ruby">module Foo
+  #     ^ definition.module
+  class Bar
+    #    ^ definition.class
+
+    def baz
+      #  ^ definition.method
+    end
+  end
+end
+</code></pre>
+<p><a href="./section-7-playground.html">前のページ(Playground)</a> &lt;---- <a href="../README.html">目次</a></p>
+<!-- textlint-enable -->
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="section-7-playground.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="section-7-playground.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+            window.clip_buttons = true;
+            window.tryit_buttons = false;
+            window.side_bar = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
