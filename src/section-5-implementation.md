@@ -6,7 +6,7 @@ Tree-sitterCライブラリ（`libtree-sitter`）とコマンドラインツー�
 
 `libtree-sitter`はCLIで生成されたパーサーと組み合わせて、ソースコードから構文木を生成し、ソースコードが変更されるたびに構文木を最新の状態に保つ。
 `libtree-sitter`はプレーンなC言語で書かれ、アプリケーションに埋め込むことを想定して設計されている。
-そのインターフェースはヘッダファイル[`tree_sitter/api.h`](https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h)で定義されている。
+そのインターフェースはヘッダファイル[`tree_sitter/api.h`](https://github.com/tree-sitter/tree-sitter/blob/master/lib/include/tree_sitter/api.h)で定義される。
 
 CLIは、言語を記述する文脈自由文法を提供することで、言語のパーサーを生成できる。
 CLIはビルドツールであり、一度パーサーが生成されると不要になる。

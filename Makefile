@@ -1,8 +1,8 @@
 lint:
-	npx textlint README.md docs
+	npx textlint README.md src
 
 lint-fix:
-	npx textlint --fix README.md docs
+	npx textlint --fix README.md src
 
 install-lint:
 	npm install --save-dev \
