@@ -1,8 +1,8 @@
 name: Deploy web pages
 on:
   push:
-  pull_request:
-    types: [opened, reopened, review_requested, synchronize]
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,8 +23,9 @@ jobs:
       run: |
         ./mdbook-linux/mdbook build
 
-    #- name: Deploy
-    #  uses: JamesIves/github-pages-deploy-action@4
-    #  with:
-    #    branch: gh-pages
-    #    folder: book
+    # Deploy the book
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4
+      with:
+        branch: gh-pages
+        folder: book
