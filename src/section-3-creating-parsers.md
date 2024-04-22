@@ -156,9 +156,7 @@ func x() int {
 * その後にパーサの**入力**となるソースコードを書き、3つ以上の`-`を含む行を書く。
 * その後に**出力として期待される構文木**を[`S式`](https://ja.wikipedia.org/wiki/S%E5%BC%8F)で書く。S式中の空白は無視されるが、理想的には構文木は読みやすい方が良い。S式は、`func`、`(`、`;`といった、分包機そうでは文字列や正規表現で表される構文ノードを表示しないことに注意せよ。構文木は、[「パーサの使う」のこの節](./section-2-using-parsers.md#名前付きノードと匿名ノード)で説明した名前付きノード*のみを表示する。
 
-<!-- textlint-disable -->
-
-  The expected output section can also *optionally* show the [*field names*][field-names-section] associated with each child node. To include field names in your tests, you write a node's field name followed by a colon, before the node itself in the S-expression:
+  期待出力を示すセクションには、各子ノードに関連付けられた[*フィールド名*][field-names-section]をオプションで表示することもできる。テストにフィールド名を含める場合、S式内のノードの前に、コロンに続いてノード自体を記述する前に、ノードのフィールド名を記述する。
 
 ```
 (source_file
@@ -170,7 +168,8 @@ func x() int {
       (return_statement (number)))))
 ```
 
-* If your language's syntax conflicts with the `===` and `---` test separators, you can optionally add an arbitrary identical suffix (in the below example, `|||`) to disambiguate them:
+* もし言語の構文が`===`と`---`のテストセパレータと衝突する場合、同一のサフィックス（下記の例では`|||`）を追加して曖昧さを解消することができる。
+
 
 ```
 ==================|||
@@ -190,15 +189,22 @@ increment(n) == n + 1
       (plus (identifier_ref) (number)))))
 ```
 
-These tests are important. They serve as the parser's API documentation, and they can be run every time you change the grammar to verify that everything still parses correctly.
+これらのテストは重要である。
+テストはパーサのAPIドキュメントとして機能し、文法を変更するたびにすべてが正しくパースされていることを確認するために実行できる。
 
-By default, the `tree-sitter test` command runs all of the tests in your `corpus` or `test/corpus/` folder. To run a particular test, you can use the `-f` flag:
+デフォルトで`tree-sitter test`コマンドは`corpus`または`test/corpus/`フォルダ内のすべてのテストを実行する。
+特定のテストを実行するには、`-f`フラグを使う。
 
 ```sh
 tree-sitter test -f 'Return statements'
 ```
 
-The recommendation is to be comprehensive in adding tests. If it's a visible node, add it to a test file in your `corpus` directory. It's typically a good idea to test all of the permutations of each language construct. This increases test coverage, but doubly acquaints readers with a way to examine expected outputs and understand the "edges" of a language.
+包括的なテストを追加することが推奨される。
+もし非可視性のノードがある場合、`corpus`ディレクトリ内のテストファイルに追加することが良いだろう。
+通常、各言語構造のすべての組み合わせをテストすることが良い。
+これによりテストカバレッジが向上し、言語の「エッジ」を理解するための方法を読者に二重に提供することができる。
+
+<!-- textlint-disable -->
 
 #### Automatic Compilation
 
