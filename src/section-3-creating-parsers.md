@@ -206,13 +206,16 @@ tree-sitter test -f 'Return statements'
 
 <!-- textlint-disable -->
 
-#### Automatic Compilation
+#### 自動コンパイル
 
-You might notice that the first time you run `tree-sitter test` after regenerating your parser, it takes some extra time. This is because Tree-sitter automatically compiles your C code into a dynamically-loadable library. It recompiles your parser as-needed whenever you update it by re-running `tree-sitter generate`.
+`tree-sitter test`を実行するたびに、パーサのCコードを再コンパイルするので、最初の実行時には少し時間がかかる場合がある。
+これは、Tree-sitterが自動的にCコードを動的ロード可能なライブラリにコンパイルするためである。
+`tree-sitter generate`を再実行してパーサを更新するたびに、必要に応じてパーサを再コンパイルする。
 
-#### Syntax Highlighting Tests
+#### シンタックスハイライトのテスト
 
-The `tree-sitter test` command will *also* run any syntax highlighting tests in the `test/highlight` folder, if it exists. For more information about syntax highlighting tests, see [the syntax highlighting page][syntax-highlighting-tests].
+`tree-sitter test`コマンドは、`test/highlight`フォルダ内にシンタックスハイライトのテストが存在する場合、それらも実行する。
+詳細は[シンタックスハイライトのページ][syntax-highlighting-tests]を参照すること。
 
 ### Command: `parse`
 
