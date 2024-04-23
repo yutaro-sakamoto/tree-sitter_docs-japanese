@@ -333,8 +333,9 @@ increment(n) == n + 1
 <h4><a class="header" href="#シンタックスハイライトのテスト" id="シンタックスハイライトのテスト">シンタックスハイライトのテスト</a></h4>
 <p><code>tree-sitter test</code>コマンドは、<code>test/highlight</code>フォルダ内にシンタックスハイライトのテストが存在する場合、それらも実行する。
 詳細は<a href="./syntax-highlighting#unit-testing">シンタックスハイライトのページ</a>を参照すること。</p>
-<h3><a class="header" href="#command-parse" id="command-parse">Command: <code>parse</code></a></h3>
-<p>You can run your parser on an arbitrary file using <code>tree-sitter parse</code>. This will print the resulting the syntax tree, including nodes' ranges and field names, like this:</p>
+<h3><a class="header" href="#parseコマンド" id="parseコマンド"><code>parse</code>コマンド</a></h3>
+<p><code>tree-sitter parse</code>コマンドを使って任意のファイルをパースできる。
+これにより、下記のような範囲とフィールド名を含む構文木が表示される。</p>
 <pre><code>(source_file [0, 0] - [3, 0]
   (function_declaration [0, 0] - [2, 1]
     name: (identifier [0, 5] - [0, 9])
@@ -345,7 +346,12 @@ increment(n) == n + 1
         (expression_list [1, 9] - [1, 10]
           (int_literal [1, 9] - [1, 10]))))))
 </code></pre>
-<p>You can pass any number of file paths and glob patterns to <code>tree-sitter parse</code>, and it will parse all of the given files. The command will exit with a non-zero status code if any parse errors occurred. You can also prevent the syntax trees from being printed using the <code>--quiet</code> flag. Additionally, the <code>--stat</code> flag prints out aggregated parse success/failure information for all processed files. This makes <code>tree-sitter parse</code> usable as a secondary testing strategy: you can check that a large number of files parse without error:</p>
+<p><code>tree-sitter parse</code>コマンドには、任意のファイルパスとグロブパターンを渡すことができ、指定されたすべてのファイルを解析する。
+パースエラーが発生した場合、コマンドはゼロ以外のステータスコードで終了する。
+<code>--quiet</code>フラグを使用して、構文木の出力を抑制することもできる。
+さらに、<code>--stat</code>フラグを使用すると、処理されたすべてのファイルに対する集計されたパース成功/失敗情報が出力される。
+これにより、<code>tree-sitter parse</code>を二次的なテスト戦略として使用できるようになります。
+つまり、多数のファイルがエラーなしでパースされることを確認できます。</p>
 <pre><code class="language-sh">tree-sitter parse 'examples/**/*.go' --quiet --stat
 </code></pre>
 <h3><a class="header" href="#command-highlight" id="command-highlight">Command: <code>highlight</code></a></h3>
