@@ -1199,10 +1199,13 @@ increment(n) == n + 1
 通常、各言語構造のすべての組み合わせをテストすることが良い。
 これによりテストカバレッジが向上し、言語の「エッジ」を理解するための方法を読者に二重で提供できる。</p>
 <!-- textlint-disable -->
-<h4><a class="header" href="#automatic-compilation" id="automatic-compilation">Automatic Compilation</a></h4>
-<p>You might notice that the first time you run <code>tree-sitter test</code> after regenerating your parser, it takes some extra time. This is because Tree-sitter automatically compiles your C code into a dynamically-loadable library. It recompiles your parser as-needed whenever you update it by re-running <code>tree-sitter generate</code>.</p>
-<h4><a class="header" href="#syntax-highlighting-tests" id="syntax-highlighting-tests">Syntax Highlighting Tests</a></h4>
-<p>The <code>tree-sitter test</code> command will <em>also</em> run any syntax highlighting tests in the <code>test/highlight</code> folder, if it exists. For more information about syntax highlighting tests, see <a href="./syntax-highlighting#unit-testing">the syntax highlighting page</a>.</p>
+<h4><a class="header" href="#自動コンパイル" id="自動コンパイル">自動コンパイル</a></h4>
+<p><code>tree-sitter test</code>を実行するたびに、パーサのCコードを再コンパイルするので、最初の実行時には少し時間がかかる場合がある。
+これは、Tree-sitterが自動的にCコードを動的ロード可能なライブラリにコンパイルするためである。
+<code>tree-sitter generate</code>を再実行してパーサを更新するたびに、必要に応じてパーサを再コンパイルする。</p>
+<h4><a class="header" href="#シンタックスハイライトのテスト" id="シンタックスハイライトのテスト">シンタックスハイライトのテスト</a></h4>
+<p><code>tree-sitter test</code>コマンドは、<code>test/highlight</code>フォルダ内にシンタックスハイライトのテストが存在する場合、それらも実行する。
+詳細は<a href="./syntax-highlighting#unit-testing">シンタックスハイライトのページ</a>を参照すること。</p>
 <h3><a class="header" href="#command-parse" id="command-parse">Command: <code>parse</code></a></h3>
 <p>You can run your parser on an arbitrary file using <code>tree-sitter parse</code>. This will print the resulting the syntax tree, including nodes' ranges and field names, like this:</p>
 <pre><code>(source_file [0, 0] - [3, 0]
