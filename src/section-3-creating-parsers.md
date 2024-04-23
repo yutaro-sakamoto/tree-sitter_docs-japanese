@@ -217,9 +217,10 @@ tree-sitter test -f 'Return statements'
 `tree-sitter test`コマンドは、`test/highlight`フォルダ内にシンタックスハイライトのテストが存在する場合、それらも実行する。
 詳細は[シンタックスハイライトのページ][syntax-highlighting-tests]を参照すること。
 
-### Command: `parse`
+### `parse`コマンド
 
-You can run your parser on an arbitrary file using `tree-sitter parse`. This will print the resulting the syntax tree, including nodes' ranges and field names, like this:
+`tree-sitter parse`コマンドを使って任意のファイルをパースできる。
+これにより、下記のような範囲とフィールド名を含む構文木が表示される。
 
 ```
 (source_file [0, 0] - [3, 0]
@@ -233,7 +234,12 @@ You can run your parser on an arbitrary file using `tree-sitter parse`. This wil
           (int_literal [1, 9] - [1, 10]))))))
 ```
 
-You can pass any number of file paths and glob patterns to `tree-sitter parse`, and it will parse all of the given files. The command will exit with a non-zero status code if any parse errors occurred. You can also prevent the syntax trees from being printed using the `--quiet` flag. Additionally, the `--stat` flag prints out aggregated parse success/failure information for all processed files. This makes `tree-sitter parse` usable as a secondary testing strategy: you can check that a large number of files parse without error:
+`tree-sitter parse`コマンドには、任意のファイルパスとグロブパターンを渡すことができ、指定されたすべてのファイルを解析する。
+パースエラーが発生した場合、コマンドはゼロ以外のステータスコードで終了する。
+`--quiet`フラグを使用して、構文木の出力を抑制することもできる。
+さらに、`--stat`フラグを使用すると、処理されたすべてのファイルに対する集計されたパース成功/失敗情報が出力される。
+これにより、`tree-sitter parse`を二次的なテスト戦略として使用できるようになります。
+つまり、多数のファイルがエラーなしでパースされることを確認できます。
 
 ```sh
 tree-sitter parse 'examples/**/*.go' --quiet --stat
