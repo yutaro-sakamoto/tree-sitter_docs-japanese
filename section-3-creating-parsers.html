@@ -354,8 +354,10 @@ increment(n) == n + 1
 つまり、多数のファイルがエラーなしでパースされることを確認できます。</p>
 <pre><code class="language-sh">tree-sitter parse 'examples/**/*.go' --quiet --stat
 </code></pre>
-<h3><a class="header" href="#command-highlight" id="command-highlight">Command: <code>highlight</code></a></h3>
-<p>You can run syntax highlighting on an arbitrary file using <code>tree-sitter highlight</code>. This can either output colors directly to your terminal using ansi escape codes, or produce HTML (if the <code>--html</code> flag is passed). For more information, see <a href="./syntax-highlighting">the syntax highlighting page</a>.</p>
+<h3><a class="header" href="#highlightコマンド" id="highlightコマンド"><code>highlight</code>コマンド</a></h3>
+<p><code>tree-sitter highlight</code>コマンドを使って任意のファイルにシンタックスハイライトの処理を実行できる。
+これにより、ターミナルに直接色を出力することも可能だし、<code>--html</code>フラグを渡すことでHTMLを生成することもできる。
+詳細は<a href="./syntax-highlighting">シンタックスハイライトのページ</a>を参照すること。</p>
 <h3><a class="header" href="#the-grammar-dsl" id="the-grammar-dsl">The Grammar DSL</a></h3>
 <p>The following is a complete list of built-in functions you can use in your <code>grammar.js</code> to define rules. Use-cases for some of these functions will be explained in more detail in later sections.</p>
 <ul>
