@@ -245,9 +245,11 @@ tree-sitter test -f 'Return statements'
 tree-sitter parse 'examples/**/*.go' --quiet --stat
 ```
 
-### Command: `highlight`
+### `highlight`コマンド
 
-You can run syntax highlighting on an arbitrary file using `tree-sitter highlight`. This can either output colors directly to your terminal using ansi escape codes, or produce HTML (if the `--html` flag is passed). For more information, see [the syntax highlighting page][syntax-highlighting].
+`tree-sitter highlight`コマンドを使って任意のファイルにシンタックスハイライトの処理を実行できる。
+これにより、ターミナルに直接色を出力することも可能だし、`--html`フラグを渡すことでHTMLを生成することもできる。
+詳細は[シンタックスハイライトのページ][syntax-highlighting]を参照すること。
 
 ### The Grammar DSL
 
