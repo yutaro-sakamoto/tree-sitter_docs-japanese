@@ -251,15 +251,16 @@ tree-sitter parse 'examples/**/*.go' --quiet --stat
 これにより、ターミナルに直接色を出力することも可能だし、`--html`フラグを渡すことでHTMLを生成することもできる。
 詳細は[シンタックスハイライトのページ][syntax-highlighting]を参照すること。
 
-### The Grammar DSL
+### 文法DSL
 
-The following is a complete list of built-in functions you can use in your `grammar.js` to define rules. Use-cases for some of these functions will be explained in more detail in later sections.
+下記は`grammar.js`で使用できる組み込み関数の一覧である。
+これらの関数の使用例は、後のセクションで詳しく説明される。
 
-* **Symbols (the `$` object)** - Every grammar rule is written as a JavaScript function that takes a parameter conventionally called `$`. The syntax `$.identifier` is how you refer to another grammar symbol within a rule. Names starting with `$.MISSING` or `$.UNEXPECTED` should be avoided as they have special meaning for the `tree-sitter test` command.
-* **String and Regex literals** - The terminal symbols in a grammar are described using JavaScript strings and regular expressions. Of course during parsing, Tree-sitter does not actually use JavaScript's regex engine to evaluate these regexes; it generates its own regex-matching logic as part of each parser. Regex literals are just used as a convenient way of writing regular expressions in your grammar.
-* **Sequences : `seq(rule1, rule2, ...)`** - This function creates a rule that matches any number of other rules, one after another. It is analogous to simply writing multiple symbols next to each other in [EBNF notation][ebnf].
-* **Alternatives : `choice(rule1, rule2, ...)`** - This function creates a rule that matches *one* of a set of possible rules. The order of the arguments does not matter. This is analogous to the `|` (pipe) operator in EBNF notation.
-* **Repetitions : `repeat(rule)`** - This function creates a rule that matches *zero-or-more* occurrences of a given rule. It is analogous to the `{x}` (curly brace) syntax in EBNF notation.
+* **シンボル(`$`オブジェクト)** - すべての文法規則は、通常`$`と呼ばれるパラメータを取るJavaScript関数として記述される。`$.identifier`という構文は、規則内で他の文法シンボルを参照する方法である。`$.MISSING`または`$.UNEXPECTED`で始まる名前は、`tree-sitter test`コマンドに特別な意味があるため避けるべきである。
+* **文字列と正規表現リテラル** - 文法の終端記号は、JavaScriptの文字列と正規表現を使って記述される。もちろん、パーサは実際にはJavaScriptの正規表現エンジンを使ってこれらの正規表現を評価しない。パーサは、各パーサの一部として独自の正規表現マッチングロジックを生成する。正規表現リテラルは、文法内で正規表現を書く便利な方法である。
+* **シーケンス: `seq(rule1, rule2, ...)`** - この関数は、他のルールに一つずつ順番にマッチするルールを作成する。これは[EBNF記法][ebnf]で複数のシンボルを隣り合わせに書くのと同様である。
+* **選択: `choice(rule1, rule2, ...)`** - この関数は、可能なルールのセットの*1つ*にマッチするルールを作成する。引数の順序は重要ではない。これは、EBNF記法の`|`（パイプ）演算子に類似している。
+* **繰り返し: `repeat1(rule)`** - この関数は、指定されたルールの*0個以上*の出現にマッチするルールを作成する。以前の`repeat`ルールは`repeat1`を使って実装されているが、非常に一般的であるため含まれている。
 * **Repetitions : `repeat1(rule)`** - This function creates a rule that matches *one-or-more* occurrences of a given rule. The previous `repeat` rule is implemented in terms of `repeat1` but is included because it is very commonly used.
 * **Options : `optional(rule)`** - This function creates a rule that matches *zero or one* occurrence of a given rule. It is analogous to the `[x]` (square bracket) syntax in EBNF notation.
 * **Precedence : `prec(number, rule)`** - This function marks the given rule with a numerical precedence which will be used to resolve [*LR(1) Conflicts*][lr-conflict] at parser-generation time. When two rules overlap in a way that represents either a true ambiguity or a *local* ambiguity given one token of lookahead, Tree-sitter will try to resolve the conflict by matching the rule with the higher precedence. The default precedence of all rules is zero. This works similarly to the [precedence directives][yacc-prec] in Yacc grammars.
