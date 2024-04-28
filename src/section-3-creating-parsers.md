@@ -260,9 +260,9 @@ tree-sitter parse 'examples/**/*.go' --quiet --stat
 * **文字列と正規表現リテラル** - 文法の終端記号は、JavaScriptの文字列と正規表現を使って記述される。もちろん、パーサは実際にはJavaScriptの正規表現エンジンを使ってこれらの正規表現を評価しない。パーサは、各パーサの一部として独自の正規表現マッチングロジックを生成する。正規表現リテラルは、文法内で正規表現を書く便利な方法である。
 * **シーケンス: `seq(rule1, rule2, ...)`** - この関数は、他のルールに一つずつ順番にマッチするルールを作成する。これは[EBNF記法][ebnf]で複数のシンボルを隣り合わせに書くのと同様である。
 * **選択: `choice(rule1, rule2, ...)`** - この関数は、可能なルールのセットの*1つ*にマッチするルールを作成する。引数の順序は重要ではない。これは、EBNF記法の`|`（パイプ）演算子に類似している。
-* **繰り返し: `repeat1(rule)`** - この関数は、指定されたルールの*0個以上*の出現にマッチするルールを作成する。以前の`repeat`ルールは`repeat1`を使って実装されているが、非常に一般的であるため含まれている。
-* **Repetitions : `repeat1(rule)`** - This function creates a rule that matches *one-or-more* occurrences of a given rule. The previous `repeat` rule is implemented in terms of `repeat1` but is included because it is very commonly used.
-* **Options : `optional(rule)`** - This function creates a rule that matches *zero or one* occurrence of a given rule. It is analogous to the `[x]` (square bracket) syntax in EBNF notation.
+* **繰り返し: `repeat(rule)`** - この関数は、指定されたルールの*0個以上*の出現にマッチするルールを作成する。以前の`repeat`ルールは`repeat1`を使って実装されているが、非常に一般的であるため含まれている。
+* ** 繰り返し1: `repeat1(rule)`** - この関数は、指定されたルールの*1個以上*の出現にマッチするルールを作成する。以前の`repeat`ルールは`repeat1`を使って実装されているが、非常に一般的であるため含まれている。
+* **オプション: `optional(rule)`** - この関数は、指定されたルールの*0個または1個*の出現にマッチするルールを作成する。これは、EBNF記法の`[x]`（角括弧）構文に類似している。
 * **Precedence : `prec(number, rule)`** - This function marks the given rule with a numerical precedence which will be used to resolve [*LR(1) Conflicts*][lr-conflict] at parser-generation time. When two rules overlap in a way that represents either a true ambiguity or a *local* ambiguity given one token of lookahead, Tree-sitter will try to resolve the conflict by matching the rule with the higher precedence. The default precedence of all rules is zero. This works similarly to the [precedence directives][yacc-prec] in Yacc grammars.
 * **Left Associativity : `prec.left([number], rule)`** - This function marks the given rule as left-associative (and optionally applies a numerical precedence). When an LR(1) conflict arises in which all of the rules have the same numerical precedence, Tree-sitter will consult the rules' associativity. If there is a left-associative rule, Tree-sitter will prefer matching a rule that ends *earlier*. This works similarly to [associativity directives][yacc-prec] in Yacc grammars.
 * **Right Associativity : `prec.right([number], rule)`** - This function is like `prec.left`, but it instructs Tree-sitter to prefer matching a rule that ends *later*.
