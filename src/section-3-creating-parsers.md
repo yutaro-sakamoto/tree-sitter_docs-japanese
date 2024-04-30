@@ -293,11 +293,16 @@ In addition to the `name` and `rules` fields, grammars have a few other optional
 
 既存の文脈自由文法を直接Tree-sitterの文法形式に変換するだけでは、これらの2つの特性を満たすことはできない可能性が高い。多くの場合、次の種類の調整が必要となる。次のセクションでは、これらの調整について詳しく説明する。
 
-### The First Few Rules
+### まず最初に遵守すべきルール
 
-It's usually a good idea to find a formal specification for the language you're trying to parse. This specification will most likely contain a context-free grammar. As you read through the rules of this CFG, you will probably discover a complex and cyclic graph of relationships. It might be unclear how you should navigate this graph as you define your grammar.
+構文解析しようとする言語に対して厳密な仕様を見つけることは、通常は良いアイデアである。
+この仕様には、おそらく文脈自由文法が含まれているであろう。
+このCFGのルールを読み進めると、複雑で循環的な関係のグラフが見つかるかもしれない。
+このグラフをナビゲートする方法が不明確になるかもしれませんが、文法を定義する際にどのように進めるべきかを理解するために、このグラフを読み進めることが重要である。
 
-Although languages have very different constructs, their constructs can often be categorized in to similar groups like *Declarations*, *Definitions*, *Statements*, *Expressions*, *Types*, and *Patterns*. In writing your grammar, a good first step is to create just enough structure to include all of these basic *groups* of symbols. For a language like Go, you might start with something like this:
+言語は全く違った構造を持つが、その構造はしばしば*宣言*、*定義*、*文*、*式*、*型*、*パターン*のような似たようなグループに分類されることがある。
+文法を記述する際に、これらの基本的な*グループ*の記号を含むだけの構造を作成することが最初のステップとして良い。
+Goのような言語の場合、次のように始めることができる。
 
 ```js
 {
