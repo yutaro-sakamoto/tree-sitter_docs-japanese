@@ -283,15 +283,15 @@ In addition to the `name` and `rules` fields, grammars have a few other optional
 * **`supertypes`** an array of hidden rule names which should be considered to be 'supertypes' in the generated [*node types* file][static-node-types].
 
 
-## Writing the Grammar
+## 文法を記述する
 
-Writing a grammar requires creativity. There are an infinite number of CFGs (context-free grammars) that can be used to describe any given language. In order to produce a good Tree-sitter parser, you need to create a grammar with two important properties:
+文法の記述には創造性が必要である。与えられた言語を記述するために使用できるCFG（文脈自由文法）は無限に存在する。良いTree-sitterパーサを作成するためには、2つの重要な特性を持つ文法を作成する必要がある。
 
-1. **An intuitive structure** - Tree-sitter's output is a [concrete syntax tree][cst]; each node in the tree corresponds directly to a [terminal or non-terminal symbol][non-terminal] in the grammar. So in order to produce an easy-to-analyze tree, there should be a direct correspondence between the symbols in your grammar and the recognizable constructs in the language. This might seem obvious, but it is very different from the way that context-free grammars are often written in contexts like [language specifications][language-spec] or [Yacc][yacc]/[Bison][bison] parsers.
+1. **直感的な構造** - Tree-sitterの出力は[具象構文木][cst]であり、木の各ノードは文法内の[端末記号または非端末記号][non-terminal]に直接対応している。したがって、解析しやすい木を生成するためには、文法内の記号と言語内の認識可能な構造との間に直接的な対応関係がある必要がある。これは当たり前のことのように思えるかもしれないが、[言語仕様][language-spec]や[Yacc][yacc]/[Bison][bison]パーサのような文脈で文脈自由文法が書かれる方法とは非常に異なる。
 
-2. **A close adherence to LR(1)** - Tree-sitter is based on the [GLR parsing][glr-parsing] algorithm. This means that while it can handle any context-free grammar, it works most efficiently with a class of context-free grammars called [LR(1) Grammars][lr-grammars]. In this respect, Tree-sitter's grammars are similar to (but less restrictive than) [Yacc][yacc] and [Bison][bison] grammars, but *different* from [ANTLR grammars][antlr], [Parsing Expression Grammars][peg], or the [ambiguous grammars][ambiguous-grammar] commonly used in language specifications.
+2. **LR(1)の遵守** - Tree-sitterは[GLRパーサ][glr-parsing]アルゴリズムに基づいている。これは、任意の文脈自由文法を処理できるが、[LR(1)文法][lr-grammars]と呼ばれる文脈自由文法のクラスで最も効率的に動作する。この点で、Tree-sitterの文法は[Yacc][yacc]や[Bison][bison]の文法に似ているが、[ANTLR文法][antlr]、[Parsing Expression Grammars][peg]、または言語仕様で一般的に使用される[曖昧な文法][ambiguous-grammar]とは異なる。
 
-It's unlikely that you'll be able to satisfy these two properties just by translating an existing context-free grammar directly into Tree-sitter's grammar format. There are a few kinds of adjustments that are often required. The following sections will explain these adjustments in more depth.
+既存の文脈自由文法を直接Tree-sitterの文法形式に変換するだけでは、これらの2つの特性を満たすことはできない可能性が高い。多くの場合、次の種類の調整が必要となる。次のセクションでは、これらの調整について詳しく説明する。
 
 ### The First Few Rules
 
