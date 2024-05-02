@@ -1339,7 +1339,9 @@ Goのような言語の場合、次のように始めることができる。</p
   }
 }
 </code></pre>
-<p>Some of the details of this grammar will be explained in more depth later on, but if you focus on the <code>TODO</code> comments, you can see that the overall strategy is <em>breadth-first</em>. Notably, this initial skeleton does not need to directly match an exact subset of the context-free grammar in the language specification. It just needs to touch on the major groupings of rules in as simple and obvious a way as possible.</p>
+<p>この文法の詳細は後に説明するが、<code>TODO</code>コメントに焦点を当てると、全体的な戦略が<em>幅優先</em>であることがわかる。
+特筆すべきは、この初期のスケルトンは、言語仕様の文脈自由文法の正確なサブセットに直接マッチする必要はないということである。
+単に、できるだけシンプルで明確な方法で主要なルールのグループに触れるだけでよい。</p>
 <p>With this structure in place, you can now freely decide what part of the grammar to flesh out next. For example, you might decide to start with <em>types</em>. One-by-one, you could define the rules for writing basic types and composing them into more complex types:</p>
 <pre><code class="language-js">{
   // ...
