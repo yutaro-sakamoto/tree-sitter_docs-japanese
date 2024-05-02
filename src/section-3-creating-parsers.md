@@ -365,7 +365,9 @@ Goのような言語の場合、次のように始めることができる。
 }
 ```
 
-Some of the details of this grammar will be explained in more depth later on, but if you focus on the `TODO` comments, you can see that the overall strategy is *breadth-first*. Notably, this initial skeleton does not need to directly match an exact subset of the context-free grammar in the language specification. It just needs to touch on the major groupings of rules in as simple and obvious a way as possible.
+この文法の詳細は後に説明するが、`TODO`コメントに焦点を当てると、全体的な戦略が*幅優先*であることがわかる。
+特筆すべきは、この初期のスケルトンは、言語仕様の文脈自由文法の正確なサブセットに直接マッチする必要はないということである。
+単に、できるだけシンプルで明確な方法で主要なルールのグループに触れるだけでよい。
 
 With this structure in place, you can now freely decide what part of the grammar to flesh out next. For example, you might decide to start with *types*. One-by-one, you could define the rules for writing basic types and composing them into more complex types:
 
