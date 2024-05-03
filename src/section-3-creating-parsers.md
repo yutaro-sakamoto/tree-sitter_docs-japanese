@@ -371,6 +371,9 @@ Goのような言語の場合、次のように始めることができる。
 
 With this structure in place, you can now freely decide what part of the grammar to flesh out next. For example, you might decide to start with *types*. One-by-one, you could define the rules for writing basic types and composing them into more complex types:
 
+この構造ができたら、次にどの部分の文法を詳細にするかを自由に決定できる。
+例えば、*型*から始める場合、一つずつ基本的な型を書くためのルールを定義し、それらをより複雑な型に組み合わせることができる。
+
 ```js
 {
   // ...
@@ -399,9 +402,10 @@ With this structure in place, you can now freely decide what part of the grammar
 }
 ```
 
-After developing the *type* sublanguage a bit further, you might decide to switch to working on *statements* or *expressions* instead. It's often useful to check your progress by trying to parse some real code using `tree-sitter parse`.
+型のサブ言語をさらに発展させた後、*文*や*式*に取り組むことに切り替えることができる。
+`tree-sitter parse`を使用して実際のコードを解析して進捗状況を確認すると良い。
 
-**And remember to add tests for each rule in your `corpus` folder!**
+**そして、`corpus`フォルダ内の各ルールに対して必ずテストを追加すること**
 
 ### Structuring Rules Well
 
