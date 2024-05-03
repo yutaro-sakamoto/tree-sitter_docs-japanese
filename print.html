@@ -1343,6 +1343,8 @@ Goのような言語の場合、次のように始めることができる。</p
 特筆すべきは、この初期のスケルトンは、言語仕様の文脈自由文法の正確なサブセットに直接マッチする必要はないということである。
 単に、できるだけシンプルで明確な方法で主要なルールのグループに触れるだけでよい。</p>
 <p>With this structure in place, you can now freely decide what part of the grammar to flesh out next. For example, you might decide to start with <em>types</em>. One-by-one, you could define the rules for writing basic types and composing them into more complex types:</p>
+<p>この構造ができたら、次にどの部分の文法を詳細にするかを自由に決定できる。
+例えば、<em>型</em>から始める場合、一つずつ基本的な型を書くためのルールを定義し、それらをより複雑な型に組み合わせることができる。</p>
 <pre><code class="language-js">{
   // ...
 
@@ -1369,8 +1371,9 @@ Goのような言語の場合、次のように始めることができる。</p
   )
 }
 </code></pre>
-<p>After developing the <em>type</em> sublanguage a bit further, you might decide to switch to working on <em>statements</em> or <em>expressions</em> instead. It's often useful to check your progress by trying to parse some real code using <code>tree-sitter parse</code>.</p>
-<p><strong>And remember to add tests for each rule in your <code>corpus</code> folder!</strong></p>
+<p>型のサブ言語をさらに発展させた後、<em>文</em>や<em>式</em>に取り組むことに切り替えることができる。
+<code>tree-sitter parse</code>を使用して実際のコードを解析して進捗状況を確認すると良い。</p>
+<p><strong>そして、<code>corpus</code>フォルダ内の各ルールに対して必ずテストを追加すること</strong></p>
 <h3><a class="header" href="#structuring-rules-well" id="structuring-rules-well">Structuring Rules Well</a></h3>
 <p>Imagine that you were just starting work on the <a href="https://github.com/tree-sitter/tree-sitter-javascript">Tree-sitter JavaScript parser</a>. Naively, you might try to directly mirror the structure of the <a href="https://262.ecma-international.org/6.0/">ECMAScript Language Spec</a>. To illustrate the problem with this approach, consider the following line of code:</p>
 <pre><code class="language-js">return x + y;
