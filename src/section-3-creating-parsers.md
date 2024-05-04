@@ -417,7 +417,8 @@ With this structure in place, you can now freely decide what part of the grammar
 return x + y;
 ```
 
-According to the specification, this line is a `ReturnStatement`, the fragment `x + y` is an `AdditiveExpression`, and `x` and `y` are both `IdentifierReferences`. The relationship between these constructs is captured by a complex series of production rules:
+仕様によると、この行は`ReturnStatement`であり、フラグメント`x + y`は`AdditiveExpression`であり、`x`と`y`はどちらも`IdentifierReferences`である。
+これらの構造の関係は、複雑な一連の生成規則によって表される。
 
 ```
 ReturnStatement          ->  'return' Expression
