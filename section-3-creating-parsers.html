@@ -507,7 +507,8 @@ Goのような言語の場合、次のように始めることができる。</p
 このアプローチの問題を説明するために、次のコード行を考えてみる。</p>
 <pre><code class="language-js">return x + y;
 </code></pre>
-<p>According to the specification, this line is a <code>ReturnStatement</code>, the fragment <code>x + y</code> is an <code>AdditiveExpression</code>, and <code>x</code> and <code>y</code> are both <code>IdentifierReferences</code>. The relationship between these constructs is captured by a complex series of production rules:</p>
+<p>仕様によると、この行は<code>ReturnStatement</code>であり、フラグメント<code>x + y</code>は<code>AdditiveExpression</code>であり、<code>x</code>と<code>y</code>はどちらも<code>IdentifierReferences</code>である。
+これらの構造の関係は、複雑な一連の生成規則によって表される。</p>
 <pre><code>ReturnStatement          -&gt;  'return' Expression
 Expression               -&gt;  AssignmentExpression
 AssignmentExpression     -&gt;  ConditionalExpression
