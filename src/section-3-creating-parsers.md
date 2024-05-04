@@ -407,9 +407,11 @@ With this structure in place, you can now freely decide what part of the grammar
 
 **そして、`corpus`フォルダ内の各ルールに対して必ずテストを追加すること**
 
-### Structuring Rules Well
+### ルールの適切な構造化
 
-Imagine that you were just starting work on the [Tree-sitter JavaScript parser][tree-sitter-javascript]. Naively, you might try to directly mirror the structure of the [ECMAScript Language Spec][ecmascript-spec]. To illustrate the problem with this approach, consider the following line of code:
+[Tree-sitter Javascript parser][tree-sitter-javascript]の作業を始めたとする。
+単純に、[ECMAScript Language Spec][ecmascript-spec]の構造を直接反映しようとするかもしれない。
+このアプローチの問題を説明するために、次のコード行を考えてみる。
 
 ```js
 return x + y;
