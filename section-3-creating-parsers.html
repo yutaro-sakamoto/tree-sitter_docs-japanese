@@ -531,9 +531,10 @@ NewExpression            -&gt;  MemberExpression
 MemberExpression         -&gt;  PrimaryExpression
 PrimaryExpression        -&gt;  IdentifierReference
 </code></pre>
-<p>The language spec encodes the twenty different precedence levels of JavaScript expressions using twenty levels of indirection between <code>IdentifierReference</code> and <code>Expression</code>. If we were to create a concrete syntax tree representing this statement according to the language spec, it would have twenty levels of nesting, and it would contain nodes with names like <code>BitwiseXORExpression</code>, which are unrelated to the actual code.</p>
-<h3><a class="header" href="#using-precedence" id="using-precedence">Using Precedence</a></h3>
-<p>To produce a readable syntax tree, we'd like to model JavaScript expressions using a much flatter structure like this:</p>
+<p>言語仕様は、<code>IdentifierReference</code>と<code>Expression</code>の間に20の間接レベルを使用してJavaScript式の20の異なる優先度レベルをエンコードしている。
+もし、言語仕様に従ってこのステートメントを表す具象構文木を作成すると、20のネストレベルがあり、実際のコードとは関係のない<code>BitwiseXORExpression</code>のような名前のノードが含まれる。</p>
+<h3><a class="header" href="#優先度を使用する" id="優先度を使用する">優先度を使用する</a></h3>
+<p>読みやすい構文木を生成するために、次のようなJavaScript式をより平らな構造でモデル化したい。</p>
 <pre><code class="language-js">{
   // ...
 
