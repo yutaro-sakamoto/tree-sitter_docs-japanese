@@ -444,11 +444,12 @@ MemberExpression         ->  PrimaryExpression
 PrimaryExpression        ->  IdentifierReference
 ```
 
-The language spec encodes the twenty different precedence levels of JavaScript expressions using twenty levels of indirection between `IdentifierReference` and `Expression`. If we were to create a concrete syntax tree representing this statement according to the language spec, it would have twenty levels of nesting, and it would contain nodes with names like `BitwiseXORExpression`, which are unrelated to the actual code.
+言語仕様は、`IdentifierReference`と`Expression`の間に20の間接レベルを使用してJavaScript式の20の異なる優先度レベルをエンコードしている。
+もし、言語仕様に従ってこのステートメントを表す具象構文木を作成すると、20のネストレベルがあり、実際のコードとは関係のない`BitwiseXORExpression`のような名前のノードが含まれる。
 
-### Using Precedence
+### 優先度を使用する
 
-To produce a readable syntax tree, we'd like to model JavaScript expressions using a much flatter structure like this:
+読みやすい構文木を生成するために、次のようなJavaScript式をより平らな構造でモデル化したい。
 
 ```js
 {
