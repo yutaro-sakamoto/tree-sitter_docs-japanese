@@ -476,7 +476,8 @@ PrimaryExpression        ->  IdentifierReference
 }
 ```
 
-Of course, this flat structure is highly ambiguous. If we try to generate a parser, Tree-sitter gives us an error message:
+もちろん、この平坦な構造は非常に曖昧である。
+もしパーサを生成しようとすると、Tree-sitterはエラーメッセージを表示する。
 
 ```
 Error: Unresolved conflict for symbol sequence:
