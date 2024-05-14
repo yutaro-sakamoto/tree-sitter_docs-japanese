@@ -576,7 +576,10 @@ Possible resolutions:
   3:  Specify a left or right associativity in `unary_expression`
   4:  Add a conflict for these rules: `binary_expression` `unary_expression`
 </code></pre>
-<p>For an expression like <code>-a * b</code>, it's not clear whether the <code>-</code> operator applies to the <code>a * b</code> or just to the <code>a</code>. This is where the <code>prec</code> function <a href="#the-grammar-dsl">described above</a> comes into play. By wrapping a rule with <code>prec</code>, we can indicate that certain sequence of symbols should <em>bind to each other more tightly</em> than others. For example, the <code>'-', $._expression</code> sequence in <code>unary_expression</code> should bind more tightly than the <code>$._expression, '+', $._expression</code> sequence in <code>binary_expression</code>:</p>
+<p><code>-a * b</code>のような式では、<code>-</code>演算子が<code>a * b</code>に適用されるか、単に<code>a</code>に適用されるかが明確ではない。
+これは、上記で説明した<code>prec</code>関数が役立つ場面である。
+<code>prec</code>でルールをラップすることで、特定のシンボルのシーケンスが他のシーケンスよりも<em>密接に結びつく</em>べきであることを示すことができる。
+例えば、<code>unary_expression</code>の<code>'-', $._expression</code>シーケンスは、<code>binary_expression</code>の<code>$._expression, '+', $._expression</code>シーケンスよりも密接に結びつくべきである。</p>
 <pre><code class="language-js">{
   // ...
 
