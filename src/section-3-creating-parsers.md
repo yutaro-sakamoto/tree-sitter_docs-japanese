@@ -516,7 +516,7 @@ Possible resolutions:
 
 ### Using Associativity
 
-Applying a higher precedence in `unary_expression` fixes that conflict, but there is still another conflict:
+`unary_expression`の優先度を上げることで、このコンフリクトは解決されるが、別のコンフリクトが残る。
 
 ```
 Error: Unresolved conflict for symbol sequence:
@@ -534,7 +534,20 @@ Possible resolutions:
   2:  Add a conflict for these rules: `binary_expression`
 ```
 
-For an expression like `a * b * c`, it's not clear whether we mean `a * (b * c)` or `(a * b) * c`. This is where `prec.left` and `prec.right` come into use. We want to select the second interpretation, so we use `prec.left`.
+`a * b * c`のような式では、`a * (b * c)`または`(a * b) * c`を意味するかが明確ではない。
+これは`prec.left`と`prec.right`が使用される場面である。
+ここでは2番目の解釈を選択したいので、`prec.left`を使用する。
+
+```js
+{
+  // ...
+
+  binary_expression: $ => choice(
+    prec.left(2, seq($._expression, '*', $._expression)),
+    prec.left(1, seq($._expression, '+', $._expression)),
+    // ...
+  ),
+}
 
 ```js
 {
