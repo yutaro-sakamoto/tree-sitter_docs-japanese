@@ -1464,7 +1464,7 @@ Possible resolutions:
 }
 </code></pre>
 <h3><a class="header" href="#using-associativity" id="using-associativity">Using Associativity</a></h3>
-<p>Applying a higher precedence in <code>unary_expression</code> fixes that conflict, but there is still another conflict:</p>
+<p><code>unary_expression</code>の優先度を上げることで、このコンフリクトは解決されるが、別のコンフリクトが残る。</p>
 <pre><code>Error: Unresolved conflict for symbol sequence:
 
   _expression  '*'  _expression  •  '*'  …
@@ -1479,8 +1479,21 @@ Possible resolutions:
   1:  Specify a left or right associativity in `binary_expression`
   2:  Add a conflict for these rules: `binary_expression`
 </code></pre>
-<p>For an expression like <code>a * b * c</code>, it's not clear whether we mean <code>a * (b * c)</code> or <code>(a * b) * c</code>. This is where <code>prec.left</code> and <code>prec.right</code> come into use. We want to select the second interpretation, so we use <code>prec.left</code>.</p>
+<p><code>a * b * c</code>のような式では、<code>a * (b * c)</code>または<code>(a * b) * c</code>を意味するかが明確ではない。
+これは<code>prec.left</code>と<code>prec.right</code>が使用される場面である。
+ここでは2番目の解釈を選択したいので、<code>prec.left</code>を使用する。</p>
 <pre><code class="language-js">{
+  // ...
+
+  binary_expression: $ =&gt; choice(
+    prec.left(2, seq($._expression, '*', $._expression)),
+    prec.left(1, seq($._expression, '+', $._expression)),
+    // ...
+  ),
+}
+
+```js
+{
   // ...
 
   binary_expression: $ =&gt; choice(
