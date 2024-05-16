@@ -630,8 +630,11 @@ Possible resolutions:
   ),
 }
 </code></pre>
-<h3><a class="header" href="#hiding-rules" id="hiding-rules">Hiding Rules</a></h3>
-<p>You may have noticed in the above examples that some of the grammar rule name like <code>_expression</code> and <code>_type</code> began with an underscore. Starting a rule's name with an underscore causes the rule to be <em>hidden</em> in the syntax tree. This is useful for rules like <code>_expression</code> in the grammars above, which always just wrap a single child node. If these nodes were not hidden, they would add substantial depth and noise to the syntax tree without making it any easier to understand.</p>
+<h3><a class="header" href="#隠蔽ルール" id="隠蔽ルール">隠蔽ルール</a></h3>
+<p>上記の例では、<code>_expression</code>や<code>_type</code>のような構文ルールはアンダースコアから始まる。
+アンダースコアから始まるルール名は、構文木で<em>隠される</em>。
+これは、上記の文法の<code>_expression</code>のように常に単一の子ノードをラップするルールに便利である。
+もしこれらのノードが隠されていない場合、構文木に大きな深さとノイズを追加し、理解が難しくなる。</p>
 <h3><a class="header" href="#using-fields" id="using-fields">Using Fields</a></h3>
 <p>Often, it's easier to analyze a syntax nodes if you can refer to its children by <em>name</em> instead of by their position in an ordered list. Tree-sitter grammars support this using the <code>field</code> function. This function allows you to assign unique names to some or all of a node's children:</p>
 <pre><code class="language-js">function_definition: $ =&gt; seq(
