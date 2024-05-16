@@ -635,8 +635,10 @@ Possible resolutions:
 アンダースコアから始まるルール名は、構文木で<em>隠される</em>。
 これは、上記の文法の<code>_expression</code>のように常に単一の子ノードをラップするルールに便利である。
 もしこれらのノードが隠されていない場合、構文木に大きな深さとノイズを追加し、理解が難しくなる。</p>
-<h3><a class="header" href="#using-fields" id="using-fields">Using Fields</a></h3>
-<p>Often, it's easier to analyze a syntax nodes if you can refer to its children by <em>name</em> instead of by their position in an ordered list. Tree-sitter grammars support this using the <code>field</code> function. This function allows you to assign unique names to some or all of a node's children:</p>
+<h3><a class="header" href="#フィールドを使用する" id="フィールドを使用する">フィールドを使用する</a></h3>
+<p>しばしば、構文ノードを解析する際に、順序付けられたリスト内の位置ではなく、名前で子ノードを参照できると便利である。
+Tree-sitter文法は、<code>field</code>関数を使用してこれをサポートしています。
+この関数を使用すると、ノードの一部またはすべての子に一意の名前を割り当てることができる。</p>
 <pre><code class="language-js">function_definition: $ =&gt; seq(
   'func',
   field('name', $.identifier),
