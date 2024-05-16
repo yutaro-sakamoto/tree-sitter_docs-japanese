@@ -568,9 +568,11 @@ Possible resolutions:
 これは、上記の文法の`_expression`のように常に単一の子ノードをラップするルールに便利である。
 もしこれらのノードが隠されていない場合、構文木に大きな深さとノイズを追加し、理解が難しくなる。
 
-### Using Fields
+### フィールドを使用する
 
-Often, it's easier to analyze a syntax nodes if you can refer to its children by *name* instead of by their position in an ordered list. Tree-sitter grammars support this using the `field` function. This function allows you to assign unique names to some or all of a node's children:
+しばしば、構文ノードを解析する際に、順序付けられたリスト内の位置ではなく、名前で子ノードを参照できると便利である。
+Tree-sitter文法は、`field`関数を使用してこれをサポートしています。
+この関数を使用すると、ノードの一部またはすべての子に一意の名前を割り当てることができる。
 
 ```js
 function_definition: $ => seq(
