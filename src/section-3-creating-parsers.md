@@ -561,9 +561,12 @@ Possible resolutions:
 }
 ```
 
-### Hiding Rules
+### 隠蔽ルール
 
-You may have noticed in the above examples that some of the grammar rule name like `_expression` and `_type` began with an underscore. Starting a rule's name with an underscore causes the rule to be *hidden* in the syntax tree. This is useful for rules like `_expression` in the grammars above, which always just wrap a single child node. If these nodes were not hidden, they would add substantial depth and noise to the syntax tree without making it any easier to understand.
+上記の例では、`_expression`や`_type`のような構文ルールはアンダースコアから始まる。
+アンダースコアから始まるルール名は、構文木で*隠される*。
+これは、上記の文法の`_expression`のように常に単一の子ノードをラップするルールに便利である。
+もしこれらのノードが隠されていない場合、構文木に大きな深さとノイズを追加し、理解が難しくなる。
 
 ### Using Fields
 
