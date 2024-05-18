@@ -1520,9 +1520,12 @@ Tree-sitter文法は、<code>field</code>関数を使用してこれをサポー
   field('body', $.block)
 )
 </code></pre>
-<p>Adding fields like this allows you to retrieve nodes using the <a href="./using-parsers#node-field-names">field APIs</a>.</p>
-<h2><a class="header" href="#lexical-analysis" id="lexical-analysis">Lexical Analysis</a></h2>
+<p>このようなフィールドを追加することで、<a href="./using-parsers#node-field-names">field API</a>を使用してノードを取得できるようになる。</p>
+<h2><a class="header" href="#字句解析" id="字句解析">字句解析</a></h2>
 <p>Tree-sitter's parsing process is divided into two phases: parsing (which is described above) and <a href="https://en.wikipedia.org/wiki/Lexical_analysis">lexing</a> - the process of grouping individual characters into the language's fundamental <em>tokens</em>. There are a few important things to know about how Tree-sitter's lexing works.</p>
+<p>Tree-sitterの構文解析処理は、2つのフェーズに分かれている。
+1つは構文解析（上記で説明した）で、もう1つは<a href="https://en.wikipedia.org/wiki/Lexical_analysis">字句解析</a>であり、字句解析は、個々の文字を言語の基本的な<em>トークン</em>にグループ化する処理である。
+Tree-sitterの字句解析がどのように機能するかについて、いくつか重要なことがある。</p>
 <h3><a class="header" href="#conflicting-tokens" id="conflicting-tokens">Conflicting Tokens</a></h3>
 <p>Grammars often contain multiple tokens that can match the same characters. For example, a grammar might contain the tokens (<code>&quot;if&quot;</code> and <code>/[a-z]+/</code>). Tree-sitter differentiates between these conflicting tokens in a few ways.</p>
 <ol>
