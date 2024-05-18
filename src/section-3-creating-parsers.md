@@ -584,11 +584,15 @@ function_definition: $ => seq(
 )
 ```
 
-Adding fields like this allows you to retrieve nodes using the [field APIs][field-names-section].
+このようなフィールドを追加することで、[field API][field-names-section]を使用してノードを取得できるようになる。
 
-## Lexical Analysis
+## 字句解析
 
 Tree-sitter's parsing process is divided into two phases: parsing (which is described above) and [lexing][lexing] - the process of grouping individual characters into the language's fundamental *tokens*. There are a few important things to know about how Tree-sitter's lexing works.
+
+Tree-sitterの構文解析処理は、2つのフェーズに分かれている。
+1つは構文解析（上記で説明した）で、もう1つは[字句解析][lexing]であり、字句解析は、個々の文字を言語の基本的な*トークン*にグループ化する処理である。
+Tree-sitterの字句解析がどのように機能するかについて、いくつか重要なことがある。
 
 ### Conflicting Tokens
 
