@@ -588,15 +588,15 @@ function_definition: $ => seq(
 
 ## 字句解析
 
-Tree-sitter's parsing process is divided into two phases: parsing (which is described above) and [lexing][lexing] - the process of grouping individual characters into the language's fundamental *tokens*. There are a few important things to know about how Tree-sitter's lexing works.
-
 Tree-sitterの構文解析処理は、2つのフェーズに分かれている。
 1つは構文解析（上記で説明した）で、もう1つは[字句解析][lexing]であり、字句解析は、個々の文字を言語の基本的な*トークン*にグループ化する処理である。
 Tree-sitterの字句解析がどのように機能するかについて、いくつか重要なことがある。
 
-### Conflicting Tokens
+### トークンの衝突
 
-Grammars often contain multiple tokens that can match the same characters. For example, a grammar might contain the tokens (`"if"` and `/[a-z]+/`). Tree-sitter differentiates between these conflicting tokens in a few ways.
+文法はしばしば、同じ文字にマッチする複数のトークンを含んでいる。
+例えば、文法には(`"if"`と`/[a-z]+/`)のトークンが含まれているかもしれない。
+Tree-sitterは、これらのトークンの衝突をいくつかの方法で区別している。
 
 1. **External Scanning** - If your grammar has an external scanner and one or more tokens in your `externals` array are valid at the current location, your external scanner will always be called first to determine whether those tokens are present.
 
