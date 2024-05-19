@@ -1522,12 +1522,13 @@ Tree-sitter文法は、<code>field</code>関数を使用してこれをサポー
 </code></pre>
 <p>このようなフィールドを追加することで、<a href="./using-parsers#node-field-names">field API</a>を使用してノードを取得できるようになる。</p>
 <h2><a class="header" href="#字句解析" id="字句解析">字句解析</a></h2>
-<p>Tree-sitter's parsing process is divided into two phases: parsing (which is described above) and <a href="https://en.wikipedia.org/wiki/Lexical_analysis">lexing</a> - the process of grouping individual characters into the language's fundamental <em>tokens</em>. There are a few important things to know about how Tree-sitter's lexing works.</p>
 <p>Tree-sitterの構文解析処理は、2つのフェーズに分かれている。
 1つは構文解析（上記で説明した）で、もう1つは<a href="https://en.wikipedia.org/wiki/Lexical_analysis">字句解析</a>であり、字句解析は、個々の文字を言語の基本的な<em>トークン</em>にグループ化する処理である。
 Tree-sitterの字句解析がどのように機能するかについて、いくつか重要なことがある。</p>
-<h3><a class="header" href="#conflicting-tokens" id="conflicting-tokens">Conflicting Tokens</a></h3>
-<p>Grammars often contain multiple tokens that can match the same characters. For example, a grammar might contain the tokens (<code>&quot;if&quot;</code> and <code>/[a-z]+/</code>). Tree-sitter differentiates between these conflicting tokens in a few ways.</p>
+<h3><a class="header" href="#トークンの衝突" id="トークンの衝突">トークンの衝突</a></h3>
+<p>文法はしばしば、同じ文字にマッチする複数のトークンを含んでいる。
+例えば、文法には(<code>&quot;if&quot;</code>と<code>/[a-z]+/</code>)のトークンが含まれているかもしれない。
+Tree-sitterは、これらのトークンの衝突をいくつかの方法で区別している。</p>
 <ol>
 <li>
 <p><strong>External Scanning</strong> - If your grammar has an external scanner and one or more tokens in your <code>externals</code> array are valid at the current location, your external scanner will always be called first to determine whether those tokens are present.</p>
