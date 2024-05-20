@@ -658,10 +658,10 @@ Tree-sitterの字句解析がどのように機能するかについて、いく
 Tree-sitterは、これらのトークンの衝突をいくつかの方法で区別している。</p>
 <ol>
 <li>
-<p><strong>External Scanning</strong> - If your grammar has an external scanner and one or more tokens in your <code>externals</code> array are valid at the current location, your external scanner will always be called first to determine whether those tokens are present.</p>
+<p><strong>外部スキャナー</strong> - 文法に外部スキャナーがある場合、<code>externals</code>配列内の1つ以上のトークンが現在の位置で有効である場合、外部スキャナーが常に最初に呼び出され、これらのトークンが存在するかどうかを決定する。</p>
 </li>
 <li>
-<p><strong>Context-Aware Lexing</strong> - Tree-sitter performs lexing on-demand, during the parsing process. At any given position in a source document, the lexer only tries to recognize tokens that are <em>valid</em> at that position in the document.</p>
+<p><strong>Context-Aware Lexing</strong> - Tree-sitterは、パーサ実行時に必要に応じて字句解析を行う。ソースドキュメントの任意の位置で、字句解析器はその位置で<em>有効な</em>トークンのみを認識しようとする。</p>
 </li>
 <li>
 <p><strong>Earliest Starting Position</strong> - Tree-sitter will prefer tokens with an earlier starting position. This is most often seen with very permissive regular expressions similar to <code>/.*/</code>, which are greedy and will consume as much text as possible. In this example the regex would consume all text until hitting a newline - even if text on that line could be interpreted as a different token.</p>
