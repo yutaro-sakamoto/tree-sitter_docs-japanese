@@ -664,10 +664,10 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 <p><strong>Context-Aware Lexing</strong> - Tree-sitterは、パーサ実行時に必要に応じて字句解析を行う。ソースドキュメントの任意の位置で、字句解析器はその位置で<em>有効な</em>トークンのみを認識しようとする。</p>
 </li>
 <li>
-<p><strong>Earliest Starting Position</strong> - Tree-sitter will prefer tokens with an earlier starting position. This is most often seen with very permissive regular expressions similar to <code>/.*/</code>, which are greedy and will consume as much text as possible. In this example the regex would consume all text until hitting a newline - even if text on that line could be interpreted as a different token.</p>
+<p><strong>Earliest Starting Position</strong> - Tree-sitterは、最初に開始された位置のトークンを優先する。これは、非常に許容的な正規表現（<code>/.*/</code>に類似）で最もよく見られ、貪欲で可能な限り多くのテキストを消費しようとする。この例では、正規表現は改行に達するまですべてのテキストを消費するが、その行のテキストが異なるトークンとして解釈できる場合でも、改行に達するまですべてのテキストを消費する。</p>
 </li>
 <li>
-<p><strong>Explicit Lexical Precedence</strong> - When the precedence functions described <a href="#the-grammar-dsl">above</a> are used within the <code>token</code> function, the given precedence values serve as instructions to the lexer. If there are two valid tokens that match the characters at a given position in the document, Tree-sitter will select the one with the higher precedence.</p>
+<p><strong>明示的な字句解析の優先度</strong> - 上記で説明した優先度関数が<code>token</code>関数内で使用されると、与えられた優先度値は字句解析器に対する指示として機能する。文書内の特定の位置で文字にマッチする2つの有効なトークンがある場合、Tree-sitterはより高い優先度を持つトークンを選択する。</p>
 </li>
 <li>
 <p><strong>Match Length</strong> - If multiple valid tokens with the same precedence match the characters at a given position in a document, Tree-sitter will select the token that matches the <a href="https://en.wikipedia.org/wiki/Maximal_munch">longest sequence of characters</a>.</p>
