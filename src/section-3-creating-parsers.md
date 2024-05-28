@@ -606,7 +606,7 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 
 1. **明示的な字句解析の優先度** - 上記で説明した優先度関数が`token`関数内で使用されると、与えられた優先度値は字句解析器に対する指示として機能する。文書内の特定の位置で文字にマッチする2つの有効なトークンがある場合、Tree-sitterはより高い優先度を持つトークンを選択する。
 
-1. **Match Length** - If multiple valid tokens with the same precedence match the characters at a given position in a document, Tree-sitter will select the token that matches the [longest sequence of characters][longest-match].
+1. **最長一致** - もし複数の正当なトークンに同じ優先度で同じ場所でマッチした場合、Tree-sitterは最も長いものを選択する。
 
 1. **Match Specificity** - If there are two valid tokens with the same precedence and which both match the same number of characters, Tree-sitter will prefer a token that is specified in the grammar as a `String` over a token specified as a `RegExp`.
 
