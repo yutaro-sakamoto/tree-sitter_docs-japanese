@@ -5,7 +5,11 @@ on:
     types: [opened, reopened, review_requested, synchronize]
 
 jobs:
+  check-workflows:
+    uses: ./.github/workflows/check-workflows.yml
+
   build:
+    needs: check-workflows
     runs-on: ubuntu-latest
 
     steps:

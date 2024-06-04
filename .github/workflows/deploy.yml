@@ -8,7 +8,11 @@ permissions:
   contents: write
 
 jobs:
+  check-workflows:
+    uses: ./.github/workflows/check-workflows.yml
+
   build:
+    needs: check-workflows
     runs-on: ubuntu-latest
 
     steps:
