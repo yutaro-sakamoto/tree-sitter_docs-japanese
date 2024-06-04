@@ -608,9 +608,9 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 
 1. **最長一致** - もし複数の正当なトークンに同じ優先度で同じ場所でマッチした場合、Tree-sitterは最も長いものを選択する。
 
-1. **Match Specificity** - If there are two valid tokens with the same precedence and which both match the same number of characters, Tree-sitter will prefer a token that is specified in the grammar as a `String` over a token specified as a `RegExp`.
+1. **Match Specificity** - もし同じ優先度で同じ数の文字にマッチする2つの有効なトークンがある場合、Tree-sitterは、`String`として指定されたトークンを`RegExp`として指定されたトークンよりも優先する。
 
-1. **Rule Order** - If none of the above criteria can be used to select one token over another, Tree-sitter will prefer the token that appears earlier in the grammar.
+1. **ルールの表記順序** - もし上記のいずれの基準も使用できない場合、Tree-sitterは文法内で先に現れるトークンを選択する。
 
 ### Lexical Precedence vs. Parse Precedence
 
