@@ -612,15 +612,16 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 
 1. **ルールの表記順序** - もし上記のいずれの基準も使用できない場合、Tree-sitterは文法内で先に現れるトークンを選択する。
 
-### Lexical Precedence vs. Parse Precedence
+### 字句解析の優先度と構文解析の優先度
 
-One common mistake involves not distinguishing lexical precedence from parse precedence.
-Parse precedence determines which rule is chosen to interpret a given sequence of tokens.
-Lexical precedence determines which token is chosen to interpret a given section of text.
-It is a lower-level operation that is done first.
-The above list fully capture tree-sitter's lexical precedence rules, and you will probably refer back to this section of the documentation more often than any other.
-Most of the time when you really get stuck, you're dealing with a lexical precedence problem.
-Pay particular attention to the difference in meaning between using `prec` inside the `token` function versus outside of it.
+よくある間違いの一つに、字句解析の優先度と構文解析の優先度を区別しないことがある。
+構文解析の優先度は、与えられたトークンの列を解釈するために選択されるルールを決定する。
+字句解析の優先度は、与えられたテキストのセクションを解釈するために選択されるトークンを決定する。
+字句解析の優先度は、構文解析の優先度よりも低いレベルで行われる。
+上記のリストは、Tree-sitterの字句解析の優先度ルールを完全に捉えており、
+おそらく他のどのセクションよりも頻繁にこのセクションを参照することになるでしょう。
+ほとんどの場合、本当に行き詰まると、字句解析の優先度の問題に直面していることになります。
+`prec`が`token`関数の中で使用されるか、外側で使用されるかによって、意味が異なることに特に注意してください。
 
 ### Keywords
 
