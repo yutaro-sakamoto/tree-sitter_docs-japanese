@@ -623,21 +623,26 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 ほとんどの場合、本当に行き詰まると、字句解析の優先度の問題に直面していることになります。
 `prec`が`token`関数の中で使用されるか、外側で使用されるかによって、意味が異なることに特に注意してください。
 
-### Keywords
+### キーワード
 
-Many languages have a set of *keyword* tokens (e.g. `if`, `for`, `return`), as well as a more general token (e.g. `identifier`) that matches any word, including many of the keyword strings. For example, JavaScript has a keyword `instanceof`, which is used as a binary operator, like this:
+多くの言語では、一連の*キーワード*トークン（例：`if`、`for`、`return`）と、より一般的なトークン（例：`identifier`）があります。
+このトークンは任意の単語にマッチし、キーワードにもマッチします。
+例えば、JavaScriptには`instanceof`というキーワードがあり、次のように2項演算子として使用されます。
 
 ```js
 if (a instanceof Something) b();
 ```
 
-The following, however, is not valid JavaScript:
+しかし、次のコードは有効なJavaScriptではありません。
 
 ```js
 if (a instanceofSomething) b();
 ```
 
-A keyword like `instanceof` cannot be followed immediately by another letter, because then it would be tokenized as an `identifier`, **even though an identifier is not valid at that position**. Because Tree-sitter uses context-aware lexing, as described [above](#conflicting-tokens), it would not normally impose this restriction. By default, Tree-sitter would recognize `instanceofSomething` as two separate tokens: the `instanceof` keyword followed by an `identifier`.
+`instanceof`のようなキーワードは、たとえ識別子がその位置で有効でない場合でも、他の文字が直後に続いてはなりません。
+Tree-sitterは、[上記](#conflicting-tokens)で説明したように、コンテキストに応じた字句解析を使用しているため、通常、この制限を課しません。
+デフォルトでは、Tree-sitterは`instanceofSomething`を2つの別々のトークンとして認識します。
+つまり`instanceof`キーワードの後に`identifier`が続くものと認識します。
 
 ### Keyword Extraction
 
