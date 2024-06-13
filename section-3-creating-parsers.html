@@ -688,14 +688,19 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 おそらく他のどのセクションよりも頻繁にこのセクションを参照することになるでしょう。
 ほとんどの場合、本当に行き詰まると、字句解析の優先度の問題に直面していることになります。
 <code>prec</code>が<code>token</code>関数の中で使用されるか、外側で使用されるかによって、意味が異なることに特に注意してください。</p>
-<h3><a class="header" href="#keywords" id="keywords">Keywords</a></h3>
-<p>Many languages have a set of <em>keyword</em> tokens (e.g. <code>if</code>, <code>for</code>, <code>return</code>), as well as a more general token (e.g. <code>identifier</code>) that matches any word, including many of the keyword strings. For example, JavaScript has a keyword <code>instanceof</code>, which is used as a binary operator, like this:</p>
+<h3><a class="header" href="#キーワード" id="キーワード">キーワード</a></h3>
+<p>多くの言語では、一連の<em>キーワード</em>トークン（例：<code>if</code>、<code>for</code>、<code>return</code>）と、より一般的なトークン（例：<code>identifier</code>）があります。
+このトークンは任意の単語にマッチし、キーワードにもマッチします。
+例えば、JavaScriptには<code>instanceof</code>というキーワードがあり、次のように2項演算子として使用されます。</p>
 <pre><code class="language-js">if (a instanceof Something) b();
 </code></pre>
-<p>The following, however, is not valid JavaScript:</p>
+<p>しかし、次のコードは有効なJavaScriptではありません。</p>
 <pre><code class="language-js">if (a instanceofSomething) b();
 </code></pre>
-<p>A keyword like <code>instanceof</code> cannot be followed immediately by another letter, because then it would be tokenized as an <code>identifier</code>, <strong>even though an identifier is not valid at that position</strong>. Because Tree-sitter uses context-aware lexing, as described <a href="#conflicting-tokens">above</a>, it would not normally impose this restriction. By default, Tree-sitter would recognize <code>instanceofSomething</code> as two separate tokens: the <code>instanceof</code> keyword followed by an <code>identifier</code>.</p>
+<p><code>instanceof</code>のようなキーワードは、たとえ識別子がその位置で有効でない場合でも、他の文字が直後に続いてはなりません。
+Tree-sitterは、<a href="#conflicting-tokens">上記</a>で説明したように、コンテキストに応じた字句解析を使用しているため、通常、この制限を課しません。
+デフォルトでは、Tree-sitterは<code>instanceofSomething</code>を2つの別々のトークンとして認識します。
+つまり<code>instanceof</code>キーワードの後に<code>identifier</code>が続くものと認識します。</p>
 <h3><a class="header" href="#keyword-extraction" id="keyword-extraction">Keyword Extraction</a></h3>
 <p>Fortunately, Tree-sitter has a feature that allows you to fix this, so that you can match the behavior of other standard parsers: the <code>word</code> token. If you specify a <code>word</code> token in your grammar, Tree-sitter will find the set of <em>keyword</em> tokens that match strings also matched by the <code>word</code> token. Then, during lexing, instead of matching each of these keywords individually, Tree-sitter will match the keywords via a two-step process where it <em>first</em> matches the <code>word</code> token.</p>
 <p>For example, suppose we added <code>identifier</code> as the <code>word</code> token in our JavaScript grammar:</p>
