@@ -701,9 +701,11 @@ Tree-sitterは、これらのトークンの衝突をいくつかの方法で区
 Tree-sitterは、<a href="#conflicting-tokens">上記</a>で説明したように、コンテキストに応じた字句解析を使用しているため、通常、この制限を課しません。
 デフォルトでは、Tree-sitterは<code>instanceofSomething</code>を2つの別々のトークンとして認識します。
 つまり<code>instanceof</code>キーワードの後に<code>identifier</code>が続くものと認識します。</p>
-<h3><a class="header" href="#keyword-extraction" id="keyword-extraction">Keyword Extraction</a></h3>
-<p>Fortunately, Tree-sitter has a feature that allows you to fix this, so that you can match the behavior of other standard parsers: the <code>word</code> token. If you specify a <code>word</code> token in your grammar, Tree-sitter will find the set of <em>keyword</em> tokens that match strings also matched by the <code>word</code> token. Then, during lexing, instead of matching each of these keywords individually, Tree-sitter will match the keywords via a two-step process where it <em>first</em> matches the <code>word</code> token.</p>
-<p>For example, suppose we added <code>identifier</code> as the <code>word</code> token in our JavaScript grammar:</p>
+<h3><a class="header" href="#キーワード抽出" id="キーワード抽出">キーワード抽出</a></h3>
+<p>幸い、Tree-sitterには、他の標準パーサの動作に合わせるためにこれを修正する<code>word</code>トークンという機能がある。
+もし<code>word</code>トークンを文法で指定すると、Tree-sitterは<code>word</code>トークンにもマッチする文字列にマッチする<em>キーワード</em>トークンの集合を見つける。
+その後、字句解析中に、各キーワードを個別にマッチさせる代わりに、Tree-sitterは<code>word</code>トークンを<em>最初に</em>マッチさせる2段階のプロセスを使用してキーワードをマッチさせます。</p>
+<p>例えば、JavaScriptの文法に<code>identifier</code>を<code>word</code>トークンとして追加したとします。</p>
 <pre><code class="language-js">grammar({
   name: 'javascript',
 
