@@ -644,11 +644,13 @@ Tree-sitterは、[上記](#conflicting-tokens)で説明したように、コン�
 デフォルトでは、Tree-sitterは`instanceofSomething`を2つの別々のトークンとして認識します。
 つまり`instanceof`キーワードの後に`identifier`が続くものと認識します。
 
-### Keyword Extraction
+### キーワード抽出
 
-Fortunately, Tree-sitter has a feature that allows you to fix this, so that you can match the behavior of other standard parsers: the `word` token. If you specify a `word` token in your grammar, Tree-sitter will find the set of *keyword* tokens that match strings also matched by the `word` token. Then, during lexing, instead of matching each of these keywords individually, Tree-sitter will match the keywords via a two-step process where it *first* matches the `word` token.
+幸い、Tree-sitterには、他の標準パーサの動作に合わせるためにこれを修正する`word`トークンという機能がある。
+もし`word`トークンを文法で指定すると、Tree-sitterは`word`トークンにもマッチする文字列にマッチする*キーワード*トークンの集合を見つける。
+その後、字句解析中に、各キーワードを個別にマッチさせる代わりに、Tree-sitterは`word`トークンを*最初に*マッチさせる2段階のプロセスを使用してキーワードをマッチさせます。
 
-For example, suppose we added `identifier` as the `word` token in our JavaScript grammar:
+例えば、JavaScriptの文法に`identifier`を`word`トークンとして追加したとします。
 
 ```js
 grammar({
