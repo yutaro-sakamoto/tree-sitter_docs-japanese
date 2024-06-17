@@ -1609,7 +1609,8 @@ Tree-sitterは、<a href="section-3-creating-parsers.html#conflicting-tokens">�
 <p>Tree-sitterは、<code>typeof</code>と<code>instanceof</code>をキーワードとして識別します。
 その後、上記の無効なコードを解析する際、<code>instanceof</code>トークンを個別にスキャンする代わりに、まず<code>identifier</code>をスキャンし、<code>instanceofSomething</code>を見つけます。
 これにより、コードが無効であると正しく認識されます。</p>
-<p>Aside from improving error detection, keyword extraction also has performance benefits. It allows Tree-sitter to generate a smaller, simpler lexing function, which means that <strong>the parser will compile much more quickly</strong>.</p>
+<p>エラー検知に加えて、キーワード抽出にはパフォーマンスの利点もあります。
+これにより、Tree-sitterはより小さく、シンプルな字句解析関数を生成できるため、<strong>パーサのコンパイルがはるかに速くなります</strong>。</p>
 <h3><a class="header" href="#external-scanners" id="external-scanners">External Scanners</a></h3>
 <p>Many languages have some tokens whose structure is impossible or inconvenient to describe with a regular expression. Some examples:</p>
 <ul>
