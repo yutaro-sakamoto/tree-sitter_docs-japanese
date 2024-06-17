@@ -685,7 +685,8 @@ Tree-sitterは、`typeof`と`instanceof`をキーワードとして識別しま�
 その後、上記の無効なコードを解析する際、`instanceof`トークンを個別にスキャンする代わりに、まず`identifier`をスキャンし、`instanceofSomething`を見つけます。
 これにより、コードが無効であると正しく認識されます。
 
-Aside from improving error detection, keyword extraction also has performance benefits. It allows Tree-sitter to generate a smaller, simpler lexing function, which means that **the parser will compile much more quickly**.
+エラー検知に加えて、キーワード抽出にはパフォーマンスの利点もあります。
+これにより、Tree-sitterはより小さく、シンプルな字句解析関数を生成できるため、**パーサのコンパイルがはるかに速くなります**。
 
 ### External Scanners
 
