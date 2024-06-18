@@ -688,12 +688,12 @@ Tree-sitterは、`typeof`と`instanceof`をキーワードとして識別しま�
 エラー検知に加えて、キーワード抽出にはパフォーマンスの利点もあります。
 これにより、Tree-sitterはより小さく、シンプルな字句解析関数を生成できるため、**パーサのコンパイルがはるかに速くなります**。
 
-### External Scanners
+### 外部スキャナ
 
-Many languages have some tokens whose structure is impossible or inconvenient to describe with a regular expression. Some examples:
-* [Indent and dedent][indent-tokens] tokens in Python
-* [Heredocs][heredoc] in Bash and Ruby
-* [Percent strings][percent-string] in Ruby
+多くの言語では、正規表現で記述することが不可能または不便なトークンがいくつかあります。例：
+* Pythonの[インデント]
+* RubyやBashの[ヒアドキュメント][heredoc]
+* Rubyの[%文字列][percent-string]
 
 Tree-sitter allows you to handle these kinds of tokens using *external scanners*. An external scanner is a set of C functions that you, the grammar author, can write by hand in order to add custom logic for recognizing certain tokens.
 
