@@ -1611,12 +1611,12 @@ Tree-sitterは、<a href="section-3-creating-parsers.html#conflicting-tokens">�
 これにより、コードが無効であると正しく認識されます。</p>
 <p>エラー検知に加えて、キーワード抽出にはパフォーマンスの利点もあります。
 これにより、Tree-sitterはより小さく、シンプルな字句解析関数を生成できるため、<strong>パーサのコンパイルがはるかに速くなります</strong>。</p>
-<h3><a class="header" href="#external-scanners" id="external-scanners">External Scanners</a></h3>
-<p>Many languages have some tokens whose structure is impossible or inconvenient to describe with a regular expression. Some examples:</p>
+<h3><a class="header" href="#外部スキャナ" id="外部スキャナ">外部スキャナ</a></h3>
+<p>多くの言語では、正規表現で記述することが不可能または不便なトークンがいくつかあります。例：</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Off-side_rule">Indent and dedent</a> tokens in Python</li>
-<li><a href="https://en.wikipedia.org/wiki/Here_document">Heredocs</a> in Bash and Ruby</li>
-<li><a href="https://docs.ruby-lang.org/en/2.5.0/doc/syntax/literals_rdoc.html#label-Percent+Strings">Percent strings</a> in Ruby</li>
+<li>Pythonの[インデント]</li>
+<li>RubyやBashの<a href="https://en.wikipedia.org/wiki/Here_document">ヒアドキュメント</a></li>
+<li>Rubyの<a href="https://docs.ruby-lang.org/en/2.5.0/doc/syntax/literals_rdoc.html#label-Percent+Strings">%文字列</a></li>
 </ul>
 <p>Tree-sitter allows you to handle these kinds of tokens using <em>external scanners</em>. An external scanner is a set of C functions that you, the grammar author, can write by hand in order to add custom logic for recognizing certain tokens.</p>
 <p>To use an external scanner, there are a few steps. First, add an <code>externals</code> section to your grammar. This section should list the names of all of your external tokens. These names can then be used elsewhere in your grammar.</p>
