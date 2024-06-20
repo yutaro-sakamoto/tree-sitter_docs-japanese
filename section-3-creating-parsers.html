@@ -745,8 +745,12 @@ Tree-sitterは、<a href="#conflicting-tokens">上記</a>で説明したよう�
 <li>RubyやBashの<a href="https://en.wikipedia.org/wiki/Here_document">ヒアドキュメント</a></li>
 <li>Rubyの<a href="https://docs.ruby-lang.org/en/2.5.0/doc/syntax/literals_rdoc.html#label-Percent+Strings">%文字列</a></li>
 </ul>
-<p>Tree-sitter allows you to handle these kinds of tokens using <em>external scanners</em>. An external scanner is a set of C functions that you, the grammar author, can write by hand in order to add custom logic for recognizing certain tokens.</p>
-<p>To use an external scanner, there are a few steps. First, add an <code>externals</code> section to your grammar. This section should list the names of all of your external tokens. These names can then be used elsewhere in your grammar.</p>
+<p>Tree-sitterは、これらの種類のトークンを扱うために<em>外部スキャナ</em>を使用することができます。
+外部スキャナは、特定のトークンを認識するためのカスタムロジックを追加するために、文法の作者が手で書くことができるC関数のセットです。</p>
+<p>外部スキャナを使うには、いくつかのステップが必要です。
+まず、文法に<code>externals</code>セクションを追加します。
+このセクションには、すべての外部トークンの名前をリストする必要があります。
+これらの名前は、文法の他の場所で使用できます。</p>
 <pre><code class="language-js">grammar({
   name: 'my_language',
 
