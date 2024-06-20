@@ -695,9 +695,13 @@ Tree-sitterは、`typeof`と`instanceof`をキーワードとして識別しま�
 * RubyやBashの[ヒアドキュメント][heredoc]
 * Rubyの[%文字列][percent-string]
 
-Tree-sitter allows you to handle these kinds of tokens using *external scanners*. An external scanner is a set of C functions that you, the grammar author, can write by hand in order to add custom logic for recognizing certain tokens.
+Tree-sitterは、これらの種類のトークンを扱うために*外部スキャナ*を使用することができます。
+外部スキャナは、特定のトークンを認識するためのカスタムロジックを追加するために、文法の作者が手で書くことができるC関数のセットです。
 
-To use an external scanner, there are a few steps. First, add an `externals` section to your grammar. This section should list the names of all of your external tokens. These names can then be used elsewhere in your grammar.
+外部スキャナを使うには、いくつかのステップが必要です。
+まず、文法に`externals`セクションを追加します。
+このセクションには、すべての外部トークンの名前をリストする必要があります。
+これらの名前は、文法の他の場所で使用できます。
 
 ```js
 grammar({
