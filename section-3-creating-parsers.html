@@ -763,7 +763,10 @@ Tree-sitterは、<a href="#conflicting-tokens">上記</a>で説明したよう�
   // ...
 });
 </code></pre>
-<p>Then, add another C or C++ source file to your project. Currently, its path must be <code>src/scanner.c</code> or <code>src/scanner.cc</code> for the CLI to recognize it. Be sure to add this file to the <code>sources</code> section of your <code>binding.gyp</code> file so that it will be included when your project is compiled by Node.js and uncomment the appropriate block in your <code>bindings/rust/build.rs</code> file so that it will be included in your Rust crate.</p>
+<p>そして、プロジェクトに別のCまたはC++ソースファイルを追加します。
+現在、CLIがそれを認識するためには、そのパスは<code>src/scanner.c</code>または<code>src/scanner.cc</code>である必要があります。
+プロジェクトがNode.jsによってコンパイルされるときにそれが含まれるように、<code>binding.gyp</code>ファイルの<code>sources</code>セクションにこのファイルを追加し、
+<code>bindings/rust/build.rs</code>ファイルの適切なブロックのコメント解除して、Rustクレートに含まれるようにしてください。</p>
 <p>In this new source file, define an <a href="https://en.wikipedia.org/wiki/Enumerated_type#C"><code>enum</code></a> type containing the names of all of your external tokens. The ordering of this enum must match the order in your grammar's <code>externals</code> array; the actual names do not matter.</p>
 <pre><code class="language-c">#include &lt;tree_sitter/parser.h&gt;
 
