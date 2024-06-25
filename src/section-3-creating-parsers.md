@@ -717,7 +717,10 @@ grammar({
 });
 ```
 
-Then, add another C or C++ source file to your project. Currently, its path must be `src/scanner.c` or `src/scanner.cc` for the CLI to recognize it. Be sure to add this file to the `sources` section of your `binding.gyp` file so that it will be included when your project is compiled by Node.js and uncomment the appropriate block in your `bindings/rust/build.rs` file so that it will be included in your Rust crate.
+そして、プロジェクトに別のCまたはC++ソースファイルを追加します。
+現在、CLIがそれを認識するためには、そのパスは`src/scanner.c`または`src/scanner.cc`である必要があります。
+プロジェクトがNode.jsによってコンパイルされるときにそれが含まれるように、`binding.gyp`ファイルの`sources`セクションにこのファイルを追加し、
+`bindings/rust/build.rs`ファイルの適切なブロックのコメント解除して、Rustクレートに含まれるようにしてください。
 
 In this new source file, define an [`enum`][enum] type containing the names of all of your external tokens. The ordering of this enum must match the order in your grammar's `externals` array; the actual names do not matter.
 
