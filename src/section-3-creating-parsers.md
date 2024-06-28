@@ -722,7 +722,8 @@ grammar({
 プロジェクトがNode.jsによってコンパイルされるときにそれが含まれるように、`binding.gyp`ファイルの`sources`セクションにこのファイルを追加し、
 `bindings/rust/build.rs`ファイルの適切なブロックのコメント解除して、Rustクレートに含まれるようにしてください。
 
-In this new source file, define an [`enum`][enum] type containing the names of all of your external tokens. The ordering of this enum must match the order in your grammar's `externals` array; the actual names do not matter.
+この新しいソースファイルでは、すべての外部トークンの名前を含む[`enum`][enum]型を定義します。
+この`enum`の順序は、文法の`externals`配列の順序と一致している必要があります。実際の名前は問題ありません。
 
 ```c
 #include <tree_sitter/parser.h>
