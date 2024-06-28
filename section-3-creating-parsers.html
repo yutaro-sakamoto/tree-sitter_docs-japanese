@@ -767,7 +767,8 @@ Tree-sitterは、<a href="#conflicting-tokens">上記</a>で説明したよう�
 現在、CLIがそれを認識するためには、そのパスは<code>src/scanner.c</code>または<code>src/scanner.cc</code>である必要があります。
 プロジェクトがNode.jsによってコンパイルされるときにそれが含まれるように、<code>binding.gyp</code>ファイルの<code>sources</code>セクションにこのファイルを追加し、
 <code>bindings/rust/build.rs</code>ファイルの適切なブロックのコメント解除して、Rustクレートに含まれるようにしてください。</p>
-<p>In this new source file, define an <a href="https://en.wikipedia.org/wiki/Enumerated_type#C"><code>enum</code></a> type containing the names of all of your external tokens. The ordering of this enum must match the order in your grammar's <code>externals</code> array; the actual names do not matter.</p>
+<p>この新しいソースファイルでは、すべての外部トークンの名前を含む<a href="https://en.wikipedia.org/wiki/Enumerated_type#C"><code>enum</code></a>型を定義します。
+この<code>enum</code>の順序は、文法の<code>externals</code>配列の順序と一致している必要があります。実際の名前は問題ありません。</p>
 <pre><code class="language-c">#include &lt;tree_sitter/parser.h&gt;
 
 enum TokenType {
