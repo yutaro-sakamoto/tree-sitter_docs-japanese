@@ -735,7 +735,9 @@ enum TokenType {
 }
 ```
 
-Finally, you must define five functions with specific names, based on your language's name and five actions: *create*, *destroy*, *serialize*, *deserialize*, and *scan*. These functions must all use [C linkage][c-linkage], so if you're writing the scanner in C++, you need to declare them with the `extern "C"` qualifier.
+最後に、言語の名前と5つのアクションに基づいて、特定の名前を持つ5つの関数を定義する必要があります：*create*、*destroy*、*serialize*、*deserialize*、*scan*。
+これらの関数はすべて[Cリンケージ][c-linkage]を使用する必要があります。
+したがって、C++でスキャナを書いている場合は、`extern "C"`修飾子を使用して宣言する必要があります。
 
 #### Create
 
