@@ -1650,7 +1650,9 @@ enum TokenType {
   NEWLINE
 }
 </code></pre>
-<p>Finally, you must define five functions with specific names, based on your language's name and five actions: <em>create</em>, <em>destroy</em>, <em>serialize</em>, <em>deserialize</em>, and <em>scan</em>. These functions must all use <a href="https://en.cppreference.com/w/cpp/language/language_linkage">C linkage</a>, so if you're writing the scanner in C++, you need to declare them with the <code>extern &quot;C&quot;</code> qualifier.</p>
+<p>最後に、言語の名前と5つのアクションに基づいて、特定の名前を持つ5つの関数を定義する必要があります：<em>create</em>、<em>destroy</em>、<em>serialize</em>、<em>deserialize</em>、<em>scan</em>。
+これらの関数はすべて<a href="https://en.cppreference.com/w/cpp/language/language_linkage">Cリンケージ</a>を使用する必要があります。
+したがって、C++でスキャナを書いている場合は、<code>extern &quot;C&quot;</code>修飾子を使用して宣言する必要があります。</p>
 <h4><a class="header" href="#create" id="create">Create</a></h4>
 <pre><code class="language-c">void * tree_sitter_my_language_external_scanner_create() {
   // ...
