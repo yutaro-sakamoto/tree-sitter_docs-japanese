@@ -739,7 +739,7 @@ enum TokenType {
 これらの関数はすべて[Cリンケージ][c-linkage]を使用する必要があります。
 したがって、C++でスキャナを書いている場合は、`extern "C"`修飾子を使用して宣言する必要があります。
 
-#### Create
+#### 作成
 
 ```c
 void * tree_sitter_my_language_external_scanner_create() {
@@ -747,8 +747,10 @@ void * tree_sitter_my_language_external_scanner_create() {
 }
 ```
 
-This function should create your scanner object. It will only be called once anytime your language is set on a parser. Often, you will want to allocate memory on the heap and return a pointer to it. If your external scanner doesn't need to maintain any state, it's ok to return `NULL`.
-
+この関数は、スキャナオブジェクトを作成する必要があります。
+パーサに言語が設定されるたびに1回だけ呼び出されます。
+多くの場合、ヒープ上にメモリを割り当てて、そのポインタを返すことが望ましいです。
+外部スキャナが状態を保持する必要がない場合は、`NULL`を返すこともできます。
 
 #### Destroy
 
