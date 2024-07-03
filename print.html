@@ -1653,12 +1653,15 @@ enum TokenType {
 <p>最後に、言語の名前と5つのアクションに基づいて、特定の名前を持つ5つの関数を定義する必要があります：<em>create</em>、<em>destroy</em>、<em>serialize</em>、<em>deserialize</em>、<em>scan</em>。
 これらの関数はすべて<a href="https://en.cppreference.com/w/cpp/language/language_linkage">Cリンケージ</a>を使用する必要があります。
 したがって、C++でスキャナを書いている場合は、<code>extern &quot;C&quot;</code>修飾子を使用して宣言する必要があります。</p>
-<h4><a class="header" href="#create" id="create">Create</a></h4>
+<h4><a class="header" href="#作成" id="作成">作成</a></h4>
 <pre><code class="language-c">void * tree_sitter_my_language_external_scanner_create() {
   // ...
 }
 </code></pre>
-<p>This function should create your scanner object. It will only be called once anytime your language is set on a parser. Often, you will want to allocate memory on the heap and return a pointer to it. If your external scanner doesn't need to maintain any state, it's ok to return <code>NULL</code>.</p>
+<p>この関数は、スキャナオブジェクトを作成する必要があります。
+パーサに言語が設定されるたびに1回だけ呼び出されます。
+多くの場合、ヒープ上にメモリを割り当てて、そのポインタを返すことが望ましいです。
+外部スキャナが状態を保持する必要がない場合は、<code>NULL</code>を返すこともできます。</p>
 <h4><a class="header" href="#destroy" id="destroy">Destroy</a></h4>
 <pre><code class="language-c">void tree_sitter_my_language_external_scanner_destroy(void *payload) {
   // ...
