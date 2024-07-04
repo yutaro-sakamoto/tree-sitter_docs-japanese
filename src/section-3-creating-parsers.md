@@ -752,7 +752,7 @@ void * tree_sitter_my_language_external_scanner_create() {
 多くの場合、ヒープ上にメモリを割り当てて、そのポインタを返すことが望ましいです。
 外部スキャナが状態を保持する必要がない場合は、`NULL`を返すこともできます。
 
-#### Destroy
+#### 破棄
 
 ```c
 void tree_sitter_my_language_external_scanner_destroy(void *payload) {
@@ -760,7 +760,10 @@ void tree_sitter_my_language_external_scanner_destroy(void *payload) {
 }
 ```
 
-This function should free any memory used by your scanner. It is called once when a parser is deleted or assigned a different language. It receives as an argument the same pointer that was returned from the *create* function. If your *create* function didn't allocate any memory, this function can be a noop.
+この関数は、スキャナが使用したメモリを解放する必要があります。
+パーサが削除されるか、別の言語が割り当てられるときに1回だけ呼び出されます。
+引数として、*create*関数から返されたポインタが渡されます。
+*create*関数がメモリを割り当てていない場合、この関数は何もしなくても良い。
 
 #### Serialize
 
