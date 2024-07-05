@@ -776,7 +776,10 @@ unsigned tree_sitter_my_language_external_scanner_serialize(
 }
 ```
 
-This function should copy the complete state of your scanner into a given byte buffer, and return the number of bytes written. The function is called every time the external scanner successfully recognizes a token. It receives a pointer to your scanner and a pointer to a buffer. The maximum number of bytes that you can write is given by the `TREE_SITTER_SERIALIZATION_BUFFER_SIZE` constant, defined in the `tree_sitter/parser.h` header file.
+この関数はスキャナの完全な状態を与えられたバッファにコピーし、書き込んだバイト数を返す必要がある。
+この関数は、外部スキャナがトークンを正常に認識するたびに呼び出されます。
+この関数は、スキャナへのポインタとバッファへのポインタを受け取ります。
+書き込むことができる最大バイト数は、`tree_sitter/parser.h`ヘッダファイルで定義されている`TREE_SITTER_SERIALIZATION_BUFFER_SIZE`定数で与えられます。
 
 The data that this function writes will ultimately be stored in the syntax tree so that the scanner can be restored to the right state when handling edits or ambiguities. For your parser to work correctly, the `serialize` function must store its entire state, and `deserialize` must restore the entire state. For good performance, you should design your scanner so that its state can be serialized as quickly and compactly as possible.
 
