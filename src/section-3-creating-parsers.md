@@ -781,7 +781,9 @@ unsigned tree_sitter_my_language_external_scanner_serialize(
 この関数は、スキャナへのポインタとバッファへのポインタを受け取ります。
 書き込むことができる最大バイト数は、`tree_sitter/parser.h`ヘッダファイルで定義されている`TREE_SITTER_SERIALIZATION_BUFFER_SIZE`定数で与えられます。
 
-The data that this function writes will ultimately be stored in the syntax tree so that the scanner can be restored to the right state when handling edits or ambiguities. For your parser to work correctly, the `serialize` function must store its entire state, and `deserialize` must restore the entire state. For good performance, you should design your scanner so that its state can be serialized as quickly and compactly as possible.
+この関数が書き込むデータは、最終的に構文木に格納され、編集や曖昧さを処理する際にスキャナが正しい状態に復元されるようになります。
+パーサが正しく動作するためには、`serialize`関数はその全状態を保存し、`deserialize`関数はその全状態を復元する必要があります。
+パフォーマンスを向上させるためには、スキャナの状態ができるだけ迅速かつコンパクトにシリアライズできるように設計する必要があります。
 
 #### Deserialize
 
