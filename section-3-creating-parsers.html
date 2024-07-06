@@ -810,7 +810,9 @@ enum TokenType {
 この関数は、外部スキャナがトークンを正常に認識するたびに呼び出されます。
 この関数は、スキャナへのポインタとバッファへのポインタを受け取ります。
 書き込むことができる最大バイト数は、<code>tree_sitter/parser.h</code>ヘッダファイルで定義されている<code>TREE_SITTER_SERIALIZATION_BUFFER_SIZE</code>定数で与えられます。</p>
-<p>The data that this function writes will ultimately be stored in the syntax tree so that the scanner can be restored to the right state when handling edits or ambiguities. For your parser to work correctly, the <code>serialize</code> function must store its entire state, and <code>deserialize</code> must restore the entire state. For good performance, you should design your scanner so that its state can be serialized as quickly and compactly as possible.</p>
+<p>この関数が書き込むデータは、最終的に構文木に格納され、編集や曖昧さを処理する際にスキャナが正しい状態に復元されるようになります。
+パーサが正しく動作するためには、<code>serialize</code>関数はその全状態を保存し、<code>deserialize</code>関数はその全状態を復元する必要があります。
+パフォーマンスを向上させるためには、スキャナの状態ができるだけ迅速かつコンパクトにシリアライズできるように設計する必要があります。</p>
 <h4><a class="header" href="#deserialize" id="deserialize">Deserialize</a></h4>
 <pre><code class="language-c">void tree_sitter_my_language_external_scanner_deserialize(
   void *payload,
