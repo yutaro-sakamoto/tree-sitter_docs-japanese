@@ -797,8 +797,9 @@ void tree_sitter_my_language_external_scanner_deserialize(
 }
 ```
 
-This function should *restore* the state of your scanner based the bytes that were previously written by the `serialize` function. It is called with a pointer to your scanner, a pointer to the buffer of bytes, and the number of bytes that should be read.
-It is good practice to explicitly erase your scanner state variables at the start of this function, before restoring their values from the byte buffer.
+この関数は、`serialize`関数によって以前に書かれたバイトに基づいてスキャナの状態を*復元*する必要があります。
+この関数には、スキャナへのポインタ、バイトバッファへのポインタ、および読み取るべきバイト数が渡されます。
+この関数の最初に、バイトバッファから値を復元する前に、スキャナの状態変数を明示的に消去すると良いでしょう。
 
 #### Scan
 
