@@ -834,7 +834,9 @@ enum TokenType {
   // ...
 }
 </code></pre>
-<p>This function is responsible for recognizing external tokens. It should return <code>true</code> if a token was recognized, and <code>false</code> otherwise. It is called with a &quot;lexer&quot; struct with the following fields:</p>
+<p>この関数は、外部トークンを認識する責任があります。
+トークンが認識された場合は<code>true</code>を、それ以外の場合は<code>false</code>を返す必要があります。
+この関数は以下のフィールドを持つ「lexer」構造体と共に呼び出されます。</p>
 <ul>
 <li><strong><code>int32_t lookahead</code></strong> - The current next character in the input stream, represented as a 32-bit unicode code point.</li>
 <li><strong><code>TSSymbol result_symbol</code></strong> - The symbol that was recognized. Your scan function should <em>assign</em> to this field one of the values from the <code>TokenType</code> enum, described above.</li>
