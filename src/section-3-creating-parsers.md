@@ -813,7 +813,9 @@ bool tree_sitter_my_language_external_scanner_scan(
 }
 ```
 
-This function is responsible for recognizing external tokens. It should return `true` if a token was recognized, and `false` otherwise. It is called with a "lexer" struct with the following fields:
+この関数は、外部トークンを認識する責任があります。
+トークンが認識された場合は`true`を、それ以外の場合は`false`を返す必要があります。
+この関数は以下のフィールドを持つ「lexer」構造体と共に呼び出されます。
 
 * **`int32_t lookahead`** - The current next character in the input stream, represented as a 32-bit unicode code point.
 * **`TSSymbol result_symbol`** - The symbol that was recognized. Your scan function should *assign* to this field one of the values from the `TokenType` enum, described above.
