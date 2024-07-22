@@ -823,7 +823,7 @@ bool tree_sitter_my_language_external_scanner_scan(
 * **`void (*mark_end)(TSLexer *)`** - 認識されたトークンの終了をマークするための関数。これにより、複数の文字の先読みが必要なトークンを一致させることができます。デフォルトでは（`mark_end`を呼び出さない場合）、`advance`関数を使用して移動した任意の文字がトークンのサイズに含まれます。しかし、`mark_end`を呼び出すと、その後の`advance`の呼び出しは、返されるトークンのサイズを増やさなくなります。`mark_end`を複数回呼び出すことで、トークンのサイズを増やすことができます。
 * **`uint32_t (*get_column)(TSLexer *)`** - 現在の列位置を問い合わせるための関数。現在の行の先頭からのコードポイント数を返します。コードポイント位置は、この関数の呼び出しごとに再計算され、行の先頭から読み取られます。
 * **`bool (*is_at_included_range_start)(const TSLexer *)`** - パーサが文書中の文字をスキップしたかどうかをチェックする関数。(多言語ドキュメントのセクションので説明した)`ts_parser_set_included_ranges`関数を使って埋め込みドキュメントをパースしているとき、ドキュメント内の別の部分に移る際にスキャナに特別な動作をさせたいことがある。例えば、[EJSドキュメント][ejs]では、JavaScriptパーサはこの関数を使用して、`<%`と`%>`で区切られたコードディレクティブ間に自動セミコロントークンを挿入することを可能にしています。
-* **`bool (*eof)(const TSLexer *)`** - A function for determining whether the lexer is at the end of the file. The value of `lookahead` will be `0` at the end of a file, but this function should be used instead of checking for that value because the `0` or "NUL" value is also a valid character that could be present in the file being parsed.
+* **`bool (*eof)(const TSLexer *)`** - lexerが末尾に到達したかを決定する関数。 The value of `lookahead` will be `0` at the end of a file, but this function should be used instead of checking for that value because the `0` or "NUL" value is also a valid character that could be present in the file being parsed.
 
 The third argument to the `scan` function is an array of booleans that indicates which of your external tokens are currently expected by the parser. You should only look for a given token if it is valid according to this array. At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
 
