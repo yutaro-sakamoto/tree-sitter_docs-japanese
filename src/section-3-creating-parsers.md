@@ -825,7 +825,9 @@ bool tree_sitter_my_language_external_scanner_scan(
 * **`bool (*is_at_included_range_start)(const TSLexer *)`** - パーサが文書中の文字をスキップしたかどうかをチェックする関数。(多言語ドキュメントのセクションので説明した)`ts_parser_set_included_ranges`関数を使って埋め込みドキュメントをパースしているとき、ドキュメント内の別の部分に移る際にスキャナに特別な動作をさせたいことがある。例えば、[EJSドキュメント][ejs]では、JavaScriptパーサはこの関数を使用して、`<%`と`%>`で区切られたコードディレクティブ間に自動セミコロントークンを挿入することを可能にしています。
 * **`bool (*eof)(const TSLexer *)`** - lexerが末尾に到達したかを決定する関数。`lookahead`の値がファイルの末尾に達したときは`0`になりますが、この関数はその値をチェックする代わりに使用する必要があります。なぜなら、`0`または"NUL"値は、解析されているファイルに存在する可能性がある有効な文字でもあるからです。
 
-The third argument to the `scan` function is an array of booleans that indicates which of your external tokens are currently expected by the parser. You should only look for a given token if it is valid according to this array. At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
+scan関数の3番目の引数は、bolleanの配列で、パーサが現在の位置で期待している外部トークンを示しています。
+You should only look for a given token if it is valid according to this array. At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
+
 
 ```c
 if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
