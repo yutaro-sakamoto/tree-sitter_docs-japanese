@@ -826,7 +826,9 @@ bool tree_sitter_my_language_external_scanner_scan(
 * **`bool (*eof)(const TSLexer *)`** - lexerが末尾に到達したかを決定する関数。`lookahead`の値がファイルの末尾に達したときは`0`になりますが、この関数はその値をチェックする代わりに使用する必要があります。なぜなら、`0`または"NUL"値は、解析されているファイルに存在する可能性がある有効な文字でもあるからです。
 
 scan関数の3番目の引数は、bolleanの配列で、パーサが現在の位置で期待している外部トークンを示しています。
-You should only look for a given token if it is valid according to this array. At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
+この配列が正常性を保証する時に、外部スキャナは特定のトークンを検索すべきです。
+At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
+
 
 
 ```c
