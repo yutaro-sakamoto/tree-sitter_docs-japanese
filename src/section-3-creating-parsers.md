@@ -846,7 +846,7 @@ if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
 }
 ```
 
-#### Other External Scanner Details
+#### 外部スキャナのその他の詳細
 
 If a token in your `externals` array is valid at the current position in the parse, your external scanner will be called first before anything else is done.
 This means your external scanner functions as a powerful override of tree-sitter's lexing behavior, and can be used to solve problems that can't be cracked with ordinary lexical, parse, or dynamic precedence.
