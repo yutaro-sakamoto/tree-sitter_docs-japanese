@@ -862,7 +862,7 @@ At the same time, you cannot backtrack, so you may need to combine certain piece
   }
 }
 </code></pre>
-<h4><a class="header" href="#other-external-scanner-details" id="other-external-scanner-details">Other External Scanner Details</a></h4>
+<h4><a class="header" href="#外部スキャナのその他の詳細" id="外部スキャナのその他の詳細">外部スキャナのその他の詳細</a></h4>
 <p>If a token in your <code>externals</code> array is valid at the current position in the parse, your external scanner will be called first before anything else is done.
 This means your external scanner functions as a powerful override of tree-sitter's lexing behavior, and can be used to solve problems that can't be cracked with ordinary lexical, parse, or dynamic precedence.</p>
 <p>If a syntax error is encountered during regular parsing, tree-sitter's first action during error recovery will be to call your external scanner's <code>scan</code> function with all tokens marked valid.
