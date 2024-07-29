@@ -827,7 +827,7 @@ bool tree_sitter_my_language_external_scanner_scan(
 
 scan関数の3番目の引数は、bolleanの配列で、パーサが現在の位置で期待している外部トークンを示しています。
 この配列が正常性を保証する時に、外部スキャナは特定のトークンを検索すべきです。
-At the same time, you cannot backtrack, so you may need to combine certain pieces of logic.
+同時に、バックトラックはできないため、特定のロジックを組み合わせる必要があるかもしれません。
 
 
 
