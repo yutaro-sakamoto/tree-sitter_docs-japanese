@@ -851,7 +851,8 @@ if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
 `external`配列のトークンが現在位置で有効である場合、外部スキャナが最初に呼び出されます。
 これは、外部スキャナ関数は通常の字句解析を上書きし、通常の字句解析や構文解析・動的優先度で解決できない問題を解決するために使用できることを意味します。
 
-If a syntax error is encountered during regular parsing, tree-sitter's first action during error recovery will be to call your external scanner's `scan` function with all tokens marked valid.
+もし通常の構文解析で構文エラーが発生した場合、エラー回復中におけるtree-sitterの最初のアクションは、有効であるとマークされたすべてのトークンの外部スキャナの`scan`関数を呼び出すことです。
+
 Your scanner should detect this case and handle it appropriately.
 One simple method of detection is to add an unused token to the end of your `externals` array, for example `externals: $ => [$.token1, $.token2, $.error_sentinel]`, then check whether that token is marked valid to determine whether tree-sitter is in error correction mode.
 
