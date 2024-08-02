@@ -866,7 +866,7 @@ enum TokenType {
 <p><code>external</code>配列のトークンが現在位置で有効である場合、外部スキャナが最初に呼び出されます。
 これは、外部スキャナ関数は通常の字句解析を上書きし、通常の字句解析や構文解析・動的優先度で解決できない問題を解決するために使用できることを意味します。</p>
 <p>もし通常の構文解析で構文エラーが発生した場合、エラー回復中におけるtree-sitterの最初のアクションは、有効であるとマークされたすべてのトークンの外部スキャナの<code>scan</code>関数を呼び出すことです。</p>
-<p>Your scanner should detect this case and handle it appropriately.
+<p>スキャナはこのケースを検出し、適切に処理する必要があります。
 One simple method of detection is to add an unused token to the end of your <code>externals</code> array, for example <code>externals: $ =&gt; [$.token1, $.token2, $.error_sentinel]</code>, then check whether that token is marked valid to determine whether tree-sitter is in error correction mode.</p>
 <p>If you put terminal keywords in your <code>externals</code> array, for example <code>externals: $ =&gt; ['if', 'then', 'else']</code>, then any time those terminals are present in your grammar they will be tokenized by your external scanner.
 It is equivalent to writing <code>externals: [$.if_keyword, $.then_keyword, $.else_keyword]</code> then using <code>alias($.if_keyword, 'if')</code> in your grammar.</p>
