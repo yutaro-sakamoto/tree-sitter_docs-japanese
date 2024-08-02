@@ -853,7 +853,7 @@ if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
 
 もし通常の構文解析で構文エラーが発生した場合、エラー回復中におけるtree-sitterの最初のアクションは、有効であるとマークされたすべてのトークンの外部スキャナの`scan`関数を呼び出すことです。
 
-Your scanner should detect this case and handle it appropriately.
+スキャナはこのケースを検出し、適切に処理する必要があります。
 One simple method of detection is to add an unused token to the end of your `externals` array, for example `externals: $ => [$.token1, $.token2, $.error_sentinel]`, then check whether that token is marked valid to determine whether tree-sitter is in error correction mode.
 
 If you put terminal keywords in your `externals` array, for example `externals: $ => ['if', 'then', 'else']`, then any time those terminals are present in your grammar they will be tokenized by your external scanner.
