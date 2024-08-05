@@ -870,7 +870,7 @@ enum TokenType {
 検出の1つの簡単な方法は、<code>externals</code>配列の最後に未使用のトークンを追加することです。
 例えば、<code>externals: $ =&gt; [$.token1, $.token2, $.error_sentinel]</code>のようにします。
 その後、エラー訂正モードにあるかどうかを判断するために、そのトークンが有効にマークされているかどうかを確認します。</p>
-<p>If you put terminal keywords in your <code>externals</code> array, for example <code>externals: $ =&gt; ['if', 'then', 'else']</code>, then any time those terminals are present in your grammar they will be tokenized by your external scanner.
+<p>終端キーワードが<code>externals</code>配列にあるとき、例えば<code>externals: $ =&gt; ['if', 'then', 'else']</code>のようなとき、その終端キーワードが文法内に存在するとき、外部スキャナによってトークン化されます。
 It is equivalent to writing <code>externals: [$.if_keyword, $.then_keyword, $.else_keyword]</code> then using <code>alias($.if_keyword, 'if')</code> in your grammar.</p>
 <p>External scanners are a common cause of infinite loops.
 Be very careful when emitting zero-width tokens from your external scanner, and if you consume characters in a loop be sure use the <code>eof</code> function to check whether you are at the end of the file.</p>
