@@ -858,7 +858,7 @@ if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
 例えば、`externals: $ => [$.token1, $.token2, $.error_sentinel]`のようにします。
 その後、エラー訂正モードにあるかどうかを判断するために、そのトークンが有効にマークされているかどうかを確認します。
 
-If you put terminal keywords in your `externals` array, for example `externals: $ => ['if', 'then', 'else']`, then any time those terminals are present in your grammar they will be tokenized by your external scanner.
+終端キーワードが`externals`配列にあるとき、例えば`externals: $ => ['if', 'then', 'else']`のようなとき、その終端キーワードが文法内に存在するとき、外部スキャナによってトークン化されます。
 It is equivalent to writing `externals: [$.if_keyword, $.then_keyword, $.else_keyword]` then using `alias($.if_keyword, 'if')` in your grammar.
 
 External scanners are a common cause of infinite loops.
