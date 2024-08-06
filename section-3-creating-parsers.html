@@ -872,7 +872,7 @@ enum TokenType {
 その後、エラー訂正モードにあるかどうかを判断するために、そのトークンが有効にマークされているかどうかを確認します。</p>
 <p>終端キーワードが<code>externals</code>配列にあるとき、例えば<code>externals: $ =&gt; ['if', 'then', 'else']</code>のようなとき、その終端キーワードが文法内に存在するとき、外部スキャナによってトークン化されます。
 It is equivalent to writing <code>externals: [$.if_keyword, $.then_keyword, $.else_keyword]</code> then using <code>alias($.if_keyword, 'if')</code> in your grammar.</p>
-<p>External scanners are a common cause of infinite loops.
+<p>外部スキャナは無限ループの一般的な原因です。
 Be very careful when emitting zero-width tokens from your external scanner, and if you consume characters in a loop be sure use the <code>eof</code> function to check whether you are at the end of the file.</p>
 <!-- textlint-enable -->
 <p><a href="./section-2-using-parsers.html">前のページ(パーサを使う)</a> &lt;---- <a href="../README.html">目次</a> ----&gt; <a href="./section-4-syntax-highlighting.html">次のページ(シンタックスハイライター)</a></p>
