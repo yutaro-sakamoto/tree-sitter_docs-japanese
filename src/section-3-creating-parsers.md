@@ -862,7 +862,7 @@ if (valid_symbols[INDENT] || valid_symbol[DEDENT]) {
 It is equivalent to writing `externals: [$.if_keyword, $.then_keyword, $.else_keyword]` then using `alias($.if_keyword, 'if')` in your grammar.
 
 外部スキャナは無限ループの一般的な原因です。
-Be very careful when emitting zero-width tokens from your external scanner, and if you consume characters in a loop be sure use the `eof` function to check whether you are at the end of the file.
+外部スキャナが長さ0のトークンを発行するときは注意が必要で、もし文字をループで消費する場合は、ファイルの終わりにいるかどうかを確認するために`eof`関数を使用してください。
 
 [ambiguous-grammar]: https://en.wikipedia.org/wiki/Ambiguous_grammar
 [antlr]: http://www.antlr.org/
